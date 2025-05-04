@@ -1,0 +1,82 @@
+{
+    "kind": "youtube#videoListResponse",
+    "etag": "lu6atxcfDn_7TQBV50wkso2D3R4",
+    "items": [
+      {
+        "kind": "youtube#video",
+        "etag": "V9VRb_pJNqE-l5p9dYxBGLABKgA",
+        "id": "drQK8ciCAjY",
+        "snippet": {
+          "publishedAt": "2021-08-11T13:00:15Z",
+          "channelId": "UC42pOSNg804f1wCcj7qL0mA",
+          "title": "Learn Java in One Video - 15-minute Crash Course",
+          "description": "Learn all the essential basics of Java in one video in just 15 minutes. No programming experience required.\nComplete Java Course: https://codingwithjohn.thinkific.com/courses/java-for-beginners\n\nVariables, loops, methods, classes, objects, and more!\n\nThis is a Java beginner's lesson for the ultimate Java beginner, or just someone curious to know the basics of how a Java program can be created and run. In just a few minutes you'll know everything you need to know about Java to start making some awesome programs.\n\nLearn or improve your Java by watching it being coded live!\n\nHi, I'm John! I'm a Lead Java Software Engineer and I've been in the programming industry for more than a decade. I love sharing what I've learned over the years in a way that's understandable for all levels of Java learners.\n\nLet me know what else you'd like to see!\n\nLinks to any stuff in this description are affiliate links, so if you buy a product through those links I may earn a small commission.\n\n📕 THE best book to learn Java, Effective Java by Joshua Bloch\nhttps://amzn.to/36AfdUu\n\n📕 One of my favorite programming books, Clean Code by Robert Martin\nhttps://amzn.to/3GTPVhf\n\n🎧 Or get the audio version of Clean Code for FREE here with an Audible free trial\nhttp://www.audibletrial.com/johncleancode\n\n\n\n🖥️Standing desk brand I use for recording (get a code for $30 off through this link!)\nhttps://bit.ly/3QPNGko\n\n📹Phone I use for recording:\nhttps://amzn.to/3HepYJu\n\n🎙️Microphone I use (classy, I know):\nhttps://amzn.to/3AYGdbz\n\nDonate with PayPal (Thank you so much!)\nhttps://www.paypal.com/donate/?hosted_button_id=3VWCJJRHP4WL2\n\n\n☕Complete Java course: \nhttps://codingwithjohn.thinkific.com/courses/java-for-beginners\n\nhttps://codingwithjohn.com",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Coding with John",
+          "tags": [
+            "java",
+            "codingwithjohn",
+            "coding with john",
+            "java beginner lesson",
+            "java tutorial for beginners",
+            "java tutorial for intermediate",
+            "java tutorial",
+            "java beginner tutorial",
+            "java beginners guide",
+            "java beginners course",
+            "learn java",
+            "learn java in 14 minutes",
+            "learn java programming for beginners",
+            "java programming",
+            "java full course",
+            "full java course",
+            "full java tutorial",
+            "java crash course",
+            "java in one video",
+            "java for beginners",
+            "java programming tutorial",
+            "java programming for beginners"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en-US",
+          "localized": {
+            "title": "Learn Java in One Video - 15-minute Crash Course",
+            "description": "Learn all the essential basics of Java in one video in just 15 minutes. No programming experience required.\nComplete Java Course: https://codingwithjohn.thinkific.com/courses/java-for-beginners\n\nVariables, loops, methods, classes, objects, and more!\n\nThis is a Java beginner's lesson for the ultimate Java beginner, or just someone curious to know the basics of how a Java program can be created and run. In just a few minutes you'll know everything you need to know about Java to start making some awesome programs.\n\nLearn or improve your Java by watching it being coded live!\n\nHi, I'm John! I'm a Lead Java Software Engineer and I've been in the programming industry for more than a decade. I love sharing what I've learned over the years in a way that's understandable for all levels of Java learners.\n\nLet me know what else you'd like to see!\n\nLinks to any stuff in this description are affiliate links, so if you buy a product through those links I may earn a small commission.\n\n📕 THE best book to learn Java, Effective Java by Joshua Bloch\nhttps://amzn.to/36AfdUu\n\n📕 One of my favorite programming books, Clean Code by Robert Martin\nhttps://amzn.to/3GTPVhf\n\n🎧 Or get the audio version of Clean Code for FREE here with an Audible free trial\nhttp://www.audibletrial.com/johncleancode\n\n\n\n🖥️Standing desk brand I use for recording (get a code for $30 off through this link!)\nhttps://bit.ly/3QPNGko\n\n📹Phone I use for recording:\nhttps://amzn.to/3HepYJu\n\n🎙️Microphone I use (classy, I know):\nhttps://amzn.to/3AYGdbz\n\nDonate with PayPal (Thank you so much!)\nhttps://www.paypal.com/donate/?hosted_button_id=3VWCJJRHP4WL2\n\n\n☕Complete Java course: \nhttps://codingwithjohn.thinkific.com/courses/java-for-beginners\n\nhttps://codingwithjohn.com"
+          },
+          "defaultAudioLanguage": "en"
+        }
+      }
+    ],
+    "pageInfo": {
+      "totalResults": 1,
+      "resultsPerPage": 1
+    }
+  }
+  

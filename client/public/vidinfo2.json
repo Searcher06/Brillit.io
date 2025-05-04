@@ -1,0 +1,78 @@
+{
+    "kind": "youtube#videoListResponse",
+    "etag": "ipuyWDiOpkMzu_yNiANwtDNPFJU",
+    "items": [
+      {
+        "kind": "youtube#video",
+        "etag": "JG9L6D3ZgnNrVdd5WMtARooMxR4",
+        "id": "EerdGm-ehJQ",
+        "snippet": {
+          "publishedAt": "2024-05-09T07:28:14Z",
+          "channelId": "UCB6dvaWu0N8uVq2yKsZ5s5g",
+          "title": "JavaScript Tutorial Full Course - Beginner to Pro",
+          "description": "Certificates are now available! https://courses.supersimple.dev/courses/javascript\n🎓 Enroll to get a Certificate of Completion and an improved learning experience (breakdown into smaller videos covering specific topics, ad-free content, and progress tracking).\n✅ Don't worry if you're halfway through the course or finished the course, you can skip the lessons you already finished and take the final test to get your Certificate.\n❤️ Thanks for supporting SuperSimpleDev!\n\nIn this JavaScript tutorial and JavaScript full course, learn to build complex websites with JavaScript, HTML, and CSS.\nExercise solutions: https://github.com/SuperSimpleDev/javascript-course/tree/main/1-exercise-solutions\nCopy of the code: https://github.com/SuperSimpleDev/javascript-course/tree/main/2-copy-of-code\n\nLinks for each lesson: https://github.com/SuperSimpleDev/javascript-course/tree/main/3-links.md\n\nPremium Courses:\n🎓 Get a certificate for our courses with premium learning experience & support SuperSimpleDev! ❤️\nJavaScript Premium Course: https://courses.supersimple.dev/courses/javascript\nHTML CSS Premium Course: https://courses.supersimple.dev/courses/html-css\n\nMore in-depth videos, secrets of my channel, work-in-progress courses:\n⭐ YouTube membership: https://www.youtube.com/@SuperSimpleDev/join\n\nSupport the SuperSimpleDev channel:\n❤️ https://supersimple.dev/donate\nYour support will be used for equipment, software, and other necessary costs for planning, shooting, and editing courses like this. Thank you very much!\n\nLessons:\n00:00:00 Intro\n00:02:01 1 JavaScript Basics\n00:14:48 2 Numbers and Math\n00:43:26 3 Strings\n01:07:32 4 HTML CSS Review, console.log\n01:51:06 5 Variables\n02:32:55 6 Booleans and If-Statements\n03:34:12 7 Functions\n04:15:45 8 Objects\n05:25:46 9 Document Object Model (DOM)\n06:38:51 10 HTML, CSS, and JavaScript Together\n07:42:28 11 Arrays and Loops\n08:43:04 11 (Part 2) Arrays and Loops\n09:28:26 12 Advanced Functions\n10:10:22 12 (Part 2) Advanced Functions\n10:58:57 13 Start the Amazon Project and Intro to Git\n12:28:00 14 Modules\n13:56:33 15 External Libraries\n15:34:37 16 Testing\n15:58:24 Testing Frameworks\n17:36:30 17 Object-Oriented Programming\n18:06:09 Classes\n18:51:50 Inheritance\n19:32:59 18 Intro to Backend, Callbacks, Async Await\n20:30:57 Promises and fetch\n21:12:47 Async Await\n22:14:09 Next steps after this course\n\nAdditional information:\nThis JavaScript tutorial and JavaScript full course is a project based series of JavaScript tutorials for software engineers. Each JavaScript tutorial builds on a project and provides some JavaScript exercises to practice what we learned. By the end, we'll learn how to create complex, interactive websites with JavaScript, HTML, and CSS, which will help you become a web developer and software engineer.\n\n#javascript #javascripttutorial #javascriptfullcourse #supersimpledev #javascriptcourse #advancedjavascript #webdevelopment #webdeveloper #softwaredeveloper  #softwaredevelopment #coding #codingtutorial #softwareengineer #softwareengineering #learntocode #html #css\n\nupdate_time: 1742682898369",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/EerdGm-ehJQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/EerdGm-ehJQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/EerdGm-ehJQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/EerdGm-ehJQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/EerdGm-ehJQ/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "SuperSimpleDev",
+          "tags": [
+            "javascript",
+            "javascript tutorial",
+            "javascript full course",
+            "advanced javascript",
+            "intermediate javascript",
+            "supersimpledev",
+            "course",
+            "full course",
+            "web development",
+            "web developer",
+            "software engineer",
+            "software engineering",
+            "coding tutorial",
+            "learn to code",
+            "tutorial",
+            "html",
+            "css",
+            "javascript course"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "JavaScript Tutorial Full Course - Beginner to Pro",
+            "description": "Certificates are now available! https://courses.supersimple.dev/courses/javascript\n🎓 Enroll to get a Certificate of Completion and an improved learning experience (breakdown into smaller videos covering specific topics, ad-free content, and progress tracking).\n✅ Don't worry if you're halfway through the course or finished the course, you can skip the lessons you already finished and take the final test to get your Certificate.\n❤️ Thanks for supporting SuperSimpleDev!\n\nIn this JavaScript tutorial and JavaScript full course, learn to build complex websites with JavaScript, HTML, and CSS.\nExercise solutions: https://github.com/SuperSimpleDev/javascript-course/tree/main/1-exercise-solutions\nCopy of the code: https://github.com/SuperSimpleDev/javascript-course/tree/main/2-copy-of-code\n\nLinks for each lesson: https://github.com/SuperSimpleDev/javascript-course/tree/main/3-links.md\n\nPremium Courses:\n🎓 Get a certificate for our courses with premium learning experience & support SuperSimpleDev! ❤️\nJavaScript Premium Course: https://courses.supersimple.dev/courses/javascript\nHTML CSS Premium Course: https://courses.supersimple.dev/courses/html-css\n\nMore in-depth videos, secrets of my channel, work-in-progress courses:\n⭐ YouTube membership: https://www.youtube.com/@SuperSimpleDev/join\n\nSupport the SuperSimpleDev channel:\n❤️ https://supersimple.dev/donate\nYour support will be used for equipment, software, and other necessary costs for planning, shooting, and editing courses like this. Thank you very much!\n\nLessons:\n00:00:00 Intro\n00:02:01 1 JavaScript Basics\n00:14:48 2 Numbers and Math\n00:43:26 3 Strings\n01:07:32 4 HTML CSS Review, console.log\n01:51:06 5 Variables\n02:32:55 6 Booleans and If-Statements\n03:34:12 7 Functions\n04:15:45 8 Objects\n05:25:46 9 Document Object Model (DOM)\n06:38:51 10 HTML, CSS, and JavaScript Together\n07:42:28 11 Arrays and Loops\n08:43:04 11 (Part 2) Arrays and Loops\n09:28:26 12 Advanced Functions\n10:10:22 12 (Part 2) Advanced Functions\n10:58:57 13 Start the Amazon Project and Intro to Git\n12:28:00 14 Modules\n13:56:33 15 External Libraries\n15:34:37 16 Testing\n15:58:24 Testing Frameworks\n17:36:30 17 Object-Oriented Programming\n18:06:09 Classes\n18:51:50 Inheritance\n19:32:59 18 Intro to Backend, Callbacks, Async Await\n20:30:57 Promises and fetch\n21:12:47 Async Await\n22:14:09 Next steps after this course\n\nAdditional information:\nThis JavaScript tutorial and JavaScript full course is a project based series of JavaScript tutorials for software engineers. Each JavaScript tutorial builds on a project and provides some JavaScript exercises to practice what we learned. By the end, we'll learn how to create complex, interactive websites with JavaScript, HTML, and CSS, which will help you become a web developer and software engineer.\n\n#javascript #javascripttutorial #javascriptfullcourse #supersimpledev #javascriptcourse #advancedjavascript #webdevelopment #webdeveloper #softwaredeveloper  #softwaredevelopment #coding #codingtutorial #softwareengineer #softwareengineering #learntocode #html #css\n\nupdate_time: 1742682898369"
+          },
+          "defaultAudioLanguage": "en"
+        }
+      }
+    ],
+    "pageInfo": {
+      "totalResults": 1,
+      "resultsPerPage": 1
+    }
+  }
+  

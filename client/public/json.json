@@ -1,0 +1,693 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "nRd09iiywhfDOnhLHKGKaUK-iO0",
+    "nextPageToken": "CBQQAA",
+    "regionCode": "NG",
+    "pageInfo": {
+      "totalResults": 1000000,
+      "resultsPerPage": 20
+    },
+    "items": [
+      {
+        "kind": "youtube#searchResult",
+        "etag": "4ewsvIS2vBVczV2ZelUtTfo1oe4",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "eIrMbAQSU34"
+        },
+        "snippet": {
+          "publishedAt": "2019-07-15T16:00:12Z",
+          "channelId": "UCWv7vMbMWH4-V0ZXdmDpPBA",
+          "title": "Java Full Course for Beginners",
+          "description": "Master Java – a must-have language for software development, Android apps, and more! ☕️ This beginner-friendly course takes ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/eIrMbAQSU34/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/eIrMbAQSU34/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/eIrMbAQSU34/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Programming with Mosh",
+          "liveBroadcastContent": "none",
+          "publishTime": "2019-07-15T16:00:12Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "3RCYPgGN07mwIuE3N6tnfb1bVB4",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "l9AzO1FMgM8"
+        },
+        "snippet": {
+          "publishedAt": "2021-11-03T16:23:58Z",
+          "channelId": "UCsBjURrPoezykLs9EqgamOA",
+          "title": "Java in 100 Seconds",
+          "description": "Java is a programming language famous for its ability to compile to platform-independent bytecode. It powers enterprise web apps ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/l9AzO1FMgM8/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/l9AzO1FMgM8/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/l9AzO1FMgM8/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Fireship",
+          "liveBroadcastContent": "none",
+          "publishTime": "2021-11-03T16:23:58Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "DJBvDOjkqFR2qJeiJUkt0fnqCk0",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "RRubcjpTkks"
+        },
+        "snippet": {
+          "publishedAt": "2019-04-18T15:57:44Z",
+          "channelId": "UC_fFL5jgoCOrwAVoM_fBYwA",
+          "title": "Learn Java in 14 Minutes (seriously)",
+          "description": "OFF ANY Springboard Tech Bootcamps with my code ALEXLEE. See if you qualify for the JOB GUARANTEE!",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/RRubcjpTkks/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/RRubcjpTkks/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/RRubcjpTkks/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Alex Lee",
+          "liveBroadcastContent": "none",
+          "publishTime": "2019-04-18T15:57:44Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "4nioPFNJ-Vl3PpihTf4etotPnnw",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "A74TOX803D0"
+        },
+        "snippet": {
+          "publishedAt": "2022-09-27T13:30:57Z",
+          "channelId": "UC8butISFwT-Wl7EV0hUK0BQ",
+          "title": "Java Programming for Beginners – Full Course",
+          "description": "Learn the Java programming language in this complete beginner's course. You will learn all the main features of Java (version 17) ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/A74TOX803D0/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/A74TOX803D0/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/A74TOX803D0/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "freeCodeCamp.org",
+          "liveBroadcastContent": "none",
+          "publishTime": "2022-09-27T13:30:57Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "MgVMqSnKFalqjTNul0dSQtWs4yc",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "xk4_1vDrzzo"
+        },
+        "snippet": {
+          "publishedAt": "2020-11-09T15:02:50Z",
+          "channelId": "UC4SVo0Ue36XCfOyb5Lh1viQ",
+          "title": "Java Full Course for free ☕",
+          "description": "Java tutorial for beginners full course #Java #tutorial #beginners ⭐️Time Stamps⭐️ #1 (00:00:00) Java tutorial for beginners ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/xk4_1vDrzzo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/xk4_1vDrzzo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/xk4_1vDrzzo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Bro Code",
+          "liveBroadcastContent": "none",
+          "publishTime": "2020-11-09T15:02:50Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "KxAwHErCRCF_8zyYIFcMG5zgPR8",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "390Pc6_fdeg"
+        },
+        "snippet": {
+          "publishedAt": "2024-12-19T00:40:54Z",
+          "channelId": "UC8Wt7vynFfRnoVtpNpESWjw",
+          "title": "It’s literally perfect 🫠 #coding #java #programmer #computer #python",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Desk Mate",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-12-19T00:40:54Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "WROWtlyyc6CTYCBFXw7OJD-af-Q",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "m4-HM_sCvtQ"
+        },
+        "snippet": {
+          "publishedAt": "2022-04-01T14:40:47Z",
+          "channelId": "UCsBjURrPoezykLs9EqgamOA",
+          "title": "Java for the Haters in 100 Seconds",
+          "description": "Java is one of the most successful and most dreaded technologies in the computer science world. Let's roast this powerful ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/m4-HM_sCvtQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/m4-HM_sCvtQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/m4-HM_sCvtQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Fireship",
+          "liveBroadcastContent": "none",
+          "publishTime": "2022-04-01T14:40:47Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "8ePVKVsLbA29ceGQpnpCK0B9ot8",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "drQK8ciCAjY"
+        },
+        "snippet": {
+          "publishedAt": "2021-08-11T13:00:15Z",
+          "channelId": "UC42pOSNg804f1wCcj7qL0mA",
+          "title": "Learn Java in One Video - 15-minute Crash Course",
+          "description": "Learn all the essential basics of Java in one video in just 15 minutes. No programming experience required. Complete Java ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/drQK8ciCAjY/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Coding with John",
+          "liveBroadcastContent": "none",
+          "publishTime": "2021-08-11T13:00:15Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "ILZYLESAnE0fzQIUuI4fpA7OvJQ",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "aTPaKmBkmqI"
+        },
+        "snippet": {
+          "publishedAt": "2025-03-09T15:29:08Z",
+          "channelId": "UC8Kei2PzrVo3rspjD9eUDYA",
+          "title": "learn while loop syntax in java #subscribe  @ZafarEmpowers #shorts #coding #java",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/aTPaKmBkmqI/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/aTPaKmBkmqI/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/aTPaKmBkmqI/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "ZCodeZone",
+          "liveBroadcastContent": "none",
+          "publishTime": "2025-03-09T15:29:08Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "WXe-Yfbawc230zaHQZUGe3R-YtE",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "_U3QvcTRAIo"
+        },
+        "snippet": {
+          "publishedAt": "2023-01-25T22:00:24Z",
+          "channelId": "UCVyTG4sCw-rOvB9oHkzZD1w",
+          "title": "What is Java and what is it used for?",
+          "description": "For more #webdesign & #development resources: ➢ Visit Creative Tim Courses: https://bit.ly/3s4llfw ➢ Visit our website: ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/_U3QvcTRAIo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/_U3QvcTRAIo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/_U3QvcTRAIo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Creative Tim Tutorials",
+          "liveBroadcastContent": "none",
+          "publishTime": "2023-01-25T22:00:24Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "8ko-_IQv9jihJENfGsQ9rYTyMnI",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "KgMJ0J7waMQ"
+        },
+        "snippet": {
+          "publishedAt": "2024-08-21T16:00:19Z",
+          "channelId": "UC2WHjPDvbE6O328n17ZGcfg",
+          "title": "Java Sucks",
+          "description": "Don't know why you'd want to follow me on other socials. I don't even post. But here you go. \u200d   GitHub: ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/KgMJ0J7waMQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/KgMJ0J7waMQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/KgMJ0J7waMQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "ForrestKnight",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-08-21T16:00:19Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "2CJ6-sp1aHojRBDpAGf3-upstZM",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "xTtL8E4LzTQ"
+        },
+        "snippet": {
+          "publishedAt": "2025-01-02T15:06:40Z",
+          "channelId": "UC4SVo0Ue36XCfOyb5Lh1viQ",
+          "title": "Java Full Course for free ☕ (2025)",
+          "description": "java #javatutorial #javacourse Java tutorial for beginners full course 2025 *My original Java 12 Hour course* ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/xTtL8E4LzTQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/xTtL8E4LzTQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/xTtL8E4LzTQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Bro Code",
+          "liveBroadcastContent": "none",
+          "publishTime": "2025-01-02T15:06:40Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "VHcqe4zCwXrmrENDGbPb2Jv3U7g",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "B7t8JeP19q4"
+        },
+        "snippet": {
+          "publishedAt": "2024-07-03T11:30:04Z",
+          "channelId": "UCVLbzhxVTiTLiVKeGV7WEBg",
+          "title": "Should you learn JAVA in 2024? #shorts #java",
+          "description": "Should you learn JAVA in 2024? Tutorialspoint, a leading ed-tech platform, offers Simply Easy Learning at affordable prices.",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/B7t8JeP19q4/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/B7t8JeP19q4/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/B7t8JeP19q4/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "TutorialsPoint",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-07-03T11:30:04Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "QT7U5Qhjjkk1C5zuFS6BidyOaSA",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "Qgl81fPcLc8"
+        },
+        "snippet": {
+          "publishedAt": "2020-09-09T14:02:52Z",
+          "channelId": "UC2KfmYEM4KCuA1ZurravgYw",
+          "title": "Java Full Course [NEW]",
+          "description": "Java tutorial for beginners full course #Java #tutorial #beginners Java is one of the top five programming languages and here is ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/Qgl81fPcLc8/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/Qgl81fPcLc8/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/Qgl81fPcLc8/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Amigoscode",
+          "liveBroadcastContent": "none",
+          "publishTime": "2020-09-09T14:02:52Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "a6lQX1fo8zUA5jQAchYyqV-1y0M",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "U5RYnQ-fVTg"
+        },
+        "snippet": {
+          "publishedAt": "2022-11-02T13:00:24Z",
+          "channelId": "UCRLEADhMcb8WUdnQ5_Alk7g",
+          "title": "Why people HATE JAVA 😡☕️  #coding #programming",
+          "description": "Join the Freelance Code Bootcamp -- https://freemote.com Get the Free JavaScript Syntax Cheat Sheet ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/U5RYnQ-fVTg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/U5RYnQ-fVTg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/U5RYnQ-fVTg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Aaron Jack",
+          "liveBroadcastContent": "none",
+          "publishTime": "2022-11-02T13:00:24Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "o4WMI0d5Rd6Tq0qYZozRTtqPDl0",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "1kaQwkGI_cg"
+        },
+        "snippet": {
+          "publishedAt": "2023-03-06T03:13:55Z",
+          "channelId": "UC59K-uG2A5ogwIrHw4bmlEg",
+          "title": "Java Developer Road map",
+          "description": "java #teusko #navinreddy #javadeveloper.",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/1kaQwkGI_cg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/1kaQwkGI_cg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/1kaQwkGI_cg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Telusko",
+          "liveBroadcastContent": "none",
+          "publishTime": "2023-03-06T03:13:55Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "D6j_Rii3tFgrQAEUVTuIg--qO_M",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "TiccevwEVe8"
+        },
+        "snippet": {
+          "publishedAt": "2024-08-09T14:00:33Z",
+          "channelId": "UC2WHjPDvbE6O328n17ZGcfg",
+          "title": "Learn Java Object-Oriented Programming (with actual code)",
+          "description": "Learn everything about object-oriented programming in Java. This is part 2 to the world's shortest Java course that I created out of ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/TiccevwEVe8/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/TiccevwEVe8/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/TiccevwEVe8/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "ForrestKnight",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-08-09T14:00:33Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "v5OccyW_rx8DgLn9WtMuuZc7jQk",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "BGTx91t8q50"
+        },
+        "snippet": {
+          "publishedAt": "2023-01-08T09:53:31Z",
+          "channelId": "UC59K-uG2A5ogwIrHw4bmlEg",
+          "title": "Java Tutorial for Beginners",
+          "description": "Check out our courses: Complete Java Developer Course Batch-4: https://go.telusko.com/Complete4 Coupon: TELUSKO10 (10% ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/BGTx91t8q50/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/BGTx91t8q50/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/BGTx91t8q50/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Telusko",
+          "liveBroadcastContent": "none",
+          "publishTime": "2023-01-08T09:53:31Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "phpwffJ-3UWRNdE7ySjiC1KY0QE",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "TxyUK8SRad8"
+        },
+        "snippet": {
+          "publishedAt": "2024-02-02T15:30:14Z",
+          "channelId": "UCZJlMUYdbtzQ8tVfLvK1KvQ",
+          "title": "C++ or Java? Comment below  #codingninjas #coding #programming #java #c++",
+          "description": "Which language would you choose? Is it C++ or Java? Smash that 'Like' button and hit 'Subscribe' to stay ahead in the coding ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/TxyUK8SRad8/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/TxyUK8SRad8/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/TxyUK8SRad8/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Coding Ninjas",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-02-02T15:30:14Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "oJG-5c3Qc1UlF9Ha8MoZ8DY-OAc",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "2fopl7-2wT0"
+        },
+        "snippet": {
+          "publishedAt": "2024-07-11T12:27:01Z",
+          "channelId": "UCUyeluBRhGPCW4rPe_UvBZQ",
+          "title": "Use Java For Everything",
+          "description": "Recorded live on twitch, GET IN ### Article https://www.teamten.com/lawrence/writings/java-for-everything.html By: ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/2fopl7-2wT0/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/2fopl7-2wT0/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/2fopl7-2wT0/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "ThePrimeTime",
+          "liveBroadcastContent": "none",
+          "publishTime": "2024-07-11T12:27:01Z"
+        }
+      }
+    ]
+  }
+  

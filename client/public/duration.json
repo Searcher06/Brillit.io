@@ -1,0 +1,1258 @@
+{
+    "kind": "youtube#videoListResponse",
+    "etag": "HDPj7Axa9x44eemOOQ8PYaJLqj0",
+    "items": [
+      {
+        "kind": "youtube#video",
+        "etag": "H0TpyTaqMd08uCA5HkB_qXKaPcM",
+        "id": "hRUJ41rdp4M",
+        "snippet": {
+          "publishedAt": "2023-06-18T04:14:29Z",
+          "channelId": "UClLXKYEEM8OBBx85DOa6-cg",
+          "title": "1 Year of Coding #programming #comedy #coding",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/hRUJ41rdp4M/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/hRUJ41rdp4M/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/hRUJ41rdp4M/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/hRUJ41rdp4M/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/hRUJ41rdp4M/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Devslopes",
+          "categoryId": "24",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "1 Year of Coding #programming #comedy #coding",
+            "description": ""
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT19S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "_5JPdojAGn5H-GmRqsYs9kbUwZc",
+        "id": "CIRGjwYgdT4",
+        "snippet": {
+          "publishedAt": "2021-02-25T08:56:12Z",
+          "channelId": "UCRLEADhMcb8WUdnQ5_Alk7g",
+          "title": "Programming vs Coding - What's the difference?",
+          "description": "Freelance Coding is the way in 2024! Learn How: https://www.freemote.com/strategy\n\nhttps://instagram.com/aaronjack\n\n#coding #programming #javascript ❗Free Programming Cheat Sheets (JavaScript, Python, React, CSS)\nhttps://freemote.com/programming-cheat-sheets\n\n❗Learn How to Earn a Side Income with Freelance Coding\nhttps://freemote.com",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/CIRGjwYgdT4/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/CIRGjwYgdT4/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/CIRGjwYgdT4/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/CIRGjwYgdT4/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/CIRGjwYgdT4/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Aaron Jack",
+          "tags": [
+            "programming",
+            "web development",
+            "javascript",
+            "react",
+            "learn programming",
+            "learn to code",
+            "coding",
+            "software development",
+            "become a software developer",
+            "software developer",
+            "freelancing",
+            "freelance developer",
+            "coding tutorials",
+            "development"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Programming vs Coding - What's the difference?",
+            "description": "Freelance Coding is the way in 2024! Learn How: https://www.freemote.com/strategy\n\nhttps://instagram.com/aaronjack\n\n#coding #programming #javascript ❗Free Programming Cheat Sheets (JavaScript, Python, React, CSS)\nhttps://freemote.com/programming-cheat-sheets\n\n❗Learn How to Earn a Side Income with Freelance Coding\nhttps://freemote.com"
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT5M59S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "gTbRJPO4Sv2_e_d78d62Q_WavL0",
+        "id": "bJzb-RuUcMU",
+        "snippet": {
+          "publishedAt": "2018-11-04T01:12:12Z",
+          "channelId": "UCfuSelBtnyCACv0KjG2P1-A",
+          "title": "How To Learn Programming for BEGINNERS! (2022/2023)",
+          "description": "This simple tutorial will teach you how you can learn computer programming and teach yourself code. Learning code is not that hard, and it's easier than it looks. Instead of taking coding classes, why not teach yourself? Using this method you will learn html, css, javascript, visual design & more. Many people have landed themselves jobs involving web development and web design just with using this site. So what are you waiting for? Get started now!\n\nLearn Computer Programming (For FREE):\nhttps://www.freecodecamp.org/\n\nWondering what mic I used for this video? Click here: https://amzn.to/2D8EULN\n\n\nCroatCode's other videos:\nHow To Make Reaction Videos ➜ https://youtu.be/LixBIx4mMxI\nHow To Make your Voice Sound Better on Audacity ➜ https://youtu.be/r0TFAcdpURA\n\nWant more videos? - Subscribe ➜ https://bit.ly/2PXf2W2\n\nTweet me ► https://twitter.com/croatcode\n\nWas this tutorial on learning computer programming helpful? Leave a like and share this video with a friend 🙏\n\nThanks for watching! :)\nCroatCode ✌",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/bJzb-RuUcMU/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/bJzb-RuUcMU/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/bJzb-RuUcMU/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/bJzb-RuUcMU/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/bJzb-RuUcMU/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "CroatCode",
+          "tags": [
+            "how to learn programming",
+            "how to learn programming for beginners",
+            "how to learn to code",
+            "how to learn code",
+            "computer programming",
+            "how to code",
+            "learn to code",
+            "programming for beginners",
+            "coding for beginners",
+            "coding programs",
+            "codeschool",
+            "computer programming courses",
+            "web development",
+            "2023"
+          ],
+          "categoryId": "26",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "How To Learn Programming for BEGINNERS! (2022/2023)",
+            "description": "This simple tutorial will teach you how you can learn computer programming and teach yourself code. Learning code is not that hard, and it's easier than it looks. Instead of taking coding classes, why not teach yourself? Using this method you will learn html, css, javascript, visual design & more. Many people have landed themselves jobs involving web development and web design just with using this site. So what are you waiting for? Get started now!\n\nLearn Computer Programming (For FREE):\nhttps://www.freecodecamp.org/\n\nWondering what mic I used for this video? Click here: https://amzn.to/2D8EULN\n\n\nCroatCode's other videos:\nHow To Make Reaction Videos ➜ https://youtu.be/LixBIx4mMxI\nHow To Make your Voice Sound Better on Audacity ➜ https://youtu.be/r0TFAcdpURA\n\nWant more videos? - Subscribe ➜ https://bit.ly/2PXf2W2\n\nTweet me ► https://twitter.com/croatcode\n\nWas this tutorial on learning computer programming helpful? Leave a like and share this video with a friend 🙏\n\nThanks for watching! :)\nCroatCode ✌"
+          }
+        },
+        "contentDetails": {
+          "duration": "PT4M46S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "Djl-j4V_CkKAqCNrKJEt5LzNcrI",
+        "id": "390Pc6_fdeg",
+        "snippet": {
+          "publishedAt": "2024-12-19T00:40:54Z",
+          "channelId": "UC8Wt7vynFfRnoVtpNpESWjw",
+          "title": "It’s literally perfect 🫠 #coding #java #programmer #computer #python",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/390Pc6_fdeg/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Desk Mate",
+          "categoryId": "22",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "It’s literally perfect 🫠 #coding #java #programmer #computer #python",
+            "description": ""
+          }
+        },
+        "contentDetails": {
+          "duration": "PT13S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": false,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "_VmUW8KyPqT_0OjA1iXVr4dxRqA",
+        "id": "k7LSFYyBZUs",
+        "snippet": {
+          "publishedAt": "2022-09-16T17:29:40Z",
+          "channelId": "UClLXKYEEM8OBBx85DOa6-cg",
+          "title": "Coding for 1 Month Versus 1 Year #shorts #coding",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/k7LSFYyBZUs/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/k7LSFYyBZUs/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/k7LSFYyBZUs/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/k7LSFYyBZUs/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/k7LSFYyBZUs/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Devslopes",
+          "categoryId": "28",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Coding for 1 Month Versus 1 Year #shorts #coding",
+            "description": ""
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT24S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "Ld3nYa61NnAbwHeAaxq6lfczsaM",
+        "id": "zOjov-2OZ0E",
+        "snippet": {
+          "publishedAt": "2020-04-21T13:45:02Z",
+          "channelId": "UC8butISFwT-Wl7EV0hUK0BQ",
+          "title": "Introduction to Programming and Computer Science - Full Course",
+          "description": "In this course, you will learn basics of computer programming and computer science. The concepts you learn apply to any and all programming languages and will be a good base onto which you can build your skills. \n\nThis video is meant for those who are interested in computer science and programming but have no idea where to start and have little to no background information on coding.\n\n✏️Course created by Steven and Sean from NullPointer Exception. Check out their channel: https://www.youtube.com/channel/UCmWDlvMYYEbW42B8JyxFBcA\n\n❤️ Support for this channel comes from our friends at Scrimba – the coding platform that's reinvented interactive learning: https://scrimba.com/freecodecamp\n\n⭐️ Course Contents ⭐️\n⌨️ (00:05) Introduction\n⌨️ (01:37) What is Programming?\n⌨️ (06:19) How do we write Code?\n⌨️ (11:44) How do we get Information from Computers?\n⌨️ (14:46) What can Computers Do?\n⌨️ (20:43) What are Variables?\n⌨️ (25:02) How do we Manipulate Variables?\n⌨️ (31:54) What are Conditional Statements?\n⌨️ (37:54) What are Array’s?\n⌨️ (44:26) What are Loops?\n⌨️ (49:37) What are Errors?\n⌨️ (55:22) How do we Debug Code?\n⌨️ (1:00:25) What are Functions?\n⌨️ (1:09:52) How can we Import Functions?\n⌨️ (1:13:45) How do we make our own Functions?\n⌨️ (1:21:56) What are ArrayLists and Dictionaries?\n⌨️ (1:27:38) How can we use Data Structures?\n⌨️ (1:36:27) What is Recursion?\n⌨️ (1:43:42) What is Pseudocode?\n⌨️ (1:50:40) Choosing the Right Language?\n⌨️ (1:55:34) Applications of Programming\n\n--\n\nLearn to code for free and get a developer job: https://www.freecodecamp.org\n\nRead hundreds of articles on programming: https://freecodecamp.org/news",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/zOjov-2OZ0E/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/zOjov-2OZ0E/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/zOjov-2OZ0E/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/zOjov-2OZ0E/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/zOjov-2OZ0E/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "freeCodeCamp.org",
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Introduction to Programming and Computer Science - Full Course",
+            "description": "In this course, you will learn basics of computer programming and computer science. The concepts you learn apply to any and all programming languages and will be a good base onto which you can build your skills. \n\nThis video is meant for those who are interested in computer science and programming but have no idea where to start and have little to no background information on coding.\n\n✏️Course created by Steven and Sean from NullPointer Exception. Check out their channel: https://www.youtube.com/channel/UCmWDlvMYYEbW42B8JyxFBcA\n\n❤️ Support for this channel comes from our friends at Scrimba – the coding platform that's reinvented interactive learning: https://scrimba.com/freecodecamp\n\n⭐️ Course Contents ⭐️\n⌨️ (00:05) Introduction\n⌨️ (01:37) What is Programming?\n⌨️ (06:19) How do we write Code?\n⌨️ (11:44) How do we get Information from Computers?\n⌨️ (14:46) What can Computers Do?\n⌨️ (20:43) What are Variables?\n⌨️ (25:02) How do we Manipulate Variables?\n⌨️ (31:54) What are Conditional Statements?\n⌨️ (37:54) What are Array’s?\n⌨️ (44:26) What are Loops?\n⌨️ (49:37) What are Errors?\n⌨️ (55:22) How do we Debug Code?\n⌨️ (1:00:25) What are Functions?\n⌨️ (1:09:52) How can we Import Functions?\n⌨️ (1:13:45) How do we make our own Functions?\n⌨️ (1:21:56) What are ArrayLists and Dictionaries?\n⌨️ (1:27:38) How can we use Data Structures?\n⌨️ (1:36:27) What is Recursion?\n⌨️ (1:43:42) What is Pseudocode?\n⌨️ (1:50:40) Choosing the Right Language?\n⌨️ (1:55:34) Applications of Programming\n\n--\n\nLearn to code for free and get a developer job: https://www.freecodecamp.org\n\nRead hundreds of articles on programming: https://freecodecamp.org/news"
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT1H59M9S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "true",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "yI0KKbWW8qIvwBMhruL6E4H2yHI",
+        "id": "yymyLXPbP1Y",
+        "snippet": {
+          "publishedAt": "2024-07-20T14:48:32Z",
+          "channelId": "UCrqAddL1VDf4e5V1AojoOYQ",
+          "title": "How to become a Senior developer.. ♥️ 😂 #programming #javascript #python #coding #developer #coder .",
+          "description": "How to become a Senior developer.. ♥️ 😂 #programming #javascript #python #coding #developer #coder .#coding resources#software engineer#php#Programming #javascript examples with code for beginners#async await javascript#javascript demo#JavaScript #turtle module python#python crash course#python tutorials#Python #learn programming#how to learn coding#coding mistakes#computer science#Coding #software development#web developer salary#Developer #tiff in tech#learn python from scratch#Python programming #Html#python #programming #coding #java #javascript #programmer #developer #html #snake #coder #code #computerscience #technology #css #machinelearning #pythonprogramming #linux #ballpython #php #datascience #reptile #snakes #reptiles #snakesofinstagram #software #reptilesofinstagram #webdevelopment #webdeveloper #tech #codinglife#webdevelopment #webdesign #webdeveloper #html #website #css #digitalmarketing #coding #programming #javascript #seo #websitedesign #webdesigner #developer #programmer #web #marketing #wordpress #python #ecommerce #coder #design #software #code #php #softwaredeveloper #java #business #graphicdesign #technology#Shorts#Viral#python course",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/yymyLXPbP1Y/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/yymyLXPbP1Y/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/yymyLXPbP1Y/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/yymyLXPbP1Y/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/yymyLXPbP1Y/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "DIVINE CLASSES AN INSTITUTION Of EDUCATION.",
+          "tags": [
+            "Coding",
+            "Developer",
+            "Html",
+            "JavaScript",
+            "Programming",
+            "Python",
+            "Python programming",
+            "Shorts",
+            "Viral",
+            "async await javascript",
+            "coding mistakes",
+            "coding resources",
+            "computer science",
+            "how to learn coding",
+            "javascript",
+            "javascript demo",
+            "javascript examples with code for beginners",
+            "learn programming",
+            "learn python from scratch",
+            "php",
+            "python",
+            "python course",
+            "python crash course",
+            "python tutorials",
+            "software development",
+            "software engineer",
+            "tiff in tech",
+            "turtle module python",
+            "web developer",
+            "web developer salary"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en-US",
+          "localized": {
+            "title": "How to become a Senior developer.. ♥️ 😂 #programming #javascript #python #coding #developer #coder .",
+            "description": "How to become a Senior developer.. ♥️ 😂 #programming #javascript #python #coding #developer #coder .#coding resources#software engineer#php#Programming #javascript examples with code for beginners#async await javascript#javascript demo#JavaScript #turtle module python#python crash course#python tutorials#Python #learn programming#how to learn coding#coding mistakes#computer science#Coding #software development#web developer salary#Developer #tiff in tech#learn python from scratch#Python programming #Html#python #programming #coding #java #javascript #programmer #developer #html #snake #coder #code #computerscience #technology #css #machinelearning #pythonprogramming #linux #ballpython #php #datascience #reptile #snakes #reptiles #snakesofinstagram #software #reptilesofinstagram #webdevelopment #webdeveloper #tech #codinglife#webdevelopment #webdesign #webdeveloper #html #website #css #digitalmarketing #coding #programming #javascript #seo #websitedesign #webdesigner #developer #programmer #web #marketing #wordpress #python #ecommerce #coder #design #software #code #php #softwaredeveloper #java #business #graphicdesign #technology#Shorts#Viral#python course"
+          },
+          "defaultAudioLanguage": "en-US"
+        },
+        "contentDetails": {
+          "duration": "PT18S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": false,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "M0ZwpXTdQVUVVRJtNBGj1Tq3esI",
+        "id": "6er14t0WA38",
+        "snippet": {
+          "publishedAt": "2022-09-08T15:30:22Z",
+          "channelId": "UCWI-ohtRu8eEeDj93hmUsUQ",
+          "title": "What programming language you should learn👩\u200d💻(based off your interests) #programming #technology",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/6er14t0WA38/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/6er14t0WA38/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/6er14t0WA38/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/6er14t0WA38/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/6er14t0WA38/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Coding with Lewis",
+          "categoryId": "28",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "What programming language you should learn👩\u200d💻(based off your interests) #programming #technology",
+            "description": ""
+          }
+        },
+        "contentDetails": {
+          "duration": "PT32S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "IssENJyxfkvYnHOIfFBzot27eHo",
+        "id": "vjWKG_JE32E",
+        "snippet": {
+          "publishedAt": "2025-03-22T13:01:18Z",
+          "channelId": "UCs_tLP3AiwYKwdUHpltJPuA",
+          "title": "Living in Big Data with Vector Functional Programming • Dave Thomas • YOW! 2014",
+          "description": "This presentation was recorded at YOW! 2014. #GOTOcon #YOW\nhttps://yowcon.com\n\nDave Thomas - Founder, Keynote Speaker & Software Industry Expert\n\nRESOURCES\nhttp://www.davethomas.net\nhttps://twitter.com/daveathomas\nhttps://linkedin.com/in/davidathomas\n\nABSTRACT\nIn this explore the past, present and future of array programming languages. They are one of the most expressive and productive languages yet remain relatively unknown.T hey are still used heavily in financial markets globally. Array developers made the first wide spread use of learning by katas and patterns, then called idioms, and including the now pervasive map reduce. The dynamic Array languages originated with APL followed by APL2, NIAL, J and k.\n\nOften considered high barrier languages, we argue that they are much like a challenging instrument that when mastered allow to make amazing music with seeming little effort. We will also discuss why Vector programming is a natural low impedance approach for dealing with today’s high performance NoSQL and NewSQL column stores.\n\nIn the late 60s and early 70s Fortran, Lisp, COBOL, APL and Basic were the hot languages. Lisp, APL and later Basic pioneered the “the repl” of interactive computing. APL provides an efficient array/vector language for numeric computing. and found wide acceptance in financial, engineering and statistical computing. APL inspired – the Smalltalk environment; array extensions in other general languages such as Python NumPy and NamedTuple; F-Script for IOS Cocoa; special purpose languages such as MatLab and R; to recent proposed extensions for value types in Java; along with special purpose vector hardware like GPUs and recent Intel AVX instructions.\n\nRECOMMENDED BOOKS\nKevlin Henney • 97 Things Every Programmer Should Know • https://amzn.to/2Yahf9U\nHenney & Monson-Haefel • 97 Things Every Software Architect Should Know • https://amzn.to/3pZuHsQ\nMatthew Skelton & Manuel Pais • Team Topologies • http://amzn.to/3sVLyLQ\nMichael Jackson • Software Requirements and Specifications • https://amzn.to/3ql2T14\nGeoffrey West • Scale • http://amzn.to/3eKMbpc\nDonald G. Reinertsen • The Principles of Product Development Flow • https://amzn.to/3hJ2Ye\n\nhttps://bsky.app/profile/gotocon.com\nhttps://twitter.com/GOTOcon\nhttps://www.linkedin.com/company/goto-\nhttps://www.instagram.com/goto_con\nhttps://www.facebook.com/GOTOConferences\n#FunctionalProgramming #VectorProgramming #BigData #VectorFunctionalProgramming #Programming #SoftwareEngineering #DaveThomas #YOWcon\n\nCHANNEL MEMBERSHIP BONUS\nJoin this channel to get early access to videos & other perks:\nhttps://www.youtube.com/channel/UCs_tLP3AiwYKwdUHpltJPuA/join\n\nLooking for a unique learning experience?\nAttend the next GOTO conference near you! Get your ticket at https://gotopia.tech\nSign up for updates and specials at https://gotopia.tech/newsletter\n\nSUBSCRIBE TO OUR CHANNEL - new videos posted almost daily.\nhttps://www.youtube.com/user/GotoConferences/?sub_confirmation=1",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/vjWKG_JE32E/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/vjWKG_JE32E/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/vjWKG_JE32E/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/vjWKG_JE32E/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/vjWKG_JE32E/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "GOTO Conferences",
+          "tags": [
+            "GOTO",
+            "GOTOcon",
+            "GOTO Conference",
+            "GOTO (Software Conference)",
+            "Videos for Developers",
+            "Computer Science",
+            "Programming",
+            "Software Engineering",
+            "GOTOpia",
+            "Tech",
+            "Software Development",
+            "Tech Channel",
+            "Tech Conference",
+            "YOW!",
+            "YOWCon",
+            "Dave Thomas",
+            "Vector Functional Programming",
+            "Functional Programming",
+            "Vector Programming",
+            "Big Data"
+          ],
+          "categoryId": "28",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Living in Big Data with Vector Functional Programming • Dave Thomas • YOW! 2014",
+            "description": "This presentation was recorded at YOW! 2014. #GOTOcon #YOW\nhttps://yowcon.com\n\nDave Thomas - Founder, Keynote Speaker & Software Industry Expert\n\nRESOURCES\nhttp://www.davethomas.net\nhttps://twitter.com/daveathomas\nhttps://linkedin.com/in/davidathomas\n\nABSTRACT\nIn this explore the past, present and future of array programming languages. They are one of the most expressive and productive languages yet remain relatively unknown.T hey are still used heavily in financial markets globally. Array developers made the first wide spread use of learning by katas and patterns, then called idioms, and including the now pervasive map reduce. The dynamic Array languages originated with APL followed by APL2, NIAL, J and k.\n\nOften considered high barrier languages, we argue that they are much like a challenging instrument that when mastered allow to make amazing music with seeming little effort. We will also discuss why Vector programming is a natural low impedance approach for dealing with today’s high performance NoSQL and NewSQL column stores.\n\nIn the late 60s and early 70s Fortran, Lisp, COBOL, APL and Basic were the hot languages. Lisp, APL and later Basic pioneered the “the repl” of interactive computing. APL provides an efficient array/vector language for numeric computing. and found wide acceptance in financial, engineering and statistical computing. APL inspired – the Smalltalk environment; array extensions in other general languages such as Python NumPy and NamedTuple; F-Script for IOS Cocoa; special purpose languages such as MatLab and R; to recent proposed extensions for value types in Java; along with special purpose vector hardware like GPUs and recent Intel AVX instructions.\n\nRECOMMENDED BOOKS\nKevlin Henney • 97 Things Every Programmer Should Know • https://amzn.to/2Yahf9U\nHenney & Monson-Haefel • 97 Things Every Software Architect Should Know • https://amzn.to/3pZuHsQ\nMatthew Skelton & Manuel Pais • Team Topologies • http://amzn.to/3sVLyLQ\nMichael Jackson • Software Requirements and Specifications • https://amzn.to/3ql2T14\nGeoffrey West • Scale • http://amzn.to/3eKMbpc\nDonald G. Reinertsen • The Principles of Product Development Flow • https://amzn.to/3hJ2Ye\n\nhttps://bsky.app/profile/gotocon.com\nhttps://twitter.com/GOTOcon\nhttps://www.linkedin.com/company/goto-\nhttps://www.instagram.com/goto_con\nhttps://www.facebook.com/GOTOConferences\n#FunctionalProgramming #VectorProgramming #BigData #VectorFunctionalProgramming #Programming #SoftwareEngineering #DaveThomas #YOWcon\n\nCHANNEL MEMBERSHIP BONUS\nJoin this channel to get early access to videos & other perks:\nhttps://www.youtube.com/channel/UCs_tLP3AiwYKwdUHpltJPuA/join\n\nLooking for a unique learning experience?\nAttend the next GOTO conference near you! Get your ticket at https://gotopia.tech\nSign up for updates and specials at https://gotopia.tech/newsletter\n\nSUBSCRIBE TO OUR CHANNEL - new videos posted almost daily.\nhttps://www.youtube.com/user/GotoConferences/?sub_confirmation=1"
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT33M46S",
+          "dimension": "2d",
+          "definition": "sd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "9ECS-16WVzqRw012grU21Np8rZs",
+        "id": "MAlSjtxy5ak",
+        "snippet": {
+          "publishedAt": "2019-09-27T03:12:56Z",
+          "channelId": "UCqi0-4XRvQLBo8E5r8bvPsA",
+          "title": "Every programming tutorial",
+          "description": "thx for the explanation",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/MAlSjtxy5ak/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/MAlSjtxy5ak/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/MAlSjtxy5ak/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/MAlSjtxy5ak/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            }
+          },
+          "channelTitle": "Jombo",
+          "categoryId": "20",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "Every programming tutorial",
+            "description": "thx for the explanation"
+          }
+        },
+        "contentDetails": {
+          "duration": "PT29S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "yRI_CFuRhrQHKpPmYJs4-6P-C2o",
+        "id": "5-oiLKEWIEw",
+        "snippet": {
+          "publishedAt": "2023-05-01T03:26:26Z",
+          "channelId": "UClLXKYEEM8OBBx85DOa6-cg",
+          "title": "Best Programming Languages #programming #coding #javascript",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/5-oiLKEWIEw/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/5-oiLKEWIEw/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/5-oiLKEWIEw/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/5-oiLKEWIEw/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/5-oiLKEWIEw/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Devslopes",
+          "categoryId": "28",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Best Programming Languages #programming #coding #javascript",
+            "description": ""
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT16S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "d9gcqwU46tWgYkOXBmLWmilY02k",
+        "id": "4gYZLNcSpQw",
+        "snippet": {
+          "publishedAt": "2024-02-19T03:19:34Z",
+          "channelId": "UCX3aygUDlBQ8b-ojSQH6fkQ",
+          "title": "Yes Coding is Hard BUT #codewithme #motivation #codingmotivation #fullstackdeveloper #programmer #c",
+          "description": "Subscribe for daily coding motivation 📖\n\nIt’s true coding is not an easy major at all!\n\nBut what is true is the the pay off, you may not always feel motivated to code.\n\nI’m a full time computer science student as well as someone who decided to pay for a part time coding boot camp.\n\nIk it sounds crazy but even though my major was in computer science I still felt like I wasn’t good enough.\n\nSo I went part time in a coding bootcamp to further help me learn to code.\n\nBut let me tell you this journey is tough and coding is still very hard. \n\nBut nothing feels better after all that struggle when you finally get your program to compile 😎\n\nBtw this is day 70/100 days of programming coding challenge.\n\n#coding #codingchallenge #codingmotivation #computersciencemajor #programmingstudents #fullstackdeveloper #codingbootcamp #codewithme \n#learntocode #codingshorts #programming #programmer #python #webdeveloper #javascript #webdevelopment #java #programmers #code #developer #php #technology #codinglife #computerscience",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/4gYZLNcSpQw/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/4gYZLNcSpQw/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/4gYZLNcSpQw/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/4gYZLNcSpQw/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/4gYZLNcSpQw/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Jameel | Full Stack Developer",
+          "tags": [
+            "coding motivation",
+            "coding",
+            "programmer motivation",
+            "programming motivation",
+            "coder motivation",
+            "motivation to learn programming",
+            "coding motivation for beginners",
+            "code motivation",
+            "motivation to code",
+            "no motivation to code",
+            "motivation",
+            "coding motivational video",
+            "coding motivational speech",
+            "learn to code",
+            "programming motivation video",
+            "coding motivation shorts",
+            "motivation for programmers",
+            "motivation to learn coding",
+            "motivation while learning to code",
+            "motivation code short"
+          ],
+          "categoryId": "1",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "Yes Coding is Hard BUT #codewithme #motivation #codingmotivation #fullstackdeveloper #programmer #c",
+            "description": "Subscribe for daily coding motivation 📖\n\nIt’s true coding is not an easy major at all!\n\nBut what is true is the the pay off, you may not always feel motivated to code.\n\nI’m a full time computer science student as well as someone who decided to pay for a part time coding boot camp.\n\nIk it sounds crazy but even though my major was in computer science I still felt like I wasn’t good enough.\n\nSo I went part time in a coding bootcamp to further help me learn to code.\n\nBut let me tell you this journey is tough and coding is still very hard. \n\nBut nothing feels better after all that struggle when you finally get your program to compile 😎\n\nBtw this is day 70/100 days of programming coding challenge.\n\n#coding #codingchallenge #codingmotivation #computersciencemajor #programmingstudents #fullstackdeveloper #codingbootcamp #codewithme \n#learntocode #codingshorts #programming #programmer #python #webdeveloper #javascript #webdevelopment #java #programmers #code #developer #php #technology #codinglife #computerscience"
+          }
+        },
+        "contentDetails": {
+          "duration": "PT8S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": false,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "sHle8gzTpgl-deYrVGRBsNxrJ8A",
+        "id": "tO0WuF_SC9A",
+        "snippet": {
+          "publishedAt": "2022-09-30T04:23:50Z",
+          "channelId": "UCwmrhGjxy4aTM1VFgTUWXIw",
+          "title": "Engineer Vs Programmer 😃",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/tO0WuF_SC9A/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/tO0WuF_SC9A/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/tO0WuF_SC9A/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/tO0WuF_SC9A/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/tO0WuF_SC9A/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Ark",
+          "categoryId": "22",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "Engineer Vs Programmer 😃",
+            "description": ""
+          }
+        },
+        "contentDetails": {
+          "duration": "PT30S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "pzhEHlQzIZeJvWnGZeeisC7PgJA",
+        "id": "NClmyC6olC0",
+        "snippet": {
+          "publishedAt": "2025-01-22T12:30:18Z",
+          "channelId": "UCWv7vMbMWH4-V0ZXdmDpPBA",
+          "title": "Top Programming Languages to Learn in 2025",
+          "description": "Want to future-proof your coding skills? Discover the top programming languages that will dominate in 2025, with real-world use cases and career insights. Don’t miss out—stay ahead in tech!\n\n❤️ Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join\n\n🔗 Tutorials \nhttps://youtu.be/_uQrJ0TkZlc?si=PlSZ9OJl2sku4sIH\nhttps://youtu.be/kqtD5dpn9C8?si=tr53YlfyrMqsi_RF\nhttps://youtu.be/eIrMbAQSU34?si=n1fSY_7d96rzzomX\nhttps://youtu.be/W6NZfCO5SIk?si=uaOUNhKhr2dOySV2\nhttps://youtu.be/d56mG7DezGs?si=Kpc4FFmYOWKvpPIc\nhttps://youtu.be/7S_tz1z_5bA?si=83GhWNiU_J9MB2e2\nhttps://youtu.be/ZzaPdXTrSb8?si=Ve9Y4HTogsj_pJLM\n\n✋ Stay connected:\n- Full Courses: https://codewithmosh.com\n- Twitter: https://twitter.com/moshhamedani\n- Facebook: https://www.facebook.com/programmingwithmosh/\n- Instagram: https://www.instagram.com/codewithmosh.official/\n- LinkedIn: https://www.linkedin.com/school/codewithmosh/\n\n#coding #programming",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/NClmyC6olC0/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/NClmyC6olC0/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/NClmyC6olC0/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/NClmyC6olC0/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/NClmyC6olC0/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Programming with Mosh",
+          "tags": [
+            "top programming languages",
+            "top coding languages in demand",
+            "top programming languages 2025",
+            "best coding language to learn",
+            "popular languages",
+            "coding",
+            "most popular programming language",
+            "top coding languages",
+            "coding languages"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "Top Programming Languages to Learn in 2025",
+            "description": "Want to future-proof your coding skills? Discover the top programming languages that will dominate in 2025, with real-world use cases and career insights. Don’t miss out—stay ahead in tech!\n\n❤️ Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join\n\n🔗 Tutorials \nhttps://youtu.be/_uQrJ0TkZlc?si=PlSZ9OJl2sku4sIH\nhttps://youtu.be/kqtD5dpn9C8?si=tr53YlfyrMqsi_RF\nhttps://youtu.be/eIrMbAQSU34?si=n1fSY_7d96rzzomX\nhttps://youtu.be/W6NZfCO5SIk?si=uaOUNhKhr2dOySV2\nhttps://youtu.be/d56mG7DezGs?si=Kpc4FFmYOWKvpPIc\nhttps://youtu.be/7S_tz1z_5bA?si=83GhWNiU_J9MB2e2\nhttps://youtu.be/ZzaPdXTrSb8?si=Ve9Y4HTogsj_pJLM\n\n✋ Stay connected:\n- Full Courses: https://codewithmosh.com\n- Twitter: https://twitter.com/moshhamedani\n- Facebook: https://www.facebook.com/programmingwithmosh/\n- Instagram: https://www.instagram.com/codewithmosh.official/\n- LinkedIn: https://www.linkedin.com/school/codewithmosh/\n\n#coding #programming"
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT4M14S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "CFXy0rWyE6kQFG2EIBJ62LglKEo",
+        "id": "WR1ydijTx5E",
+        "snippet": {
+          "publishedAt": "2023-06-13T18:52:08Z",
+          "channelId": "UCQTmoQ_S26PlmDoXujZpbYQ",
+          "title": "How I Learned to Code in 4 Months & Got a Job! (No CS Degree, No Bootcamp)",
+          "description": "I went from being a college dropout with zero technical skills to landing a software developer job in 4 months. This video is about how I became a self-taught software developer and how I learned how to code without a computer science degree or coding bootcamp. \n\nConnect With Me: \n⭐️ Main Site: https://www.timkim.me/ \n🐦 Twitter: https://twitter.com/TimKimMe \n📸 Instagram: https://www.instagram.com/timkim.me/ \n\nCourses To Help Supplement Learning: \n(COUPON CODE FOR 10% OFF ➡️ FRIENDS10) \n📚 Learning How To Learn: https://bit.ly/TK_LHTL_ZTM \n🛠️ Build JS Projects Step-by-Step: https://bit.ly/TK_JS_ZTM \n🟣 React: https://bit.ly/TK_React_ZTM \n🅱️ Node: https://bit.ly/TK_Node_ZTM \n🧐 Coding Interview Prep (DSA): https://bit.ly/TK_DSA_ZTM \n\nReady To Build Your Own App?\n💻 Learn to Code in Weeks: https://bit.ly/CodeFast\n\nLearn How To Code Playlist: \nhttps://www.youtube.com/playlist?list=PLt3w0xGh6M0hpR26CyGYwGMFcsuLl8i8w\n\nMentioned Resources: \n⭐️ https://www.coursera.org/learn/learning-how-to-learn \n🏕️ https://www.freecodecamp.org/ \n🔎 https://watchandcode.com/\n\nFind Remote Jobs: \n💻 https://remoteok.com/ \n💻 https://weworkremotely.com/\n\nTools I Used For Learning How To Code: \n· Laptop Stand - https://amzn.to/3PgoMvU \n· Pomodoro Timer - https://amzn.to/3NqoxgC \n· Bose Headphones - https://amzn.to/3CseP7f \n· Vertical Mouse - https://amzn.to/3JaWtLA \n· Apple Keyboard - https://amzn.to/43SSRFX \n· Laptop Backpack - https://amzn.to/3qFCu1p \n\nBehind The Scenes: \n🎬 https://www.timkim.me/ep-3-the-coding-video/\n\nMusic For Creators:\n🎵 https://share.epidemicsound.com/2xtucq\n\nDisclaimer: Some of the links are affiliate links so I can feed mi familia while I make these videos for you guys. 🙏🙏🙏",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/WR1ydijTx5E/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/WR1ydijTx5E/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/WR1ydijTx5E/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/WR1ydijTx5E/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/WR1ydijTx5E/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Tim Kim",
+          "tags": [
+            "learn to code",
+            "get a job",
+            "learn programming",
+            "programming",
+            "coding",
+            "how to code",
+            "software developer",
+            "software engineering",
+            "software developer job",
+            "How to learn",
+            "How to learn how to code",
+            "Get a job in tech",
+            "tech jobs with no experience",
+            "tech jobs",
+            "software engineer",
+            "code",
+            "coding job",
+            "javascript",
+            "learn javascript",
+            "how to program an app",
+            "startup",
+            "computer science",
+            "learn how to code",
+            "internship interview",
+            "tech job",
+            "learn to code for beginners",
+            "no cs degree",
+            "self taught programmer"
+          ],
+          "categoryId": "22",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "How I Learned to Code in 4 Months & Got a Job! (No CS Degree, No Bootcamp)",
+            "description": "I went from being a college dropout with zero technical skills to landing a software developer job in 4 months. This video is about how I became a self-taught software developer and how I learned how to code without a computer science degree or coding bootcamp. \n\nConnect With Me: \n⭐️ Main Site: https://www.timkim.me/ \n🐦 Twitter: https://twitter.com/TimKimMe \n📸 Instagram: https://www.instagram.com/timkim.me/ \n\nCourses To Help Supplement Learning: \n(COUPON CODE FOR 10% OFF ➡️ FRIENDS10) \n📚 Learning How To Learn: https://bit.ly/TK_LHTL_ZTM \n🛠️ Build JS Projects Step-by-Step: https://bit.ly/TK_JS_ZTM \n🟣 React: https://bit.ly/TK_React_ZTM \n🅱️ Node: https://bit.ly/TK_Node_ZTM \n🧐 Coding Interview Prep (DSA): https://bit.ly/TK_DSA_ZTM \n\nReady To Build Your Own App?\n💻 Learn to Code in Weeks: https://bit.ly/CodeFast\n\nLearn How To Code Playlist: \nhttps://www.youtube.com/playlist?list=PLt3w0xGh6M0hpR26CyGYwGMFcsuLl8i8w\n\nMentioned Resources: \n⭐️ https://www.coursera.org/learn/learning-how-to-learn \n🏕️ https://www.freecodecamp.org/ \n🔎 https://watchandcode.com/\n\nFind Remote Jobs: \n💻 https://remoteok.com/ \n💻 https://weworkremotely.com/\n\nTools I Used For Learning How To Code: \n· Laptop Stand - https://amzn.to/3PgoMvU \n· Pomodoro Timer - https://amzn.to/3NqoxgC \n· Bose Headphones - https://amzn.to/3CseP7f \n· Vertical Mouse - https://amzn.to/3JaWtLA \n· Apple Keyboard - https://amzn.to/43SSRFX \n· Laptop Backpack - https://amzn.to/3qFCu1p \n\nBehind The Scenes: \n🎬 https://www.timkim.me/ep-3-the-coding-video/\n\nMusic For Creators:\n🎵 https://share.epidemicsound.com/2xtucq\n\nDisclaimer: Some of the links are affiliate links so I can feed mi familia while I make these videos for you guys. 🙏🙏🙏"
+          },
+          "defaultAudioLanguage": "en-US"
+        },
+        "contentDetails": {
+          "duration": "PT9M51S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "true",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "fN48uPknnvdtnB-VN6Pq3hMWsNQ",
+        "id": "3fkP88FDgaI",
+        "snippet": {
+          "publishedAt": "2022-09-10T17:53:10Z",
+          "channelId": "UCqU0K6Cvo2Q2fZE_Njbx24g",
+          "title": "coding is shockingly uncomplicated",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/3fkP88FDgaI/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/3fkP88FDgaI/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/3fkP88FDgaI/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/3fkP88FDgaI/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            }
+          },
+          "channelTitle": "Brian Xu",
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "coding is shockingly uncomplicated",
+            "description": ""
+          },
+          "defaultAudioLanguage": "en-US"
+        },
+        "contentDetails": {
+          "duration": "PT31S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "SGarDNDEvjsc3OkdEiS1ijIEiec",
+        "id": "5ZJpm2J4Gmw",
+        "snippet": {
+          "publishedAt": "2024-12-12T17:54:03Z",
+          "channelId": "UCWI-ohtRu8eEeDj93hmUsUQ",
+          "title": "The BRAINROT programming language 💀 #software #programming #technology #code #development #memes",
+          "description": "",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/5ZJpm2J4Gmw/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/5ZJpm2J4Gmw/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/5ZJpm2J4Gmw/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/5ZJpm2J4Gmw/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/5ZJpm2J4Gmw/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Coding with Lewis",
+          "categoryId": "24",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "The BRAINROT programming language 💀 #software #programming #technology #code #development #memes",
+            "description": ""
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT1M",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "YLn-w1QmpDs6qaKPB8fl7PKXwdw",
+        "id": "itwco8_yV2k",
+        "snippet": {
+          "publishedAt": "2024-11-28T15:00:51Z",
+          "channelId": "UC39VnEdRvgJmIKBDdmj0dIQ",
+          "title": "The 7 Levels of Programming",
+          "description": "Join the free discord to chat: \ndiscord.gg/TFHqFbuYNq\n\nJoin this channel to get access to perks:\nhttps://www.youtube.com/channel/UC39VnEdRvgJmIKBDdmj0dIQ/join\n\nShout out to the editor: \nhttps://thehalalmedia.carrd.co/\n\nChapters:\n0:00 Intro\n0:48 Level 0\n1:11 Level 1\n1:36 Level 2\n2:09 Level 3\n2:51 Level 4\n3:20 Level 5\n3:49 Level 6\n4:16 Level 7",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/itwco8_yV2k/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/itwco8_yV2k/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/itwco8_yV2k/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/itwco8_yV2k/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/itwco8_yV2k/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "The Unqualified Tutor",
+          "tags": [
+            "programming",
+            "coding",
+            "leetcode"
+          ],
+          "categoryId": "27",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en-GB",
+          "localized": {
+            "title": "The 7 Levels of Programming",
+            "description": "Join the free discord to chat: \ndiscord.gg/TFHqFbuYNq\n\nJoin this channel to get access to perks:\nhttps://www.youtube.com/channel/UC39VnEdRvgJmIKBDdmj0dIQ/join\n\nShout out to the editor: \nhttps://thehalalmedia.carrd.co/\n\nChapters:\n0:00 Intro\n0:48 Level 0\n1:11 Level 1\n1:36 Level 2\n2:09 Level 3\n2:51 Level 4\n3:20 Level 5\n3:49 Level 6\n4:16 Level 7"
+          },
+          "defaultAudioLanguage": "en-GB"
+        },
+        "contentDetails": {
+          "duration": "PT5M6S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "jJlFKHwNj8jvbKQNgPmEVsCdsjA",
+        "id": "5UGnvrx44rQ",
+        "snippet": {
+          "publishedAt": "2024-11-26T23:31:12Z",
+          "channelId": "UCkdgAA0rfK7lG5dv4o__Paw",
+          "title": "Coding interviews in 2024 (*realistic*)",
+          "description": "#programming #programminginterview",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/5UGnvrx44rQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/5UGnvrx44rQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/5UGnvrx44rQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/5UGnvrx44rQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/5UGnvrx44rQ/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Alberta Tech",
+          "categoryId": "28",
+          "liveBroadcastContent": "none",
+          "localized": {
+            "title": "Coding interviews in 2024 (*realistic*)",
+            "description": "#programming #programminginterview"
+          },
+          "defaultAudioLanguage": "en-US"
+        },
+        "contentDetails": {
+          "duration": "PT45S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      },
+      {
+        "kind": "youtube#video",
+        "etag": "W1eurhmJjppl1aTGVeuLGnLizKI",
+        "id": "EFmxPMdBqmU",
+        "snippet": {
+          "publishedAt": "2025-03-01T13:00:06Z",
+          "channelId": "UCbKWv2x9t6u8yZoB3KcPtnw",
+          "title": "Animation vs. Coding",
+          "description": "/(^∇^)╯  https://brilliant.org/alanbecker\n30-day free trial and 20% off 👍\n\n🖐 ASK ME ANYTHING! ► https://www.youtube.com/noogai89/join \n\n👕 MERCH! ► https://alanbecker.shop\n\n💬DISCORD SERVER ► https://discord.gg/alanbecker \n\n🕹️ANIMATORS VS GAMES ►  @AnimatorsVSGames \n\n📷INSTAGRAM ► http://www.instagram.com/alanbecker \n\n✏️TWITTER ► http://twitter.com/alanthebecker \n\n🔹🔶WRITER🔶🔹\nTerkoiz\n🔹🔶PROJECT LEAD / PA🔶🔹\n Sammi Alea https://sammialea.com/ \n🔹🔶ANIMATION🔶🔹\nTerkoiz\n@doumaki4501 \n@effie2095 \n@SimpleFox1 \n@smoilysheep4670 \n@favfaris4714 \n@n8sterAnimates \n@Spacedoughnut \n@ARCpersona \n@ablerai \n@ichasedacrow \n@Keenlol \n@NotSoProishNoob \n@mekatokwa \n@oxob3000 \n@eds7236 \n@Nemo0501 \nExceld\n@Hexalhaxel \n🔹🔶SOUND DESIGN🔶🔹 \n@dan_loeb \nhttps://twitter.com/E_SoundWork \n🔹🔶CODE ASSISTANCE🔶🔹\n@Shuriken255 \n@RickardAbraham\n🔹🔶EDITORS🔶🔹 \n@dan_loeb \n@n8sterAnimates \n🔹🔶MUSIC🔶🔹 \n@avenzamusic \n🔹🔶LINE PRODUCER / PM🔶🔹\n @hatena360",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/EFmxPMdBqmU/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/EFmxPMdBqmU/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/EFmxPMdBqmU/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/EFmxPMdBqmU/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/EFmxPMdBqmU/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "channelTitle": "Alan Becker",
+          "categoryId": "1",
+          "liveBroadcastContent": "none",
+          "defaultLanguage": "en",
+          "localized": {
+            "title": "Animation vs. Coding",
+            "description": "/(^∇^)╯  https://brilliant.org/alanbecker\n30-day free trial and 20% off 👍\n\n🖐 ASK ME ANYTHING! ► https://www.youtube.com/noogai89/join \n\n👕 MERCH! ► https://alanbecker.shop\n\n💬DISCORD SERVER ► https://discord.gg/alanbecker \n\n🕹️ANIMATORS VS GAMES ►  @AnimatorsVSGames \n\n📷INSTAGRAM ► http://www.instagram.com/alanbecker \n\n✏️TWITTER ► http://twitter.com/alanthebecker \n\n🔹🔶WRITER🔶🔹\nTerkoiz\n🔹🔶PROJECT LEAD / PA🔶🔹\n Sammi Alea https://sammialea.com/ \n🔹🔶ANIMATION🔶🔹\nTerkoiz\n@doumaki4501 \n@effie2095 \n@SimpleFox1 \n@smoilysheep4670 \n@favfaris4714 \n@n8sterAnimates \n@Spacedoughnut \n@ARCpersona \n@ablerai \n@ichasedacrow \n@Keenlol \n@NotSoProishNoob \n@mekatokwa \n@oxob3000 \n@eds7236 \n@Nemo0501 \nExceld\n@Hexalhaxel \n🔹🔶SOUND DESIGN🔶🔹 \n@dan_loeb \nhttps://twitter.com/E_SoundWork \n🔹🔶CODE ASSISTANCE🔶🔹\n@Shuriken255 \n@RickardAbraham\n🔹🔶EDITORS🔶🔹 \n@dan_loeb \n@n8sterAnimates \n🔹🔶MUSIC🔶🔹 \n@avenzamusic \n🔹🔶LINE PRODUCER / PM🔶🔹\n @hatena360"
+          },
+          "defaultAudioLanguage": "en"
+        },
+        "contentDetails": {
+          "duration": "PT9M27S",
+          "dimension": "2d",
+          "definition": "hd",
+          "caption": "false",
+          "licensedContent": true,
+          "contentRating": {},
+          "projection": "rectangular"
+        }
+      }
+    ],
+    "pageInfo": {
+      "totalResults": 20,
+      "resultsPerPage": 20
+    }
+  }
+  
