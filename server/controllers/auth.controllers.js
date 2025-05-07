@@ -1,5 +1,4 @@
 import { userModel } from "../models/user.model.js"
-import mongoose from "mongoose"
 import bcrypt from 'bcrypt'
 
 export const signUp = async (req, res) => {
@@ -48,8 +47,16 @@ export const signUp = async (req, res) => {
 
 }
 
-export const signIn = (req, res) => {
-    res.send("Sign In")
+export const signIn = async (req, res) => {
+    const { email, password } = req.body
+
+    if (!email || !password) {
+        res.status(400)
+        throw new Error("Please add all fields")
+    }
+
+
+
 }
 
 export const signOut = (req, res) => {
