@@ -1,5 +1,6 @@
 import { userModel } from "../models/user.model.js"
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const signUp = async (req, res) => {
     const { username, email, password } = req.body
@@ -36,7 +37,8 @@ export const signUp = async (req, res) => {
         res.status(201).json({
             _id: (await user)._id,
             username: (await user).username,
-            email: (await user).email
+            email: (await user).email,
+            token: generateToken((await user).id)
         })
 
     } else {
@@ -50,10 +52,12 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
     const { email, password } = req.body
 
-    // if (!email || !password) {
-    //     res.status(400)
-    //     throw new Error("Please add all fields")
-    // }
+    const condition = (!email || !password) || (!email && !password)
+
+    if (condition) {
+        res.status(400)
+        throw new Error("Please add all fields")
+    }
 
     const user = await userModel.findOne({ email })
 
@@ -61,13 +65,21 @@ export const signIn = async (req, res) => {
         res.status(200).json({
             _id: (await user)._id,
             username: (await user).username,
-            email: (await user).email
+            email: (await user).email,
+            token: generateToken((await user).id)
         })
     } else {
         res.status(400)
         throw new Error("Invalid user credentials")
     }
 
+}
+
+// Generate jwt token
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: '30d'
+    })
 }
 
 export const signOut = (req, res) => {
