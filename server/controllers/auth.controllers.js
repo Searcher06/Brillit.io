@@ -50,12 +50,23 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
     const { email, password } = req.body
 
-    if (!email || !password) {
+    // if (!email || !password) {
+    //     res.status(400)
+    //     throw new Error("Please add all fields")
+    // }
+
+    const user = await userModel.findOne({ email })
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+        res.status(200).json({
+            _id: (await user)._id,
+            username: (await user).username,
+            email: (await user).email
+        })
+    } else {
         res.status(400)
-        throw new Error("Please add all fields")
+        throw new Error("Invalid user credentials")
     }
-
-
 
 }
 
