@@ -7,7 +7,7 @@ import videos from '../routes/videosRoutes.js'
 import connectDB from '../config/connectDB.js'
 const DATABASE_URI = process.env.DATABASE_URI
 import { createUser } from '../models/user.model.js'
-import authRouter from '../routes/authRoutes.js'
+import router from '../routes/userRoutes.js'
 import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
 const app = express()
@@ -18,7 +18,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use('/api/videos/', videos,)
-app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/users', router)
+
 
 
 

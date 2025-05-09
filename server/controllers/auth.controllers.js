@@ -82,6 +82,10 @@ const generateToken = (id) => {
     })
 }
 
+export const getMe = async (req, res) => {
+    res.json({ message: 'get user data' })
+}
+
 export const signOut = (req, res) => {
     res.send("Sign Out")
 }
