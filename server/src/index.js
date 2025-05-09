@@ -19,9 +19,7 @@ app.use(express.json())
 
 app.use('/api/videos/', videos,)
 app.use('/api/v1/users', router)
-app.get('/test',(req,res)=>{
-  res.json({message:'hi bro'})
-})
+
 
 
 
@@ -30,6 +28,6 @@ connectDB(DATABASE_URI)
 
 
 app.use(errorHandler)
-app.listen(port,'0.0.0.0', () => {
+app.listen(port, '0.0.0.0', () => {
     console.log("Server up and running on port:" + port)
 })
