@@ -83,7 +83,13 @@ const generateToken = (id) => {
 }
 
 export const getMe = async (req, res) => {
-    res.json({ message: 'get user data' })
+    const { _id, username, email } = await userModel.findById(req.user.id)
+    res.status(200)
+    res.json({
+        id: _id,
+        username,
+        email,
+    })
 }
 
 export const signOut = (req, res) => {

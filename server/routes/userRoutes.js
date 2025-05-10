@@ -10,6 +10,9 @@ router.post('/sign-in', signIn)
 
 router.post('/sign-out', signOut)
 
+// GET /api/v1/users/me
+// desc: Display user data
+// access: private
 router.get('/me', protect, getMe)
 
 

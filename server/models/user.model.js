@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true,
     },
+
     email: {
         type: String,
         required: [true, 'Email is required'],
@@ -16,19 +17,25 @@ const userSchema = new mongoose.Schema({
         trim: true,
         match: [/\S+@\S+\.\S+/, 'Email is invalid'],
     },
+
     password: {
         type: String,
         required: [true, 'password is required'],
         minlength: 6,
     },
+
     profilePic: {
         type: String,
         default: ''
     },
+
+    suggestedKeywords: { type: Array },
+
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+
 })
 
 // Creating a model
