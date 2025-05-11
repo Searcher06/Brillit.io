@@ -6,10 +6,10 @@ const port = process.env.PORT
 import videos from '../routes/videosRoutes.js'
 import connectDB from '../config/connectDB.js'
 const DATABASE_URI = process.env.DATABASE_URI
-import { createUser } from '../models/user.model.js'
 import router from '../routes/userRoutes.js'
 import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
+import { insertVideo, videoModel } from '../models/video.model.js'
 const app = express()
 // h
 app.use(cors())
@@ -24,7 +24,7 @@ app.use('/api/v1/users', router)
 
 
 connectDB(DATABASE_URI)
-
+// insertVideo()
 
 
 app.use(errorHandler)
