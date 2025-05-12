@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signUp, signIn, signOut, getMe } from "../controllers/auth.controllers.js";
+import { signUp, signIn, signOut, getMe, updateProfile } from "../controllers/auth.controllers.js";
 import protect from "../middlewares/authMiddlware.js";
 const router = Router()
 
@@ -15,6 +15,9 @@ router.post('/sign-out', signOut)
 // access: private
 router.get('/me', protect, getMe)
 
-
+// POST /api/v1/users/me/updateProfile
+// desc: update user data 
+// access: private
+router.put('/updateProfile', protect, updateProfile)
 
 export default router
