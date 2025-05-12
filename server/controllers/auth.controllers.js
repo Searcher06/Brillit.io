@@ -94,6 +94,7 @@ export const getMe = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
     const { profilePic } = req.body
+    
 }
 
 export const signOut = (req, res) => {
