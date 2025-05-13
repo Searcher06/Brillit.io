@@ -1,6 +1,7 @@
 import { userModel } from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import cloudinary from '../config/cloudinary.js'
 
 export const signUp = async (req, res) => {
     const { username, email, password } = req.body
@@ -93,8 +94,28 @@ export const getMe = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-    const { profilePic } = req.body
-    
+    try {
+        const { profilePic } = req.body
+        const userID = req.user._id
+
+        if (!profilePic) {
+            res.status(400)
+            throw new Error('Profile pic is required')
+        }
+
+        const uploadResponse = await cloudinary.uploader.upload(profilePic)
+
+        const updatedUser = await userModel.findByIdAndUpdate(userID, {
+            profilePic: uploadResponse.secure_url
+        }, { new: true })
+
+        res.status(200).json(updatedUser)
+    } catch (error) {
+        console.log('Error in update profile controller', error)
+        res.status(500)
+        throw new Error('Internal Server error')
+    }
+
 }
 
 export const signOut = (req, res) => {
