@@ -11,11 +11,12 @@ import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
 import { insertVideo, videoModel } from '../models/video.model.js'
 const app = express()
-// h
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 app.use(cors())
 app.use(Logger)
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
 
 app.use('/api/videos/', videos,)
 app.use('/api/v1/users', router)

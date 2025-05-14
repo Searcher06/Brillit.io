@@ -94,15 +94,15 @@ export const getMe = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
+    const { profilePic } = req.body
+    if (!profilePic) {
+        res.status(400)
+        throw new Error('Profile pic is required')
+    }
+
+    const userID = req.user._id
+
     try {
-        const { profilePic } = req.body
-        const userID = req.user._id
-
-        if (!profilePic) {
-            res.status(400)
-            throw new Error('Profile pic is required')
-        }
-
         const uploadResponse = await cloudinary.uploader.upload(profilePic)
 
         const updatedUser = await userModel.findByIdAndUpdate(userID, {
