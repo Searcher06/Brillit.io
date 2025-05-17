@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(Logger)
 
-app.use('/api/videos/', videos,)
+app.use('/api/v1/videos/', videos,)
 app.use('/api/v1/users', router)
 
 
