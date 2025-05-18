@@ -1,11 +1,12 @@
-import express from 'express'
 import dotenv from 'dotenv'
-import cors from 'cors'
 dotenv.config()
+import express from 'express'
+import cors from 'cors'
 const port = process.env.PORT
 import videos from '../routes/videosRoutes.js'
 import connectDB from '../config/connectDB.js'
 const DATABASE_URI = process.env.DATABASE_URI
+const API_KEY = process.env.API_KEY
 import router from '../routes/userRoutes.js'
 import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
