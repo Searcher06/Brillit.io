@@ -8,24 +8,29 @@ const schema = {
         { name: 'url', type: 'string' },
         { name: 'channel', type: 'string' },
         { name: 'tags', type: 'string[]', optional: true },
-        { name: 'views', type: 'int32', optional: true },
+        { name: 'views', type: 'int32' },
         { name: 'createdAt', type: 'int64', optional: true }
     ],
     default_sorting_field: 'views'
 }
 
-async function setup() {
+
+async function setupTypesense() {
     try {
-        const exists = await client.collections('videos').retrieve()
-        console.log('Collection already exists 🚀')
+        await client.collections('videos').retrieve();
+        console.log('Collection already exists');
     } catch (err) {
-        if (err.httpStatus === 404) {
-            await client.collections().create(schema)
-            console.log(' Created videos collection')
+        if (err.constructor.name === 'ObjectNotFound') {
+            await client.collections().create(schema);
+            console.log('reated videos collection');
         } else {
-            console.error(' Error checking collection:', err)
+            console.error('Error checking collection:', err);
         }
     }
 }
 
-setup()
+
+// 👉 Call it directly if this file is run standalone
+setupTypesense();
+
+export default setupTypesense;
