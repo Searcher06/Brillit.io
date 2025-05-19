@@ -30,7 +30,7 @@ async function setupTypesense() {
 }
 
 
-// 👉 Call it directly if this file is run standalone
+
 setupTypesense();
 
 export default setupTypesense;
