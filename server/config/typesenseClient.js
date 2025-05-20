@@ -9,15 +9,13 @@ const useCloud = process.env.TYPESENSE_ENV == 'cloud'
 const client = new typesense.Client({
     nodes: [
         {
-            host: 'wp1dm4n589tkgvuyp.a1.typesense.net',
-            port: 443,
-            protocol: 'https'
+            host: 'localhost',
+            port: 8108,
+            protocol: 'http'
         }
-
     ],
-    apiKey: 'P2ttk8qfFk9UNqBidAb1f9p65cX3ECUb',
-    connectionTimeoutSeconds: 10,
-})
-console.log('Am here', process.env.API_KEY)
+    apiKey: 'xyz',
+    connectionTimeoutSeconds: 2
+});
 
 export default client
