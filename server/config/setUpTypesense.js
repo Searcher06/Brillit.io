@@ -1,8 +1,15 @@
+import typesense from 'typesense'
+import mongoose from "mongoose";
 import client from "./typesenseClient.js";
+import dotenv from 'dotenv'
+import { videoModel } from "../models/video.model.js";
+dotenv.config()
+
 
 const schema = {
     name: 'videos',
     fields: [
+        { name: 'id', type: 'string' },
         { name: 'title', type: 'string' },
         { name: 'description', type: 'string', optional: true },
         { name: 'url', type: 'string' },
@@ -29,8 +36,31 @@ async function setupTypesense() {
     }
 }
 
+export async function seedTypeSense() {
+    try {
+        await mongoose.connect(process.env.DATABASE_URI)
+        const videos = await videoModel.find()
 
+        const formatted = videos.map((video) => ({
+            id: video.youtubeId,
+            title: video.title,
+            description: video.description || '',
+            url: `https://youtube.com/watch?v=${video.youtubeId}`,
+            channel: video.channelTitle,
+            tags: video.tags || [],
+            views: video.viewCount || 0,
+            createdAt: video.createdAt ? new Date(video.createdAt).getTime() : Date.now()
+        }))
 
-setupTypesense();
+        const result = await client.collections('videos').documents().import(formatted, { action: 'upsert' })
+
+        console.log('Typesense seeded')
+        console.log(result)
+    } catch (error) {
+        console.log('Error in seeding typesense', error)
+    }
+}
+
+// setupTypesense();
 
 export default setupTypesense;
