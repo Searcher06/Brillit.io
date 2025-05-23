@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const key = process.env.API_KEY
 import { videoModel } from '../models/video.model.js'
+import client from '../config/typesenseClient.js'
 
 export const videoSearch = async (req, res) => {
     const query = req.query.q
@@ -19,8 +20,8 @@ export const videoSearch = async (req, res) => {
             }
         })
 
-        const ids = await response.data.items.map((current) => {
-            return current.id.videoId
+        const ids = await response.data.items.map((hit) => {
+            return hit.id.videoId
         }).toString()
 
         // if (!ids) {
@@ -36,8 +37,8 @@ export const videoSearch = async (req, res) => {
             }
         })
 
-        const filtered = await response2.data.items.filter((current) => {
-            return current.snippet.categoryId === '26' || current.snippet.categoryId === '27'
+        const filtered = await response2.data.items.filter((hit) => {
+            return hit.snippet.categoryId === '26' || hit.snippet.categoryId === '27'
         })
         res.status(200).json(filtered)
     } catch (error) {
@@ -60,7 +61,26 @@ export const searchVideos = async (req, res) => {
 
 
 
+    // checking typesense
+    try {
+        const searchResults = await client.collections('videos').documents().search({
+            q: query,
+            query_by: 'title,description,channel,tags',
+            sort_by: 'views:desc',
+        })
 
+        // checking if the result is < 2 || nothing (call the youtube api)
+        if (searchResults.hits.length < 5 || null) {
+
+        }
+
+        console.log(searchResults.hits)
+        res.status(200).json(searchResults.hits.map((hit) => hit.document))
+    } catch (error) {
+        console.log('Typesense search error: ', error)
+        res.status(500)
+        throw new Error("Internal error")
+    }
 
 
 
