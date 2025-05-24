@@ -121,7 +121,12 @@ export const searchVideos = async (req, res) => {
 
                 })
             })
+
+            if (videoResult) {
+                res.status(200).json(videoResult)
+            }
         }
+
 
         // console.log(searchResults.hits)
         // res.status(200).json(searchResults.hits.map((current) => current.document))
