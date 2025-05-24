@@ -20,8 +20,8 @@ export const videoSearch = async (req, res) => {
             }
         })
 
-        const ids = await response.data.items.map((hit) => {
-            return hit.id.videoId
+        const ids = await response.data.items.map((current) => {
+            return current.id.videoId
         }).toString()
 
         // if (!ids) {
@@ -37,8 +37,8 @@ export const videoSearch = async (req, res) => {
             }
         })
 
-        const filtered = await response2.data.items.filter((hit) => {
-            return hit.snippet.categoryId === '26' || hit.snippet.categoryId === '27'
+        const filtered = await response2.data.items.filter((current) => {
+            return current.snippet.categoryId === '26' || current.snippet.categoryId === '27'
         })
         res.status(200).json(filtered)
     } catch (error) {
@@ -71,13 +71,62 @@ export const searchVideos = async (req, res) => {
 
         // checking if the result is < 2 || nothing (call the youtube api)
         if (searchResults.hits.length < 5 || null) {
+            const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+                params: {
+                    q: query,
+                    part: 'id',
+                    type: 'video',
+                    maxResults: 30,
+                    key,
 
+                }
+            })
+
+            // getting the video ID's
+            const ids = await response.data.items.map((current) => {
+                return current.id.videoId
+            }).toString()
+
+            const response2 = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+                params: {
+                    part: 'snippet,contentDetails',
+                    id: ids,
+                    key,
+
+                }
+            })
+
+            const filtered = await response2.data.items.filter((current) => {
+                return current.snippet.categoryId === '26' || current.snippet.categoryId === '27'
+            })
+            // res.status(200).json(filtered)
+
+            // storing the youtube response in db
+            const videoResult = filtered.forEach((element) => {
+                videoModel.create({
+                    youtubeId: element.id.videoId,
+                    title: element.snippet.title,
+                    description: element.snippet.description,
+                    channelTitle: element.snippet.channelTitle,
+                    channelId: element.snippet.channelId,
+                    thumbnails: element.snippet.thumbnails,
+                    tags: element.snippet.tags,
+                    category: element.snippet.category === '27' ? 'Education' : element.snippet.category === '28' ? 'Science and technology' : '',
+                    publishedAt: element.snippet.publishedAt,
+                    duration: element.contentDetails.duration,
+                    searchTerms: query,
+                    curated: true,
+                    addedBySearch: true,
+                    createdAt: Date.now(),
+
+                })
+            })
         }
 
-        console.log(searchResults.hits)
-        res.status(200).json(searchResults.hits.map((hit) => hit.document))
+        // console.log(searchResults.hits)
+        // res.status(200).json(searchResults.hits.map((current) => current.document))
     } catch (error) {
-        console.log('Typesense search error: ', error)
+        console.log('search error: ', error)
         res.status(500)
         throw new Error("Internal error")
     }
