@@ -122,9 +122,15 @@ export const searchVideos = async (req, res) => {
                 })
             })
 
+            await client.collections('videos').documents.create({
+
+            })
+
             if (videoResult) {
                 res.status(200).json(videoResult)
             }
+
+
         }
 
 
