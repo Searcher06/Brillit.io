@@ -74,7 +74,12 @@ export const searchVideos = async (req, res) => {
         if (searchResults.hits.length < 2 || null) {
 
             const freshVideos = await fetchYouTubeVideos(query, res)
-            const savedVideos = await videoModel.insertMany(freshVideos)
+            let savedVideos;
+
+            if (freshVideos) {
+                savedVideos = await videoModel.insertMany(freshVideos)
+            }
+
 
             if (savedVideos) {
                 // formating the fresh videos from the youtube API response
