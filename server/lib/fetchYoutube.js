@@ -40,3 +40,4 @@ export const fetchYouTubeVideos = async (query, res) => {
         res.status(500)
     }
 }
+
