@@ -10,7 +10,7 @@ import router from '../routes/userRoutes.js'
 import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
 import { seedDB, videoModel } from '../models/video.model.js'
-import setupTypesense from '../config/setUpTypesense.js'
+import setupTypesense, { deleteDocuments } from '../config/setUpTypesense.js'
 import { seedTypeSense } from '../config/setUpTypesense.js'
 const app = express()
 
@@ -29,7 +29,8 @@ app.use('/api/v1/users', router)
 connectDB(DATABASE_URI)
 // seedDB()
 // setupTypesense()
-seedTypeSense()
+// deleteDocuments()
+// seedTypeSense()
 
 
 
