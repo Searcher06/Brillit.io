@@ -38,6 +38,7 @@ export const fetchYouTubeVideos = async (query, res) => {
     } catch (error) {
         console.log('fetchYouTubeVideos error', error)
         res.status(500)
+        return error
     }
 }
 

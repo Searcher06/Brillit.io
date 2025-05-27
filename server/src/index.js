@@ -29,7 +29,7 @@ app.use('/api/v1/users', router)
 connectDB(DATABASE_URI)
 // seedDB()
 // setupTypesense()
-// seedTypeSense()
+seedTypeSense()
 
 
 

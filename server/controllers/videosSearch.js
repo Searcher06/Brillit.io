@@ -74,37 +74,37 @@ export const searchVideos = async (req, res) => {
         if (searchResults.hits.length < 2 || null) {
 
             const freshVideos = await fetchYouTubeVideos(query, res)
-            let savedVideos;
+            // let savedVideos;
 
-            if (freshVideos) {
-                savedVideos = await videoModel.insertMany(freshVideos)
-            }
+            // if (freshVideos) {
+            //     savedVideos = await videoModel.insertMany(freshVideos)
+            // }
 
 
-            if (savedVideos) {
-                // formating the fresh videos from the youtube API response
-                const typesenseFormat = freshVideos.map((current) => ({
-                    id: current.id.videoId,
-                    title: video.snippet.title,
-                    description: video.snippet.description || '',
-                    url: `https://youtube.com/watch?v=${current.id.videoId}`,
-                    channel: current.snippet.channelTitle,
-                    tags: current.snippet.tags || [],
-                    createdAt: current.snippet.publishedAt ? new Date(current.snippet.publishedAt).getTime() : Date.now()
-                }))
+            // if (savedVideos) {
+            //     // formating the fresh videos from the youtube API response
+            //     const typesenseFormat = freshVideos.map((current) => ({
+            //         id: current.id.videoId,
+            //         title: video.snippet.title,
+            //         description: video.snippet.description || '',
+            //         url: `https://youtube.com/watch?v=${current.id.videoId}`,
+            //         channel: current.snippet.channelTitle,
+            //         tags: current.snippet.tags || [],
+            //         createdAt: current.snippet.publishedAt ? new Date(current.snippet.publishedAt).getTime() : Date.now()
+            //     }))
 
-                // storing videos in typesense
-                const typesenseResult = await client.collections('videos').documents().import(typesenseFormat, { action: 'upsert' })
-                console.log(typesenseResult)
+            //     // storing videos in typesense
+            //     const typesenseResult = await client.collections('videos').documents().import(typesenseFormat, { action: 'upsert' })
+            //     console.log(typesenseResult)
 
-                // returning the new saved vidoes to the client
-                res.status(200).json(savedVideos)
-            }
+            //     // returning the new saved vidoes to the client
+            //     res.status(200).json(savedVideos)
+            // }
 
             // storing the youtube response in db
-            // const insertingVideos = filtered.forEach((element) => {
+            // const insertingVideos = freshVideos.forEach((element) => {
             //     videoModel.create({
-            //         youtubeId: element.id.videoId,
+            //         youtubeId: element.id,
             //         title: element.snippet.title,
             //         description: element.snippet.description,
             //         channelTitle: element.snippet.channelTitle,
@@ -121,6 +121,53 @@ export const searchVideos = async (req, res) => {
 
             //     })
             // })
+
+            let savedVideos = [];
+
+            if (freshVideos[0]) {
+                const createVideoPromises = freshVideos.map(async (element) => {
+                    try {
+                        const video = await videoModel.create({
+                            youtubeId: element.id,
+                            title: element.snippet.title,
+                            description: element.snippet.description,
+                            channelTitle: element.snippet.channelTitle,
+                            channelId: element.snippet.channelId,
+                            thumbnails: {
+                                default: element.snippet.thumbnails.default.url,
+                                medium: element.snippet.thumbnails.medium.url,
+                                high: element.snippet.thumbnails.high.url,
+                            },
+                            tags: element.snippet.tags,
+                            category: element.snippet.category === '27'
+                                ? 'Education'
+                                : element.snippet.category === '28'
+                                    ? 'Science and technology'
+                                    : '',
+                            publishedAt: element.snippet.publishedAt,
+                            duration: element.contentDetails.duration,
+                            searchTerms: query,
+                            curated: true,
+                            addedBySearch: true,
+                            createdAt: Date.now(),
+                        });
+
+                        savedVideos.push(video);
+                    } catch (err) {
+                        if (err.code === 11000) {
+                            console.log(`Duplicate video skipped: ${element.id}`);
+                        } else {
+                            console.error('Error creating video:', err);
+                        }
+                    }
+                });
+
+                await Promise.all(createVideoPromises);
+
+                return res.status(200).json(savedVideos);
+            }
+
+
         } else {
             const ids = searchResults.hits.map(hit => hit.document.id)
 
@@ -138,7 +185,7 @@ export const searchVideos = async (req, res) => {
     } catch (error) {
         console.log('search error: ', error)
         res.status(500)
-        throw new Error("Internal error")
+        throw new Error(error.message)
     }
 
 
