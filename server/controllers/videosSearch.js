@@ -164,8 +164,29 @@ export const searchVideos = async (req, res) => {
 
                 await Promise.all(createVideoPromises);
 
+                if (savedVideos) {
+                    try {
+                        const typesenseFormat = savedVideos.map((current) => ({
+                            id: current.id,
+                            title: current.snippet.title || '',
+                            description: video.snippet.description || '',
+                            url: `https://youtube.com/watch?v=${current.id.videoId}`,
+                            channel: current.snippet.channelTitle,
+                            tags: current.snippet.tags || [],
+                            createdAt: current.snippet.publishedAt ? new Date(current.snippet.publishedAt).getTime() : Date.now()
+                        }))
+
+                        // storing videos in typesense
+                        const typesenseResult = await client.collections('videos').documents().import(typesenseFormat, { action: 'upsert' })
+                        console.log('Saved to typesense : ', typesenseResult)
+                    } catch (error) {
+                        console.log('Typesense insert error', error)
+                    }
+                }
+
                 return res.status(200).json(savedVideos);
             }
+
 
 
         } else {
@@ -176,8 +197,7 @@ export const searchVideos = async (req, res) => {
             const typesenseVid = searchResults.hits.map(hit => hit.document)
 
             if (dbVideos) {
-                console.log(typesenseVid)
-                res.status(200).json(typesenseVid)
+                res.status(200).json(dbVideos)
             }
         }
 

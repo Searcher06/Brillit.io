@@ -71,6 +71,26 @@ export const deleteDocuments = async () => {
         console.log("Error in deleting docs", error)
     }
 }
+
+export const insertToTypesense = async (savedVideos) => {
+    try {
+        const typesenseFormat = savedVideos.map((current) => ({
+            id: current.id,
+            title: video.snippet.title,
+            description: video.snippet.description || '',
+            url: `https://youtube.com/watch?v=${current.id.videoId}`,
+            channel: current.snippet.channelTitle,
+            tags: current.snippet.tags || [],
+            createdAt: current.snippet.publishedAt ? new Date(current.snippet.publishedAt).getTime() : Date.now()
+        }))
+
+        // storing videos in typesense
+        const typesenseResult = await client.collections('videos').documents().import(typesenseFormat, { action: 'upsert' })
+        console.log('Saved to typesense : ', typesenseResult)
+    } catch (error) {
+        console.log('insertToTypesense error : ', error)
+    }
+}
 // setupTypesense();
 
 export default setupTypesense;
