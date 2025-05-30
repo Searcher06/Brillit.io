@@ -71,7 +71,7 @@ export const searchVideos = async (req, res) => {
         })
 
         // checking if the result is < 2 || nothing (call the youtube api)
-        if (searchResults.hits.length < 2 || null) {
+        if (searchResults.hits.length < 3 || null) {
 
             const freshVideos = await fetchYouTubeVideos(query, res)
             // let savedVideos;
@@ -125,6 +125,7 @@ export const searchVideos = async (req, res) => {
             let savedVideos = [];
 
             if (freshVideos[0]) {
+                console.log(`Founded ${freshVideos.length} videos from the youtube response`)
                 const createVideoPromises = freshVideos.map(async (element) => {
                     try {
                         const video = await videoModel.create({
@@ -167,18 +168,20 @@ export const searchVideos = async (req, res) => {
                 if (savedVideos) {
                     try {
                         const typesenseFormat = savedVideos.map((current) => ({
-                            id: current.id,
-                            title: current.snippet.title || '',
-                            description: video.snippet.description || '',
-                            url: `https://youtube.com/watch?v=${current.id.videoId}`,
-                            channel: current.snippet.channelTitle,
-                            tags: current.snippet.tags || [],
-                            createdAt: current.snippet.publishedAt ? new Date(current.snippet.publishedAt).getTime() : Date.now()
-                        }))
+                            id: current.youtubeId,
+                            title: current.title || '',
+                            description: current.description || '',
+                            url: `https://youtube.com/watch?v=${current.youtubeId}`,
+                            channel: current.channelTitle,
+                            tags: current.tags || [],
+                            views: 0,
+                            createdAt: current.publishedAt ? new Date(current.publishedAt).getTime() : Date.now()
+                        })
+                        )
 
                         // storing videos in typesense
                         const typesenseResult = await client.collections('videos').documents().import(typesenseFormat, { action: 'upsert' })
-                        console.log('Saved to typesense : ', typesenseResult)
+                        console.log('Saved to typesense successfully : ', typesenseResult)
                     } catch (error) {
                         console.log('Typesense insert error', error)
                     }

@@ -93,4 +93,14 @@ export const insertToTypesense = async (savedVideos) => {
 }
 // setupTypesense();
 
+export const getAllDocs = async (req, res) => {
+    try {
+        const documents = await client.collections('videos').documents().export()
+        console.log('Fetched all the docs successfully from typesense ')
+        res.status(200).json(documents)
+    } catch (error) {
+        console.log('Error in getting docs : ', error)
+    }
+}
+
 export default setupTypesense;

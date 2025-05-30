@@ -10,8 +10,9 @@ import router from '../routes/userRoutes.js'
 import Logger from '../middlewares/logger.js'
 import { errorHandler } from '../middlewares/errorhandler.js'
 import { seedDB, videoModel } from '../models/video.model.js'
-import setupTypesense, { deleteDocuments } from '../config/setUpTypesense.js'
+import setupTypesense, { deleteDocuments, getAllDocs } from '../config/setUpTypesense.js'
 import { seedTypeSense } from '../config/setUpTypesense.js'
+import client from '../config/typesenseClient.js'
 const app = express()
 
 app.use(express.json())
@@ -23,7 +24,17 @@ app.use(Logger)
 app.use('/api/v1/videos/', videos,)
 app.use('/api/v1/users', router)
 
+app.get('/api/v1/special', async (req, res) => {
+    try {
+        const jsonL = await client.collections('videos').documents().export()
 
+        const jsonArray = jsonL.trim().split('\n').map(line => JSON.parse(line))
+        console.log('Fetched all the docs successfully from typesense ')
+        res.status(200).json(jsonArray)
+    } catch (error) {
+        console.log('Error in getting docs : ', error)
+    }
+})
 
 
 connectDB(DATABASE_URI)
