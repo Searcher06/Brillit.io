@@ -63,9 +63,7 @@ export async function seedTypeSense() {
 
 export const deleteDocuments = async () => {
     try {
-        await client.collections('videos').documents().delete({
-            filter_by: 'id:!=null'
-        })
+        await client.collections('videos').documents().delete()
         console.log('All documents in "videos" deleted')
     } catch (error) {
         console.log("Error in deleting docs", error)

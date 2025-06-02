@@ -9,14 +9,6 @@ export const videoId = async (req, res) => {
 
 
     try {
-        // const response = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
-        //     params: {
-        //         part: 'snippet',
-        //         id,
-        //         key,
-        //     }
-        // })
-
         // Finding the video using youtube Id from the DB
         const videoInfo = await videoModel.find({ youtubeId: id })
 
