@@ -49,11 +49,11 @@ connectDB(DATABASE_URI)
 // seedDB()
 // setupTypesense()
 // deleteDocuments()
-seedTypeSense()
+// seedTypeSense()
 
 
 
 app.use(errorHandler)
 app.listen(port, '0.0.0.0', () => {
-    console.log("Server up and running on port 😎 : " + port)
+    console.log("Server up and running on port 😁 : " + port)
 })
