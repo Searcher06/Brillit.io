@@ -35,13 +35,21 @@ app.get('/api/v1/special', async (req, res) => {
         console.log('Error in getting docs : ', error)
     }
 })
+app.get('/api/v1/getAll', async (req, res) => {
+    try {
+        const allVideos = await videoModel.find({})
+        res.status(200).json(allVideos)
+    } catch (error) {
+        console.log("Error in getting all videos from DB")
+    }
+})
 
 
 connectDB(DATABASE_URI)
 // seedDB()
 // setupTypesense()
 // deleteDocuments()
-// seedTypeSense()
+seedTypeSense()
 
 
 

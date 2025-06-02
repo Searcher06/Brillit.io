@@ -26,6 +26,7 @@ export const searchVideos = async (req, res) => {
         const searchResults = await client.collections('videos').documents().search({
             q: query,
             query_by: 'title,channel,tags',   // if the problem persist remove 'tags'
+            query_by_weights: "5,2,1",
             sort_by: 'views:desc',
         })
 
@@ -134,7 +135,8 @@ export const searchVideos = async (req, res) => {
                             channel: current.channelTitle,
                             tags: current.tags || [],
                             views: 0,
-                            createdAt: current.publishedAt ? new Date(current.publishedAt).getTime() : Date.now()
+                            publishedAt: current.publishedAt ? new Date(current.publishedAt).getTime() : Date.now(),
+                            createdAt: Date.now(),
                         })
                         )
 

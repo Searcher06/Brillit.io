@@ -16,9 +16,10 @@ const schema = {
         { name: 'channel', type: 'string' },
         { name: 'tags', type: 'string[]', optional: true },
         { name: 'views', type: 'int32' },
-        { name: 'createdAt', type: 'int64', optional: true }
+        { name: 'createdAt', type: 'int64', optional: true },
+        { name: 'publishedAt', type: 'int64', optional: true },
     ],
-    default_sorting_field: 'views'
+    default_sorting_field: 'views',
 }
 
 
@@ -39,17 +40,18 @@ async function setupTypesense() {
 export async function seedTypeSense() {
     try {
         await mongoose.connect(process.env.DATABASE_URI)
-        const videos = await videoModel.find()
+        const videos = await videoModel.find({})
 
         const formatted = videos.map((video) => ({
             id: video.youtubeId,
-            title: video.title,
+            title: video.title || "",
             description: video.description || '',
             url: `https://youtube.com/watch?v=${video.youtubeId}`,
             channel: video.channelTitle,
             tags: video.tags || [],
             views: video.viewCount || 0,
-            createdAt: video.createdAt ? new Date(video.createdAt).getTime() : Date.now()
+            publishedAt: video.publishedAt ? new Date(video.publishedAt).getTime() : Date.now(),
+            createdAt: video.createdAt ? new Date(video.createdAt).getTime() : Date.now(),
         }))
 
         const result = await client.collections('videos').documents().import(formatted, { action: 'upsert' })
@@ -63,7 +65,7 @@ export async function seedTypeSense() {
 
 export const deleteDocuments = async () => {
     try {
-        await client.collections('videos').documents().delete()
+        await client.collections('videos').delete()
         console.log('All documents in "videos" deleted')
     } catch (error) {
         console.log("Error in deleting docs", error)
