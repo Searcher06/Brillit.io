@@ -25,7 +25,7 @@ export const searchVideos = async (req, res) => {
     try {
         const searchResults = await client.collections('videos').documents().search({
             q: query,
-            query_by: 'title,channel',
+            query_by: 'title,channel,tags',   // if the problem persist remove 'tags'
             sort_by: 'views:desc',
         })
 
