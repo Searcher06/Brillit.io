@@ -158,7 +158,7 @@ export const searchVideos = async (req, res) => {
 
             const dbVideos = await getVideosFromMongo(ids)
 
-            const typesenseVid = searchResults.hits.map(hit => hit.document)
+            // const typesenseVid = searchResults.hits.map(hit => hit.document)
 
             if (dbVideos) {
                 res.status(200).json(dbVideos)

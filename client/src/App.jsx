@@ -136,7 +136,7 @@ export default function App() {
               return <div key={index} className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300">
                 <div
                   onClick={() => {
-                    navigate(`/videos/${current.id}`)
+                    navigate(`/videos/${current.youtubeId}`)
                   }}
                   className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
                   style={{ backgroundImage: `url(${current.thumbnails.medium})` }}

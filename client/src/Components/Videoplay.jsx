@@ -3,18 +3,20 @@ import { Sidebar } from "./Sidebar"
 import { useNavigate, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { GetNew } from "./GetNew"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Loader } from "./Loader"
 import { VideoplayError } from "./VideoplayError"
+import { SearchContext } from "../Context/SearchContext"
 export default function Videoplay() {
     const { id } = useParams()
     const [videos, setVideos] = useState()
     const [loading, setLoading] = useState(true)
+    const { search } = useContext(SearchContext)
     const [error, setError] = useState()
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch(`http://localhost:8000/api/videos/${id}`)
+        fetch(`http://localhost:8000/api/v1/videos/${id}?q=${search}`)
             .then((res) => {
                 return res.json()
             })
@@ -40,7 +42,7 @@ export default function Videoplay() {
         <section id="main_content" className=" ml-18 mt-18 flex justify-center flex-col">
             <section id="video-container" className="w-[98%] h-[400px] flex items-center">
                 {
-                    loading ? <Loader /> : error ? <VideoplayError error={error} /> : videos.error ? <VideoplayError error={videos} /> : <>
+                    loading ? <Loader /> : error ? <VideoplayError error={error} /> : <>
                         <div className="w-[950px] h-[400px]">
                             {/* <video src="/src/assets/video.mp4" className="w-full h-full" controls={true}></video> */}
 
@@ -93,18 +95,18 @@ export default function Videoplay() {
                 <div className="w-full flex flex-wrap justify-start">
                     {
                         loading ? <Loader /> : error ? <VideoplayError error={error} /> : videos.error ? null :
-                            videos.recommendedVideos.items.map((current, index) => {
-                                const date = new Date(current.snippet.publishedAt)
+                            videos.recommendedVideos.map((current, index) => {
+                                const date = new Date(current.publishedAt)
                                 return <div key={index} className="font-[calibri] m-3">
                                     <div className={`bg-center rounded-sm bg-cover h-40 w-68 flex items-end justify-end`}
-                                        style={{ backgroundImage: `url(${current.snippet.thumbnails.medium.url})` }}
+                                        style={{ backgroundImage: `url(${current.thumbnails.medium})` }}
                                     >
                                         <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">{current.time}</span>
                                     </div>
                                     <div>
-                                        <p className="font-medium text-[15.5px]">{current.snippet.title.slice(0, 30) + '...'}</p>
+                                        <p className="font-medium text-[15.5px]">{current.title.slice(0, 30) + '...'}</p>
                                         <div className="flex justify-between text-[13px] text-gray-700">
-                                            <p>{current.snippet.channelTitle}</p>
+                                            <p>{current.channelTitle}</p>
                                             <p>{<GetNew date={date} />}</p>
                                         </div>
                                     </div>
