@@ -26,7 +26,7 @@ export default function App() {
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true)
-      fetch(`http://localhost:8000/api/videos/search?q=${search}`)
+      fetch(`http://localhost:8000/api/v1/videos/search?q=${search}`)
         .then((res) => {
           return res.json()
         })
@@ -130,16 +130,16 @@ export default function App() {
               </div>
             </div>
           }) :
-            active == "search" ? searchedVideos.message ? <NetworkError error={searchedVideos.message} /> : searchedVideos.map((current, index) => {
-              const date = new Date(current.snippet.publishedAt)
-              const isoDuration = current.contentDetails.duration
+            active == "search" && searchedVideos.map((current, index) => {
+              const date = new Date(current.publishedAt)
+              const isoDuration = current.duration
               return <div key={index} className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300">
                 <div
                   onClick={() => {
                     navigate(`/videos/${current.id}`)
                   }}
                   className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
-                  style={{ backgroundImage: `url(${current.snippet.thumbnails.medium.url})` }}
+                  style={{ backgroundImage: `url(${current.thumbnails.medium})` }}
                 >
                   <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
                     {<FormatYouTubeDuration isoDuration={isoDuration} />}
@@ -147,15 +147,14 @@ export default function App() {
                 </div>
 
                 <div>
-                  <p className="font-medium text-[15.5px]">{current.snippet.title.slice(0, 30)}</p>
+                  <p className="font-medium text-[15.5px]">{current.title.slice(0, 30)}</p>
                   <div className="flex justify-between text-[13px] text-gray-700">
-                    <p>{current.snippet.channelTitle}</p>
+                    <p>{current.channelTitle}</p>
                     <p>{<GetNew date={date} />}</p>
                   </div>
                 </div>
               </div>
             })
-              : null
         }
       </section>
     </section>

@@ -52,7 +52,6 @@ connectDB(DATABASE_URI)
 // seedTypeSense()
 
 
-
 app.use(errorHandler)
 app.listen(port, '0.0.0.0', () => {
     console.log("Server up and running on port 😁 : " + port)
