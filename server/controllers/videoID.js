@@ -15,8 +15,10 @@ export const videoId = async (req, res) => {
         const videoInfo = await videoModel.findOne({ youtubeId: id })
 
         // Getting the video channelId from the videoInfo variable
-        const channelId = await videoInfo.channelId
+        const channelId = videoInfo.channelId
         console.log(channelId)
+
+        const title = videoInfo.title
 
         // Hitting the youtube API to get videos from the same channel (IDs)
         const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
@@ -57,8 +59,10 @@ export const videoId = async (req, res) => {
         const ids = recommendedTypesense.hits.map(hit => hit.document.id)
 
         // getting the recommended videos from the DB by their IDs
-        const recommendedDB = await getVideosFromMongo(ids)
-
+        let recommendedDB = await getVideosFromMongo(ids)
+        recommendedDB = recommendedDB.filter((current, index) => {
+            return current.title !== title
+        })
         const recommendedVideos = recommendedDB
 
         res.status(200).json({

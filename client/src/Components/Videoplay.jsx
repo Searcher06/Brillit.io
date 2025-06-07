@@ -68,7 +68,7 @@ export default function Videoplay() {
                         </div>
                         <div className="flex flex-wrap overflow-x-hidden overflow-y-auto h-[400px] w-2xl justify-center">
                             {
-                                loading ? <Loader /> : videos.error ? null : videos.channelVideos.items.map((current, index) => {
+                                loading ? <Loader /> : videos.channelVideos.items.map((current, index) => {
                                     const date = new Date(current.snippet.publishedAt)
                                     return <div key={index} onClick={() => { navigate(`/videos/${current.id.videoId}`) }}
                                         className="font-[calibri] m-3">
