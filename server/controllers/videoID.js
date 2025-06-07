@@ -12,23 +12,38 @@ export const videoId = async (req, res) => {
 
     try {
         // Finding the video using youtube Id from the DB
-        const videoInfo = await videoModel.find({ youtubeId: id })
+        const videoInfo = await videoModel.findOne({ youtubeId: id })
 
-        // Getting the video channelID from the videoInfo variable
+        // Getting the video channelId from the videoInfo variable
         const channelId = await videoInfo.channelId
+        console.log(channelId)
 
-        // Hitting the youtube API to get videos from the same channel
+        // Hitting the youtube API to get videos from the same channel (IDs)
         const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {
                 part: 'snippet',
                 channelId: channelId,
                 type: 'video',
                 key,
+                order: 'date',
+                maxResults: 15,
+                type: 'video',
+            }
+        });
+
+        // Getting the video IDs from the first API call
+        const videoIds = response.data.items.map(item => item.id.videoId).join(',');
+
+        const videoRes = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+            params: {
+                key,
+                id: videoIds,
+                part: 'snippet,contentDetails' // get all the good stuff
             }
         });
 
         // Storing the channel videos in a variable
-        const channelVideos = await response.data
+        const channelVideos = await videoRes.data
 
         // Searching recommended videos from typesense
         const recommendedTypesense = await client.collections('videos').documents().search({
