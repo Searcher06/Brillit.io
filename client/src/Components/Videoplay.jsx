@@ -1,4 +1,5 @@
 import { Navbar } from "./Navbar"
+import FormatYouTubeDuration from "./FormatTime"
 import { Sidebar } from "./Sidebar"
 import { useNavigate, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
@@ -7,6 +8,7 @@ import { useContext, useEffect, useState } from "react"
 import { Loader } from "./Loader"
 import { VideoplayError } from "./VideoplayError"
 import { SearchContext } from "../Context/SearchContext"
+import axios from 'axios'
 export default function Videoplay() {
     const { id } = useParams()
     const [videos, setVideos] = useState()
@@ -15,24 +17,43 @@ export default function Videoplay() {
     const [error, setError] = useState()
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     fetch(`http://localhost:8000/api/v1/videos/${id}?q=${search}`)
+    //         .then((res) => {
+    //             return res.json()
+    //         })
+    //         .then((data) => {
+    //             setVideos(data)
+    //             console.log(data)
+    //             setLoading(false)
+    //         })
+    //         .catch((error) => {
+    //             setError(error)
+    //             setLoading(false)
+    //             console.log(error)
+    //         })
+    // }, [id])
+
     useEffect(() => {
-        fetch(`http://localhost:8000/api/v1/videos/${id}?q=${search}`)
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                setVideos(data)
-                console.log(data)
-                setLoading(false)
-            })
-            .catch((error) => {
-                setError(error)
-                setLoading(false)
-                console.log(error)
-            })
-    }, [id])
+        const fetchVideos = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get(`http://localhost:8000/api/v1/videos/${id}`, {
+                    params: { q: search },
+                });
 
+                setVideos(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+                setError(error.response?.data?.message || 'An unexpected error occurred');
+            } finally {
+                setLoading(false);
+            }
+        };
 
+        fetchVideos();
+    }, [id]);
 
 
 
@@ -70,11 +91,14 @@ export default function Videoplay() {
                             {
                                 loading ? <Loader /> : videos.channelVideos.items.map((current, index) => {
                                     const date = new Date(current.snippet.publishedAt)
+                                    const isoDuration = current.contentDetails.duration
                                     return <div key={index} onClick={() => { navigate(`/videos/${current.id.videoId}`) }}
                                         className="font-[calibri] m-3">
                                         <div style={{ backgroundImage: `url(${current.snippet.thumbnails.medium.url})` }}
                                             className={`bg-center rounded-sm bg-cover h-39 w-60 flex items-end justify-end`}>
-                                            <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">{current.time}</span>
+                                            <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                                                {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                                            </span>
                                         </div>
                                         <div>
                                             <p className="font-medium text-[15px]">{current.snippet.title.slice(0, 30) + '...'}</p>
@@ -97,11 +121,14 @@ export default function Videoplay() {
                         loading ? <Loader /> : error ? <VideoplayError error={error} /> : videos.error ? null :
                             videos.recommendedVideos.map((current, index) => {
                                 const date = new Date(current.publishedAt)
+                                const isoDuration = current.duration
                                 return <div key={index} className="font-[calibri] m-3">
                                     <div className={`bg-center rounded-sm bg-cover h-40 w-68 flex items-end justify-end`}
                                         style={{ backgroundImage: `url(${current.thumbnails.medium})` }}
                                     >
-                                        <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">{current.time}</span>
+                                        <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                                            {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                                        </span>
                                     </div>
                                     <div>
                                         <p className="font-medium text-[15.5px]">{current.title.slice(0, 30) + '...'}</p>

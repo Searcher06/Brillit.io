@@ -26,8 +26,9 @@ export const searchVideos = async (req, res) => {
         const searchResults = await client.collections('videos').documents().search({
             q: query,
             query_by: 'title,channel,tags',   // if the problem persist remove 'tags'
-            query_by_weights: "5,2,1",
+            query_by_weights: "5,1,3",
             sort_by: 'views:desc',
+            prefix: 'true',
         })
 
         // checking if the result is < 2 || nothing (call the youtube api)

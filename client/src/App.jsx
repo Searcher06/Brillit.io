@@ -52,7 +52,6 @@ export default function App() {
 
   useEffect(() => {
     if (!tabVideos[tab]) {
-      console.log(tab)
       fetch("/duration.json").then((response) => {
         setLoading(true)
         return response.json()
@@ -77,8 +76,6 @@ export default function App() {
 
   const navigate = useNavigate()
   const { active, setActive } = useContext(ActiveContext)
-  console.log(tabVideos)
-  console.log(searchedVideos)
   return <>
     <Navbar />
 

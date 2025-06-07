@@ -65,13 +65,15 @@ export const videoId = async (req, res) => {
         })
         const recommendedVideos = recommendedDB
 
+        // If the query is empty, we will return the channel videos
+
         res.status(200).json({
             channelVideos,
             recommendedVideos,
         })
     } catch (error) {
-        res.status(500)
         console.log('Error in youtube ID controller : ', error)
+        res.status(500)
         throw new Error('Internal error')
     }
 }

@@ -7,4 +7,5 @@ router.get('/search', searchVideos)
 
 router.get('/:id', videoId)
 
+router.get('/:id/search', videoId)
 export default router
