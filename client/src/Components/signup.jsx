@@ -1,4 +1,5 @@
 import { FcGoogle } from 'react-icons/fc'
+import { User, Mail, Lock } from 'lucide-react'
 const SignUp = () => {
     return <div className="w-full h-lvh flex justify-center items-center">
         <form className="w-90 h-120  shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200">
@@ -12,6 +13,18 @@ const SignUp = () => {
                 <hr className='h-[1px] bg-gray-500 border-0 w-28' />
                 <p className='text-[13px] text-gray-800'>OR</p>
                 <hr className='h-[1px] bg-gray-500 border-0 w-28' />
+            </div>
+            <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
+                <User size={20} className='ml-4' />
+                <input className='outline-0 pl-2 text-sm' placeholder='Full Name' />
+            </div>
+            <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
+                <Mail size={20} className='ml-4' />
+                <input className='outline-0 pl-2 text-sm' placeholder='Email' />
+            </div>
+            <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
+                <Lock size={20} className='ml-4' />
+                <input className='outline-0 pl-2 text-sm' placeholder='Password' />
             </div>
         </form>
     </div>
