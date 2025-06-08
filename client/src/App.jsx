@@ -91,7 +91,6 @@ export default function App() {
                   setTab(current)
                   setActive("tab")
                   setError(null)
-                  // console.log(tabVideos[current])
                 }} className="bg-gray-200 px-4 py-1 rounded-sm m-1">{current} </span>
             })
           }
@@ -111,7 +110,6 @@ export default function App() {
               <div
                 className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
                 style={{ backgroundImage: `url(${current.snippet.thumbnails.medium.url})` }}
-              // bg-[url('/src/assets/bg.png')]
               >
                 <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
                   {<FormatYouTubeDuration isoDuration={isoDuration} />}
