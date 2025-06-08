@@ -165,8 +165,6 @@ export const searchVideos = async (req, res) => {
                 res.status(200).json(dbVideos)
             }
         }
-
-
     } catch (error) {
         console.log('search error: ', error)
         res.status(500)

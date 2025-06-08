@@ -45,7 +45,11 @@ export function Navbar() {
       </button>
     </div>
     <div className="icons pr-7">
-      <button className="w-17 bg-blue-600 h-9 text-white  font-[calibri] rounded-sm">
+      <button
+        className="w-17 bg-blue-600 h-9 text-white  font-[calibri] rounded-sm"
+        onClick={() => {
+          navigate('/signUp')
+        }}>
         Login
       </button>
     </div>
