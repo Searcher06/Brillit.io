@@ -10,6 +10,7 @@ import { FilterProvider } from './Context/FilterContext.jsx';
 import { SearchVideoProvider } from './Context/searchVideosContext.jsx';
 import SignUp from './Components/signup.jsx';
 import Login from './Components/Login.jsx';
+import { ToastContainer } from 'react-toastify';
 createRoot(document.getElementById('root')).render(
 
   <FilterProvider>
@@ -26,6 +27,14 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='*' element={<h1>where you dey go </h1>}></Route>
               </Routes>
+              <ToastContainer
+                position='top-right'
+                autoClose={3000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+                theme='light'
+              />
             </BrowserRouter>
           </ActiveContextProvider>
         </CallContextProvider>
