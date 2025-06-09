@@ -24,6 +24,7 @@
     "react-icons": "^5.5.0",
     "react-player": "^2.16.0",
     "react-router-dom": "^7.4.0",
+    "react-toastify": "^11.0.5",
     "router-dom": "^3.0.3"
   },
   "devDependencies": {
