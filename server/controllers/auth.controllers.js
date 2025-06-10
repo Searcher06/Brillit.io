@@ -19,11 +19,26 @@ export const signUp = async (req, res) => {
         throw new Error("User already exists")
     }
 
-    // check if username available
-    if (usernameExists) {
+    // check if username is < 4
+    if (username.length < 4) {
         res.status(400)
-        throw new Error("username is not available")
+        throw new Error("Name must be greater than 3 characters length")
     }
+
+    // check if password is < 5
+    if (password.length < 5) {
+        res.status(400)
+        throw new Error("Password must be greater than 5 characters length")
+    }
+
+    // check if email is valid
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        res.status(400)
+        throw new Error("Please enter a valid email")
+    }
+
+
 
     const salt = await bcrypt.genSalt(10)
     const hashedpwd = await bcrypt.hash(password, salt)
@@ -59,6 +74,8 @@ export const signIn = async (req, res) => {
         res.status(400)
         throw new Error("Please add all fields")
     }
+
+
 
     const user = await userModel.findOne({ email })
 

@@ -22,12 +22,6 @@ const SignUp = () => {
             return
         }
 
-        // checking email
-        if (!email.includes('@')) {
-            toast.error("Email must include @")
-            return;
-        }
-
         // checking the password length
         if (password.length < 6) {
             toast.error("Password must be greater than 5 characters")
@@ -40,7 +34,7 @@ const SignUp = () => {
             return;
         }
 
-        // 💡 Simple email regex validator
+        //  Simple email regex validator
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             toast.error("Please enter a valid email address")
@@ -73,7 +67,9 @@ const SignUp = () => {
     }
     return <>
         <div className="w-full h-lvh flex justify-center items-center">
-            <form onSubmit={handleSubmit}
+            <form onSubmit={(e) => {
+                e.preventDefault()
+            }}
                 className="w-90 h-120  shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200">
                 <h2 className="text-3xl text-blue-700 font-semibold mt-4">Brillit.io</h2>
                 <p className=" text-xl mt-2 font-semibold w-80">Join Brillit and level up your study game</p>
@@ -117,7 +113,9 @@ const SignUp = () => {
                 </div>
                 <button
                     className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
-                    disabled={!fullName || !password || !email || password.length < 6 ? true : false}>
+                    disabled={!fullName || !password || !email || password.length < 6 ? true : false}
+                    onClick={handleSubmit}
+                >
                     Create Account
                 </button>
                 <p className='text-[14px] mt-2'>Already have an account ? <Link to={'/login'} className='text-blue-700'>Login</Link></p>
