@@ -4,13 +4,14 @@ import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { useAuth } from '../Context/authContext'
 const Login = () => {
     const [show, setShow] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const disapledStyle = !password || !email ? 'bg-pink-200' : null
     const navigate = useNavigate()
-    const [user, setUser] = useState(null)
+    const { login } = useAuth()
     const handleSubmit = async () => {
         // checking all the fields
         if (!email || !password) {
@@ -32,8 +33,10 @@ const Login = () => {
             })
             console.log(response)
             // saving the token and user info
-            localStorage.setItem('BrillitUser', JSON.stringify(response.data))
 
+            login(response.data)
+            // navigating to home
+            navigate('/')
             toast.success("Logged in successfully")
             setEmail('')
             setPassword('')
@@ -53,14 +56,7 @@ const Login = () => {
         }
     }
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem('BrillitUser')
-        if (storedUser) {
-            setUser(JSON.parse(storedUser))
-        } else {
-            navigate('/login')
-        }
-    }, [navigate])
+
 
     return (
         <div className="w-full h-lvh flex justify-center items-center">

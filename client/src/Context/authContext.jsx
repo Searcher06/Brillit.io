@@ -7,7 +7,9 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("Brillit.user"));
-        if (storedUser) setUser(storedUser);
+        if (storedUser) {
+            setUser(storedUser)
+        }
     }, []);
 
     const login = (userData) => {
