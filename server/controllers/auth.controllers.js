@@ -57,7 +57,6 @@ export const signUp = async (req, res) => {
             email: (await user).email,
             token: generateToken((await user).id)
         })
-        console.log(user)
 
     } else {
         res.status(400)

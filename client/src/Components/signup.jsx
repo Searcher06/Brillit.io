@@ -47,6 +47,10 @@ const SignUp = () => {
                 password,
                 email,
             })
+
+            // saving the token and user info
+            localStorage.setItem('BrillitUser', JSON.stringify(response.data))
+
             toast.success("Account created successfully")
             console.log(response)
             setEmail('')

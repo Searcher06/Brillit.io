@@ -1,7 +1,7 @@
 import { FcGoogle } from 'react-icons/fc'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 const Login = () => {
@@ -9,7 +9,8 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const disapledStyle = !password || !email ? 'bg-pink-200' : null
-
+    const navigate = useNavigate()
+    const [user, setUser] = useState(null)
     const handleSubmit = async () => {
         // checking all the fields
         if (!email || !password) {
@@ -30,9 +31,13 @@ const Login = () => {
                 email,
             })
             console.log(response)
+            // saving the token and user info
+            localStorage.setItem('BrillitUser', JSON.stringify(response.data))
+
             toast.success("Logged in successfully")
             setEmail('')
             setPassword('')
+            navigate('/')
         } catch (error) {
             if (error.response) {
                 // server responded with a non-2xx status
@@ -47,6 +52,14 @@ const Login = () => {
             console.error(error)
         }
     }
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('BrillitUser')
+        if (storedUser) {
+            setUser(JSON.parse(storedUser))
+        }
+    }, [])
+
     return (
         <div className="w-full h-lvh flex justify-center items-center">
             <form className="w-90 h-120  shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200"
