@@ -11,9 +11,15 @@ export const signUp = async (req, res) => {
         throw new Error("Please add all fields")
     }
 
+    // check if email is valid
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        res.status(400)
+        throw new Error("Please enter a valid email")
+    }
+
     // check if user exists
     const userExists = await userModel.findOne({ email })
-    const usernameExists = await userModel.findOne({ username })
     if (userExists) {
         res.status(400)
         throw new Error("User already exists")
@@ -31,12 +37,7 @@ export const signUp = async (req, res) => {
         throw new Error("Password must be greater than 5 characters length")
     }
 
-    // check if email is valid
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        res.status(400)
-        throw new Error("Please enter a valid email")
-    }
+
 
 
 
@@ -56,6 +57,7 @@ export const signUp = async (req, res) => {
             email: (await user).email,
             token: generateToken((await user).id)
         })
+        console.log(user)
 
     } else {
         res.status(400)

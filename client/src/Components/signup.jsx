@@ -48,6 +48,7 @@ const SignUp = () => {
                 email,
             })
             toast.success("Account created successfully")
+            console.log(response)
             setEmail('')
             setPassword('')
             setFullName('')
