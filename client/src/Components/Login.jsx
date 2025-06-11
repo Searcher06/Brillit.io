@@ -57,8 +57,10 @@ const Login = () => {
         const storedUser = localStorage.getItem('BrillitUser')
         if (storedUser) {
             setUser(JSON.parse(storedUser))
+        } else {
+            navigate('/login')
         }
-    }, [])
+    }, [navigate])
 
     return (
         <div className="w-full h-lvh flex justify-center items-center">
