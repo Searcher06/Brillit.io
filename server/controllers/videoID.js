@@ -14,6 +14,11 @@ export const videoId = async (req, res) => {
         // Finding the video using youtube Id from the DB
         const videoInfo = await videoModel.findOne({ youtubeId: id })
 
+        if (!videoInfo) {
+            res.status(404)
+            throw new Error("Video not found")
+        }
+
         // Getting the video channelId from the videoInfo variable
         const channelId = videoInfo.channelId
         console.log(channelId)

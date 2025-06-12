@@ -3,7 +3,7 @@ import 'react-toastify/ReactToastify.css'
 import { FcGoogle } from 'react-icons/fc'
 import { useState } from 'react'
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const SignUp = () => {
@@ -11,6 +11,7 @@ const SignUp = () => {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
     const disapledStyle = !fullName || !password || !email || password.length < 6 ? 'bg-pink-200' : null
 
     const handleSubmit = async (e) => {
@@ -53,6 +54,7 @@ const SignUp = () => {
 
             toast.success("Account created successfully")
             console.log(response)
+            navigate('/login')
             setEmail('')
             setPassword('')
             setFullName('')

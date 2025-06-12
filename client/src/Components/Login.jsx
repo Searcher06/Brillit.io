@@ -1,5 +1,5 @@
 import { FcGoogle } from 'react-icons/fc'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -19,7 +19,7 @@ const Login = () => {
             return
         }
 
-        // 💡 Simple email regex validator
+        //  Simple email regex validator
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             toast.error("Please enter a valid email address")
@@ -96,7 +96,7 @@ const Login = () => {
                     onClick={handleSubmit}
                     disabled={!password || !email ? true : false}
                 >
-                    Create Account
+                    Login
                 </button>
                 <p className='text-[14px] mt-5'>{`Don't have an account`} ? <Link to={'/signup'} className='text-blue-700'>Sign Up</Link></p>
             </form>

@@ -126,7 +126,7 @@ export default function App() {
               </div>
             </div>
           }) :
-            active == "search" && searchedVideos.map((current, index) => {
+            active == "search" ? error ? <NetworkError error={error} /> : searchedVideos.map((current, index) => {
               const date = new Date(current.publishedAt)
               const isoDuration = current.duration
               return <div key={index} className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300">
@@ -151,7 +151,7 @@ export default function App() {
                 </div>
               </div>
             })
-        }
+              : null}
       </section>
     </section>
   </>
