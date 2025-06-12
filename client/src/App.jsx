@@ -14,14 +14,15 @@ import { searchedVideosContext } from "./Context/searchVideosContext"
 import FormatYouTubeDuration from "./Components/FormatTime"
 import { GetNew } from "./Components/FormatDate"
 import { ErrorOffline } from "./Components/ErrorOffline"
+import { useAuth } from "./Context/authContext"
 
 export default function App() {
   const { search } = useContext(SearchContext)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { called } = useContext(CallContext)
-
   const { searchedVideos, setSearchedVideos } = useContext(searchedVideosContext)
+  // const { user } = useAuth()
 
   useEffect(() => {
     if (search.length > 0) {
