@@ -112,28 +112,52 @@ export const getMe = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-    const { profilePic } = req.body
-    if (!profilePic) {
+    // const { profilePic } = req.body
+    // if (!profilePic) {
+    //     res.status(400)
+    //     throw new Error('Profile pic is required')
+    // }
+
+    // const userID = req.user._id
+
+    // try {
+    //     const uploadResponse = await cloudinary.uploader.upload(profilePic)
+
+    //     const updatedUser = await userModel.findByIdAndUpdate(userID, {
+    //         profilePic: uploadResponse.secure_url
+    //     }, { new: true })
+
+    //     res.status(200).json(updatedUser)
+    // } catch (error) {
+    //     console.log('Error in update profile controller', error)
+    //     res.status(500)
+    //     throw new Error('Internal Server error')
+    // }
+
+    const { newUsername, newPassword, oldPassword } = req.body
+    const user = await userModel.findById(req.body._id)
+
+    if (!newUsername) {
         res.status(400)
-        throw new Error('Profile pic is required')
+        throw new Error("Please input username")
     }
 
-    const userID = req.user._id
-
-    try {
-        const uploadResponse = await cloudinary.uploader.upload(profilePic)
-
-        const updatedUser = await userModel.findByIdAndUpdate(userID, {
-            profilePic: uploadResponse.secure_url
-        }, { new: true })
-
-        res.status(200).json(updatedUser)
-    } catch (error) {
-        console.log('Error in update profile controller', error)
-        res.status(500)
-        throw new Error('Internal Server error')
+    if (!newPassword) {
+        res.status(400)
+        throw new Error("Please input password")
     }
 
+    if (!newPassword || !newUsername) {
+        res.status(400)
+        throw new Error("Please fill the form")
+    }
+
+    // checking if the old password and the one in DB matches
+    const isPwdMatch = bcrypt.compare(oldPassword, user.password)
+    if (!isPwdMatch) {
+        res.status(400)
+        throw new Error('Old password is incorrect')
+    }
 }
 
 export const signOut = (req, res) => {
