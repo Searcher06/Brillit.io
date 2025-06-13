@@ -135,8 +135,14 @@ export const updateProfile = async (req, res) => {
     // }
 
     const { newUsername, newPassword, oldPassword } = req.body
-    const user = await userModel.findById(req.body._id)
+    const userID = req.user._id
+    if (!userID) {
+        res.status(404)
+        throw new Error("ID not found")
+    }
 
+    const user = await userModel.findOne({ _id: userID })
+    const storedPwd = user.password
     if (!newUsername) {
         res.status(400)
         throw new Error("Please input username")
@@ -153,11 +159,39 @@ export const updateProfile = async (req, res) => {
     }
 
     // checking if the old password and the one in DB matches
-    const isPwdMatch = bcrypt.compare(oldPassword, user.password)
+    const isPwdMatch = await bcrypt.compare(oldPassword, storedPwd)
     if (!isPwdMatch) {
         res.status(400)
         throw new Error('Old password is incorrect')
     }
+
+    if (newUsername.length < 5) {
+        res.status(400)
+        throw new Error('Username must be greater than 4 characters length')
+    }
+
+    if (newPassword.length < 6) {
+        res.status(400)
+        throw new Error('Password must be greater than 5 characters length')
+    }
+
+
+    try {
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10)
+        const updatedUser = await userModel.findOneAndUpdate({ _id: userID }, {
+            username: newUsername,
+            password: hashedNewPassword,
+        }, { new: true })
+
+        if (updatedUser) {
+            res.status(200).json(updatedUser)
+        }
+    } catch (error) {
+        console.log("Error in update profile controller : ", error)
+        res.status(500)
+        throw new Error("Internal error")
+    }
+
 }
 
 export const signOut = (req, res) => {
