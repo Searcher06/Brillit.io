@@ -136,56 +136,49 @@ export const updateProfile = async (req, res) => {
 
     const { newUsername, newPassword, oldPassword } = req.body
     const userID = req.user._id
-    if (!userID) {
-        res.status(404)
-        throw new Error("ID not found")
-    }
-
     const user = await userModel.findOne({ _id: userID })
-    const storedPwd = user.password
-    if (!newUsername) {
-        res.status(400)
-        throw new Error("Please input username")
+
+    if (!user) {
+        res.status(404)
+        throw new Error("User not found")
     }
 
-    if (!newPassword) {
-        res.status(400)
-        throw new Error("Please input password")
+    let contains
+    const symbols = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', '|', ",", "'", `"`, '.', '?']
+    symbols.forEach((current) => {
+        if (newUsername.includes(current)) {
+            contains = true
+            return
+        }
+    })
+
+    if (newUsername) {
+        if (newUsername.length < 5) {
+            res.status(400)
+            throw new Error('Username must be greater than 4 characters length')
+        } else if (contains) {
+            res.status(400)
+            throw new Error("Use of special characters is not allowed")
+        } // remaining \
+        user.username = newUsername
     }
 
-    if (!newPassword || !newUsername) {
-        res.status(400)
-        throw new Error("Please fill the form")
-    }
-
-    // checking if the old password and the one in DB matches
-    const isPwdMatch = await bcrypt.compare(oldPassword, storedPwd)
-    if (!isPwdMatch) {
-        res.status(400)
-        throw new Error('Old password is incorrect')
-    }
-
-    if (newUsername.length < 5) {
-        res.status(400)
-        throw new Error('Username must be greater than 4 characters length')
-    }
-
-    if (newPassword.length < 6) {
-        res.status(400)
-        throw new Error('Password must be greater than 5 characters length')
+    if (newPassword) {
+        const isPwdMatch = await bcrypt.compare(oldPassword, user.password)
+        if (!isPwdMatch) {
+            res.status(400)
+            throw new Error('Old password is incorrect')
+        } else if (newPassword.length < 6) {
+            res.status(400)
+            throw new Error('Password must be greater than 5 characters length')
+        }
+        user.password = await bcrypt.hash(newPassword, 12)
     }
 
 
     try {
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10)
-        const updatedUser = await userModel.findOneAndUpdate({ _id: userID }, {
-            username: newUsername,
-            password: hashedNewPassword,
-        }, { new: true })
-
-        if (updatedUser) {
-            res.status(200).json(updatedUser)
-        }
+        user.save()
+        res.status(200).json({ message: "Profile updated successfully", user })
     } catch (error) {
         console.log("Error in update profile controller : ", error)
         res.status(500)

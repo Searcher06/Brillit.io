@@ -21,7 +21,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
     "mongoose": "^8.13.2",
+    "multer": "^2.0.1",
     "nodemon": "^3.1.9",
+    "streamifier": "^0.1.1",
     "typesense": "^2.0.3"
   }
 }
