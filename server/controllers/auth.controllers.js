@@ -25,16 +25,16 @@ export const signUp = async (req, res) => {
         throw new Error("User already exists")
     }
 
-    // check if firstname is < 4
-    if (firstName.length < 4) {
+    // check if firstname is < 3
+    if (firstName.length < 3) {
         res.status(400)
-        throw new Error("Firstname must be atleast 4 characters length")
+        throw new Error("Firstname must be atleast 3 characters length")
     }
 
-    // check if lastname is < 4
-    if (lastName.length < 4) {
+    // check if lastname is < 3
+    if (lastName.length < 3) {
         res.status(400)
-        throw new Error("Lastname must be atleast 4 characters length")
+        throw new Error("Lastname must be atleast 3 characters length")
     }
 
     // check if password is < 5
@@ -156,7 +156,7 @@ export const updateProfile = async (req, res) => {
     //     throw new Error('Internal Server error')
     // }
 
-    const { newUsername, newPassword, oldPassword } = req.body
+    const { newFirstName, newLastName, newPassword, oldPassword } = req.body
     const userID = req.user._id
     const user = await userModel.findOne({ _id: userID })
 
@@ -168,25 +168,33 @@ export const updateProfile = async (req, res) => {
     let contains
     const symbols = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', '|', ",", "'", `"`, '.', '?']
     symbols.forEach((current) => {
-        if (newUsername.includes(current)) {
+        if (newFirstName.includes(current) || newLastName.includes(current)) {
             contains = true
             return
         }
     })
 
-    if (newUsername) {
-        if (newUsername.length < 5) {
+    if (newFirstName || newLastName) {
+        if (newFirstName.length < 5) {
             res.status(400)
-            throw new Error('Username must be atleast 5 characters long')
-        } else if (newUsername.length > 25) {
+            throw new Error('Firstname must be atleast 5 characters long')
+        } else if (newLastName.length < 5) {
             res.status(400)
-            throw new Error(`username is too long \nusername is 25 characters max`)
+            throw new Error('Lastname must be atleast 5 characters long')
+        }
+        else if (newFirstName.length > 25) {
+            res.status(400)
+            throw new Error(`Firstname is too long. Firstname is 25 characters max`)
+        } else if (newLastName.length > 25) {
+            res.status(400)
+            throw new Error(`Lastname is too long. Lastname is 25 characters max`)
         }
         else if (contains) {
             res.status(400)
-            throw new Error("Use of special characters is not allowed")
+            throw new Error("Use of special characters is not allowed\n for Firstname and Lastname")
         } // remaining \
-        user.username = newUsername
+        user.firstName = newFirstName
+        user.lastName = newLastName
     }
 
     if (newPassword) {
