@@ -19,7 +19,7 @@ export function Sidebar() {
             <FontAwesomeIcon icon={faSnowflake} className="text-gray-700 text-xl mt-4" />
             <p className="font-[calibri] text-sm">SynthAi</p>
         </div>
-        <div className="text-center">
+        <div className="text-center cursor-pointer" onClick={() => navigate('/update-profile')}>
             <FontAwesomeIcon icon={faCircleUser} className="text-gray-700 text-xl mt-4" />
             <p className="font-[calibri] text-sm">{user.username.split(' ')[0]}</p>
         </div>

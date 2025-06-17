@@ -4,9 +4,9 @@ import jwt from 'jsonwebtoken'
 import cloudinary from '../config/cloudinary.js'
 
 export const signUp = async (req, res) => {
-    const { username, email, password } = req.body
+    const { firstName, lastName, email, password } = req.body
 
-    if (!username || !email || !password) {
+    if (!firstName || !lastName || !email || !password) {
         res.status(400)
         throw new Error("Please add all fields")
     }
@@ -25,27 +25,46 @@ export const signUp = async (req, res) => {
         throw new Error("User already exists")
     }
 
-    // check if username is < 4
-    if (username.length < 4) {
+    // check if firstname is < 4
+    if (firstName.length < 4) {
         res.status(400)
-        throw new Error("Name must be greater than 3 characters length")
+        throw new Error("Firstname must be atleast 4 characters length")
+    }
+
+    // check if lastname is < 4
+    if (lastName.length < 4) {
+        res.status(400)
+        throw new Error("Lastname must be atleast 4 characters length")
     }
 
     // check if password is < 5
-    if (password.length < 5) {
+    if (password.length < 6) {
         res.status(400)
-        throw new Error("Password must be greater than 5 characters length")
+        throw new Error("Password must be atleast 6 characters length")
     }
 
 
+    let contains
+    const symbols = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', '|', ",", "'", `"`, '.', '?']
+    symbols.forEach((current) => {
+        if (firstName.includes(current) || lastName.includes(current)) {
+            contains = true
+            return
+        }
+    })
 
+    if (contains) {
+        res.status(400)
+        throw new Error("use of special characters is not allowed for firstname and lastname")
+    }
 
 
     const salt = await bcrypt.genSalt(10)
     const hashedpwd = await bcrypt.hash(password, salt)
 
     const user = userModel.create({
-        username,
+        firstName,
+        lastName,
         email,
         password: hashedpwd,
     })
@@ -53,14 +72,15 @@ export const signUp = async (req, res) => {
     if (user) {
         res.status(201).json({
             _id: (await user)._id,
-            username: (await user).username,
+            firstName: (await user).firstName,
+            lastName: (await user).lastName,
             email: (await user).email,
-            token: generateToken((await user).id)
+            token: generateToken((await user).id, (await user).firstName, (await user).lastName, (await user).email)
         })
 
     } else {
         res.status(400)
-        throw new Error("invalid user data")
+        throw new Error("Invalid user data")
     }
 
 
@@ -83,9 +103,10 @@ export const signIn = async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(200).json({
             _id: (await user)._id,
-            username: (await user).username,
+            firstName: (await user).firstName,
+            lastName: (await user).lastName,
             email: (await user).email,
-            token: generateToken((await user).id)
+            token: generateToken((await user).id, (await user).firstName, (await user).lastName, (await user).email)
         })
     } else {
         res.status(400)
@@ -95,18 +116,19 @@ export const signIn = async (req, res) => {
 }
 
 // Generate jwt token
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+const generateToken = (id, firstName, lastName, email) => {
+    return jwt.sign({ id, firstName, lastName, email }, process.env.JWT_SECRET, {
         expiresIn: '30d'
     })
 }
 
 export const getMe = async (req, res) => {
-    const { _id, username, email } = await userModel.findById(req.user.id)
+    const { _id, firstName, lastName, email } = await userModel.findById(req.user.id)
     res.status(200)
     res.json({
         id: _id,
-        username,
+        firstName,
+        lastName,
         email,
     })
 }
@@ -155,8 +177,12 @@ export const updateProfile = async (req, res) => {
     if (newUsername) {
         if (newUsername.length < 5) {
             res.status(400)
-            throw new Error('Username must be greater than 4 characters length')
-        } else if (contains) {
+            throw new Error('Username must be atleast 5 characters long')
+        } else if (newUsername.length > 25) {
+            res.status(400)
+            throw new Error(`username is too long \nusername is 25 characters max`)
+        }
+        else if (contains) {
             res.status(400)
             throw new Error("Use of special characters is not allowed")
         } // remaining \
@@ -170,7 +196,10 @@ export const updateProfile = async (req, res) => {
             throw new Error('Old password is incorrect')
         } else if (newPassword.length < 6) {
             res.status(400)
-            throw new Error('Password must be greater than 5 characters length')
+            throw new Error('Password must be atleast 6 characters long')
+        } else if (!oldPassword) {
+            res.status(400)
+            throw new Error("Please fill fill in the old password")
         }
         user.password = await bcrypt.hash(newPassword, 12)
     }
@@ -188,5 +217,5 @@ export const updateProfile = async (req, res) => {
 }
 
 export const signOut = (req, res) => {
-    res.send("Sign Out")
+    res.status(200).send("Sign out")
 }

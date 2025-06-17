@@ -13,6 +13,7 @@ import Login from './Components/Login.jsx';
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './Context/authContext.jsx';
 import PrivateRoute from './Components/PrivateRoute.jsx';
+import UpdateProfile from './Components/UpdateProfile.jsx';
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <FilterProvider>
@@ -35,6 +36,11 @@ createRoot(document.getElementById('root')).render(
                   <Route path='/videos/:id' element={
                     <PrivateRoute>
                       <Videoplay />
+                    </PrivateRoute>}>
+                  </Route>
+                  <Route path='/update-profile' element={
+                    <PrivateRoute>
+                      <UpdateProfile />
                     </PrivateRoute>}>
                   </Route>
                   <Route path='/signUp' element={<SignUp />}></Route>
