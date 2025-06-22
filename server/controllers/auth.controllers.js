@@ -70,12 +70,12 @@ export const signUp = async (req, res) => {
     })
 
     if (user) {
+        generateTokenAndSetCookie(user, res)
         res.status(201).json({
             _id: (await user)._id,
             firstName: (await user).firstName,
             lastName: (await user).lastName,
             email: (await user).email,
-            token: generateToken((await user).id, (await user).firstName, (await user).lastName, (await user).email)
         })
 
     } else {
@@ -116,9 +116,22 @@ export const signIn = async (req, res) => {
 }
 
 // Generate jwt token
-const generateToken = (id, firstName, lastName, email) => {
-    return jwt.sign({ id, firstName, lastName, email }, process.env.JWT_SECRET, {
+const generateTokenAndSetCookie = (user, res) => {
+    const token = jwt.sign(
+        {
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+        }
+        , process.env.JWT_SECRET, {
         expiresIn: '30d'
+    })
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 30 * 24 * 60 * 60 * 1000
     })
 }
 
@@ -207,7 +220,7 @@ export const updateProfile = async (req, res) => {
             throw new Error('Password must be atleast 6 characters long')
         } else if (!oldPassword) {
             res.status(400)
-            throw new Error("Please fill fill in the old password")
+            throw new Error("Please fill in the old password")
         }
         user.password = await bcrypt.hash(newPassword, 12)
     }
