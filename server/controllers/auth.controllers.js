@@ -227,8 +227,9 @@ export const updateProfile = async (req, res) => {
 
 
     try {
+        let User = await userModel.findOne(user._id).select('-password')
         user.save()
-        res.status(200).json({ message: "Profile updated successfully", user })
+        res.status(200).json(User)
     } catch (error) {
         console.log("Error in update profile controller : ", error)
         res.status(500)

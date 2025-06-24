@@ -14,10 +14,12 @@ import { seedDB, videoModel } from '../models/video.model.js'
 import setupTypesense, { deleteDocuments, getAllDocs } from '../config/setUpTypesense.js'
 import { seedTypeSense } from '../config/setUpTypesense.js'
 import client from '../config/typesenseClient.js'
+import protect from '../middlewares/authMiddlware.js'
+
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use(cors())
@@ -44,6 +46,11 @@ app.get('/api/v1/getAll', async (req, res) => {
     } catch (error) {
         console.log("Error in getting all videos from DB")
     }
+})
+
+// private route
+app.get('/api/v1/dashboard', protect, async (req, res) => {
+    res.status(200).json({ message: `welcome home` })
 })
 
 
