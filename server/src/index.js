@@ -15,6 +15,7 @@ import setupTypesense, { deleteDocuments, getAllDocs } from '../config/setUpType
 import { seedTypeSense } from '../config/setUpTypesense.js'
 import client from '../config/typesenseClient.js'
 import protect from '../middlewares/authMiddlware.js'
+import dashboardRoute from '../routes/dashboard.js'
 
 const app = express()
 
@@ -22,7 +23,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 app.use(Logger)
 
 app.use('/api/v1/videos/', videos,)
@@ -49,9 +53,7 @@ app.get('/api/v1/getAll', async (req, res) => {
 })
 
 // private route
-app.get('/api/v1/dashboard', protect, async (req, res) => {
-    res.status(200).json({ message: `welcome home` })
-})
+app.use('/api/v1/', protect, dashboardRoute)
 
 
 connectDB(DATABASE_URI)

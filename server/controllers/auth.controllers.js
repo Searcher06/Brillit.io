@@ -62,7 +62,7 @@ export const signUp = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedpwd = await bcrypt.hash(password, salt)
 
-    const user = userModel.create({
+    const user = await userModel.create({
         firstName,
         lastName,
         email,
@@ -102,11 +102,11 @@ export const signIn = async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(200).json({
-            _id: (await user)._id,
-            firstName: (await user).firstName,
-            lastName: (await user).lastName,
-            email: (await user).email,
-            token: generateToken((await user).id, (await user).firstName, (await user).lastName, (await user).email)
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            token: generateToken(user._id, user.firstName, user.lastName, user.email)
         })
     } else {
         res.status(400)
@@ -118,22 +118,19 @@ export const signIn = async (req, res) => {
 // Generate jwt token
 const generateTokenAndSetCookie = (user, res) => {
     const token = jwt.sign(
-        {
-            _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-        }
-        , process.env.JWT_SECRET, {
-        expiresIn: '30d'
-    })
+        { id: user._id, email: user.email }, // ✅ payload includes user ID
+        process.env.JWT_SECRET,
+        { expiresIn: '30d' }
+    );
+
     res.cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: false, // true if using HTTPS
+        sameSite: 'Lax',
         maxAge: 30 * 24 * 60 * 60 * 1000
-    })
-}
+    });
+};
+
 
 export const getMe = async (req, res) => {
     const { _id, firstName, lastName, email } = await userModel.findById(req.user.id)
