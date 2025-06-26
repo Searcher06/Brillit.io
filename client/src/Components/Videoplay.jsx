@@ -8,7 +8,6 @@ import { useContext, useEffect, useState } from "react"
 import { Loader } from "./Loader"
 import { VideoplayError } from "./VideoplayError"
 import { SearchContext } from "../Context/SearchContext"
-import { useAuth } from "../Context/authContext"
 import axios from 'axios'
 export default function Videoplay() {
     const { id } = useParams()
@@ -17,7 +16,6 @@ export default function Videoplay() {
     const { search } = useContext(SearchContext)
     const [error, setError] = useState()
     const navigate = useNavigate()
-    const { user } = useAuth()
     // useEffect(() => {
     //     fetch(`http://localhost:8000/api/v1/videos/${id}?q=${search}`)
     //         .then((res) => {
@@ -41,9 +39,6 @@ export default function Videoplay() {
             try {
                 const response = await axios.get(`http://localhost:8000/api/v1/videos/${id}`, {
                     params: { q: search },
-                    headers: {
-                        Authorization: `Bearer ${user.token}`
-                    }
                 });
 
                 setVideos(response.data);

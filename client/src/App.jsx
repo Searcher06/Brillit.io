@@ -14,7 +14,6 @@ import { searchedVideosContext } from "./Context/searchVideosContext"
 import FormatYouTubeDuration from "./Components/FormatTime"
 import { GetNew } from "./Components/FormatDate"
 import { ErrorOffline } from "./Components/ErrorOffline"
-import { useAuth } from "./Context/authContext"
 
 export default function App() {
   const { search } = useContext(SearchContext)

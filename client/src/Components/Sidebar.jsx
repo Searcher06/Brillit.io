@@ -2,9 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { faCircleUser, faSnowflake } from "@fortawesome/free-regular-svg-icons";
-import { useAuth } from "../Context/authContext";
 export function Sidebar() {
-    const { user } = useAuth()
     const navigate = useNavigate()
     return <section id="sidebar" className="w-18 h-lvh fixed z-1 flex flex-col items-center mt-12">
         <div className="text-center cursor-pointer" onClick={() => {
@@ -21,7 +19,7 @@ export function Sidebar() {
         </div>
         <div className="text-center cursor-pointer" onClick={() => navigate('/update-profile')}>
             <FontAwesomeIcon icon={faCircleUser} className="text-gray-700 text-xl mt-4" />
-            <p className="font-[calibri] text-sm">{user.firstName}</p>
+            <p className="font-[calibri] text-sm">{'You'}</p>
         </div>
     </section>;
 }

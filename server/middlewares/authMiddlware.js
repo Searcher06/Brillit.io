@@ -20,9 +20,7 @@ const protect = async (req, res, next) => {
 
         // get user info from DB (excluding password)
         req.user = await userModel.findById(decoded.id).select('-password');
-        console.log(req.user)
-        console.log('Cookies:', req.cookies);
-        console.log('Token:', req.cookies.token);
+
 
 
         next(); // let the user in 🟢

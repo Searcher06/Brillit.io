@@ -4,7 +4,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { useState } from 'react'
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../utils/axiosConfig'
 
 const SignUp = () => {
     const [show, setShow] = useState(false)
@@ -52,12 +52,10 @@ const SignUp = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:8000/api/v1/users/sign-up", {
+            const response = await axios.post("/api/v1/users/sign-up", {
                 ...data,
             })
 
-            // saving the token and user info
-            localStorage.setItem('BrillitUser', JSON.stringify(response.data))
 
             toast.success("Account created successfully")
             console.log(response)

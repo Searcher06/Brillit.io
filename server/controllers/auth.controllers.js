@@ -70,12 +70,11 @@ export const signUp = async (req, res) => {
     })
 
     if (user) {
-        generateTokenAndSetCookie(user, res)
         res.status(201).json({
-            _id: (await user)._id,
-            firstName: (await user).firstName,
-            lastName: (await user).lastName,
-            email: (await user).email,
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
         })
 
     } else {
@@ -113,14 +112,14 @@ export const signIn = async (req, res) => {
 // Generate jwt token
 const generateTokenAndSetCookie = (user, res) => {
     const token = jwt.sign(
-        { id: user._id, email: user.email }, // ✅ payload includes user ID
+        { id: user._id, email: user.email },
         process.env.JWT_SECRET,
         { expiresIn: '30d' }
     );
 
     res.cookie('token', token, {
         httpOnly: true,
-        secure: false, // true if using HTTPS
+        secure: false,
         sameSite: 'Lax',
         maxAge: 30 * 24 * 60 * 60 * 1000
     });

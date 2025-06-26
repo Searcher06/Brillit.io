@@ -7,14 +7,12 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { ActiveContext } from "../Context/ActiveContext";
 import { Filter } from "./Filter";
 import { FilterContext } from "../Context/FilterContext";
-import { useAuth } from "../Context/authContext";
 
 export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext)
   const { setIscalled } = useContext(CallContext)
   const { setActive } = useContext(ActiveContext)
   const { displayfilter, setDisplayfilter } = useContext(FilterContext)
-  const { logout } = useAuth()
   // const isVideoPage = useMatch(`/videos/:id`)
   const navigate = useNavigate()
   function navigator(param) {
@@ -48,7 +46,7 @@ export function Navbar() {
     <div className="icons pr-7">
       <button
         className="w-17 bg-blue-600 h-9 text-white  font-[calibri] rounded-sm"
-        onClick={logout}>
+      >
         Log out
       </button>
     </div>
