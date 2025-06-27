@@ -4,12 +4,14 @@ import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from '../utils/axiosConfig'
+import { useAuth } from '../Context/authContext'
 const Login = () => {
     const [show, setShow] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const disapledStyle = !password || !email ? 'bg-pink-200' : null
     const navigate = useNavigate()
+    const { setUser } = useAuth()
     const handleSubmit = async () => {
         // checking all the fields
         if (!email || !password) {
@@ -30,8 +32,8 @@ const Login = () => {
                 email,
             })
             console.log(response)
-            // saving the token and user info
-
+            // saving the user info
+            setUser(response.data)
             // navigating to home
             navigate('/')
             toast.success("Logged in successfully")
