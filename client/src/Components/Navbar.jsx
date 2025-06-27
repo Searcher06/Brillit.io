@@ -7,6 +7,8 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { ActiveContext } from "../Context/ActiveContext";
 import { Filter } from "./Filter";
 import { FilterContext } from "../Context/FilterContext";
+import axios from "../utils/axiosConfig";
+import { toast } from 'react-toastify'
 
 export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext)
@@ -20,6 +22,28 @@ export function Navbar() {
       navigate("/")
     }
   }
+
+  const LogOut = async () => {
+    try {
+      await axios.post("/api/v1/users/sign-out", {}, { withCredentials: true })
+      toast.success("Logged out successfully")
+      navigate('/login')
+    } catch (error) {
+      if (error.response) {
+        // server responded with a non-2xx status
+        toast.error(error.response.data.message || 'Sign out failed')
+      } else if (error.request) {
+        toast.error("No response from server")
+      }
+      else {
+        // something else happended
+        toast.error("An error occured.")
+      }
+      console.error(error)
+
+    }
+  }
+
   return (<nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0">
     <div className="logo  text-3xl text-blue-600 font-semibold pl-8">
       Brillit.io
@@ -46,6 +70,9 @@ export function Navbar() {
     <div className="icons pr-7">
       <button
         className="w-17 bg-blue-600 h-9 text-white  font-[calibri] rounded-sm"
+        onClick={() => {
+          LogOut()
+        }}
       >
         Log out
       </button>

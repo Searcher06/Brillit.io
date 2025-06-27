@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import axios from 'axios'
+import axios from '../utils/axiosConfig'
 const Login = () => {
     const [show, setShow] = useState(false)
     const [email, setEmail] = useState('')
@@ -25,7 +25,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:8000/api/v1/users/sign-in", {
+            const response = await axios.post("/api/v1/users/sign-in", {
                 password,
                 email,
             })
