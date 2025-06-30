@@ -143,88 +143,66 @@ export const getMe = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-    const { newFirstName, newLastName, newPassword, oldPassword } = req.body
-    const userID = req.user._id
-    const user = await userModel.findOne({ _id: userID })
-
-    if (!user) {
-        res.status(404)
-        throw new Error("User not found")
-    }
-
-    let contains
-    const symbols = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', '|', ",", "'", `"`, '.', '?']
-    symbols.forEach((current) => {
-        if (newFirstName.includes(current) || newLastName.includes(current)) {
-            contains = true
-            return
-        }
-    })
-
-    if (newFirstName || newLastName) {
-        if (newFirstName.length < 5) {
-            res.status(400)
-            throw new Error('Firstname must be atleast 5 characters long')
-        } else if (newLastName.length < 5) {
-            res.status(400)
-            throw new Error('Lastname must be atleast 5 characters long')
-        }
-        else if (newFirstName.length > 25) {
-            res.status(400)
-            throw new Error(`Firstname is too long. Firstname is 25 characters max`)
-        } else if (newLastName.length > 25) {
-            res.status(400)
-            throw new Error(`Lastname is too long. Lastname is 25 characters max`)
-        }
-        else if (contains) {
-            res.status(400)
-            throw new Error("Use of special characters is not allowed\n for Firstname and Lastname")
-        } // remaining \
-        user.firstName = newFirstName
-        user.lastName = newLastName
-    }
-
-    if (newPassword) {
-        const isPwdMatch = await bcrypt.compare(oldPassword, user.password)
-        if (!isPwdMatch) {
-            res.status(400)
-            throw new Error('Old password is incorrect')
-        } else if (newPassword.length < 6) {
-            res.status(400)
-            throw new Error('Password must be atleast 6 characters long')
-        } else if (!oldPassword) {
-            res.status(400)
-            throw new Error("Please fill in the old password")
-        }
-        user.password = await bcrypt.hash(newPassword, 12)
-    }
-
-
-
     try {
-        const file = req.file
+        const { newFirstName, newLastName, newPassword, oldPassword } = req.body;
+        const userID = req.user._id;
+        const user = await userModel.findById(userID);
+
+        if (!user) {
+            res.status(404);
+            throw new Error("User not found");
+        }
+
+        // Validate & update name
+        const symbols = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '/', '[', ']', '{', '}', '|', ",", "'", `"`, '.', '?'];
+        const contains = symbols.some(symbol =>
+            newFirstName?.includes(symbol) || newLastName?.includes(symbol)
+        );
+
+        if (newFirstName || newLastName) {
+            if (newFirstName?.length < 5) throw new Error('Firstname must be at least 5 characters');
+            if (newLastName?.length < 5) throw new Error('Lastname must be at least 5 characters');
+            if (newFirstName?.length > 25) throw new Error('Firstname is too long (25 max)');
+            if (newLastName?.length > 25) throw new Error('Lastname is too long (25 max)');
+            if (contains) throw new Error('Special characters are not allowed in names');
+
+            user.firstName = newFirstName || user.firstName;
+            user.lastName = newLastName || user.lastName;
+        }
+
+        // Validate & update password
+        if (newPassword) {
+            if (!oldPassword) throw new Error("Please fill in the old password");
+            const isPwdMatch = await bcrypt.compare(oldPassword, user.password);
+            if (!isPwdMatch) throw new Error("Old password is incorrect");
+            if (newPassword.length < 6) throw new Error("Password must be at least 6 characters");
+
+            user.password = await bcrypt.hash(newPassword, 12);
+        }
+
+        // Handle image if uploaded
+        const file = req.file;
         if (file) {
-            // Convert buffer to base64
             const base64 = file.buffer.toString('base64');
             const dataUri = `data:${file.mimetype};base64,${base64}`;
 
-            // Upload to Cloudinary
             const uploadResult = await cloudinary.uploader.upload(dataUri, {
                 folder: 'profile_pics'
             });
-            await userModel.findOneAndUpdate({ _id: userID }, { profilePic: uploadResult.secure_url })
-            console.log("Profile pic updated successfully")
-        }
-        let User = await userModel.findOne(user._id).select('-password')
-        user.save()
-        res.status(200).json(User)
-    } catch (error) {
-        console.log("Error in update profile controller : ", error)
-        res.status(500)
-        throw new Error("Internal error")
-    }
 
-}
+            user.profilePic = uploadResult.secure_url;
+        }
+
+        await user.save();
+
+        const updatedUser = await userModel.findById(userID).select('-password');
+        res.status(200).json(updatedUser);
+
+    } catch (error) {
+        console.error("Update profile error:", error);
+        res.status(400).json({ message: error.message || "Internal server error" });
+    }
+};
 
 export const signOut = (req, res) => {
     res.cookie('token', '', {
