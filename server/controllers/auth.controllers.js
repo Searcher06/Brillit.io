@@ -11,6 +11,11 @@ export const signUp = async (req, res) => {
         throw new Error("Please add all fields")
     }
 
+    if (firstName.includes(' ') || lastName.includes(' ')) {
+        res.status(400)
+        throw new Error("No whitespaces allowed for Firstname and Lastname")
+    }
+
     // check if email is valid
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
@@ -55,11 +60,11 @@ export const signUp = async (req, res) => {
 
     if (contains) {
         res.status(400)
-        throw new Error("use of special characters is not allowed for firstname and lastname")
+        throw new Error("Use of special characters is not allowed for Firstname and Lastname")
     }
 
 
-    const salt = await bcrypt.genSalt(10)
+    const salt = await bcrypt.genSalt(12)
     const hashedpwd = await bcrypt.hash(password, salt)
 
     const user = await userModel.create({
@@ -138,28 +143,6 @@ export const getMe = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-    // const { profilePic } = req.body
-    // if (!profilePic) {
-    //     res.status(400)
-    //     throw new Error('Profile pic is required')
-    // }
-
-    // const userID = req.user._id
-
-    // try {
-    //     const uploadResponse = await cloudinary.uploader.upload(profilePic)
-
-    //     const updatedUser = await userModel.findByIdAndUpdate(userID, {
-    //         profilePic: uploadResponse.secure_url
-    //     }, { new: true })
-
-    //     res.status(200).json(updatedUser)
-    // } catch (error) {
-    //     console.log('Error in update profile controller', error)
-    //     res.status(500)
-    //     throw new Error('Internal Server error')
-    // }
-
     const { newFirstName, newLastName, newPassword, oldPassword } = req.body
     const userID = req.user._id
     const user = await userModel.findOne({ _id: userID })
@@ -217,7 +200,21 @@ export const updateProfile = async (req, res) => {
     }
 
 
+
     try {
+        const file = req.file
+        if (file) {
+            // Convert buffer to base64
+            const base64 = file.buffer.toString('base64');
+            const dataUri = `data:${file.mimetype};base64,${base64}`;
+
+            // Upload to Cloudinary
+            const uploadResult = await cloudinary.uploader.upload(dataUri, {
+                folder: 'profile_pics'
+            });
+            await userModel.findOneAndUpdate({ _id: userID }, { profilePic: uploadResult.secure_url })
+            console.log("Profile pic updated successfully")
+        }
         let User = await userModel.findOne(user._id).select('-password')
         user.save()
         res.status(200).json(User)

@@ -76,7 +76,7 @@ const Login = () => {
 
                 <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
                     <Mail size={20} className='ml-4' />
-                    <input className='outline-0 pl-2 text-sm w-full' placeholder='Email' onChange={(e) => {
+                    <input className='outline-0 pl-2 text-sm w-full' placeholder='Email' type='email' onChange={(e) => {
                         setEmail(e.target.value)
                     }} value={email} />
                 </div>
