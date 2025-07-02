@@ -43,6 +43,7 @@ const UpdateProfile = () => {
             })
             toast.success("Profile updated successfully")
             const res = await axios.get('/api/v1/users/me', { withCredentials: true });
+            console.log(user)
             setUser(res.data.user)
             navigate('/')
         } catch (error) {

@@ -14,15 +14,17 @@ import { searchedVideosContext } from "./Context/searchVideosContext"
 import FormatYouTubeDuration from "./Components/FormatTime"
 import { GetNew } from "./Components/FormatDate"
 import { ErrorOffline } from "./Components/ErrorOffline"
+import { useAuth } from "./Context/AuthContext"
 
 export default function App() {
   const { search } = useContext(SearchContext)
-  const [loading, setLoading] = useState(true)
+  const [Loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { called } = useContext(CallContext)
   const { searchedVideos, setSearchedVideos } = useContext(searchedVideosContext)
-  // const { user } = useAuth()
-
+  const { user, loading } = useAuth()
+  console.log("User in App : ", user)
+  console.log("current Loading state :", loading)
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true)
@@ -100,7 +102,7 @@ export default function App() {
 
       <section className={`flex flex-wrap`}>
         {
-          loading ? <Loader /> : error ? <ErrorOffline error={error.message} /> : active == "tab" ? tabVideos[tab]?.items.map((current, index) => {
+          Loading ? <Loader /> : error ? <ErrorOffline error={error.message} /> : active == "tab" ? tabVideos[tab]?.items.map((current, index) => {
             const date = new Date(current.snippet.publishedAt)
             const isoDuration = current.contentDetails.duration
             return <div onClick={() => {

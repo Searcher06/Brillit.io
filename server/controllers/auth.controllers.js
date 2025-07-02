@@ -124,23 +124,24 @@ const generateTokenAndSetCookie = (user, res) => {
 
     res.cookie('token', token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === 'production', // only true on live site
         sameSite: 'Lax',
         maxAge: 30 * 24 * 60 * 60 * 1000
     });
 };
 
 
+
 export const getMe = async (req, res) => {
-    const { _id, firstName, lastName, email } = await userModel.findById(req.user.id)
-    res.status(200)
-    res.json({
+    const { _id, firstName, lastName, email } = await userModel.findById(req.user.id);
+    return res.status(200).json({
         id: _id,
         firstName,
         lastName,
         email,
-    })
-}
+    });
+};
+
 
 export const updateProfile = async (req, res) => {
     try {
@@ -194,6 +195,7 @@ export const updateProfile = async (req, res) => {
         }
 
         await user.save();
+
 
         const updatedUser = await userModel.findById(userID).select('-password');
         res.status(200).json(updatedUser);
