@@ -16,33 +16,41 @@ const UpdateProfile = () => {
     })
 
     const [preview, setPreview] = useState(null)
-    const { user } = useAuth()
+    const [enable, setEnable] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const { user, setUser } = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
+            setEnable(false)
+            setLoading(true)
             const formData = new FormData()
 
             if (data.newFirstName) formData.append('newFirstName', data.newFirstName)
             if (data.newLastName) formData.append('newLastName', data.newLastName)
             if (data.oldPassword) formData.append('oldPassword', data.oldPassword)
             if (data.newPassword) formData.append('newPassword', data.newPassword)
-            if (data.photo) formData.append('image', data.photo) // MUST MATCH upload.single('image')
+            if (data.photo) formData.append('image', data.photo)
 
-            const res = await axios.put('/api/v1/users/updateProfile', formData, {
+            await axios.put('/api/v1/users/updateProfile', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
                 withCredentials: true
             })
-
             toast.success("Profile updated successfully")
+            const res = await axios.get('/api/v1/users/me', { withCredentials: true });
+            setUser(res.data.user)
             navigate('/')
         } catch (error) {
             toast.error(error.response?.data?.message || 'Failed to update profile')
             console.error(error)
+        } finally {
+            setLoading(false)
+            setEnable(true)
         }
     }
 
@@ -73,6 +81,8 @@ const UpdateProfile = () => {
                                 reader.readAsDataURL(file)
                             }
                         }}
+                        disabled={!enable && true}
+
                     />
                     <label
                         htmlFor="photo-upload"
@@ -90,6 +100,8 @@ const UpdateProfile = () => {
                         type='text'
                         value={data.newFirstName}
                         onChange={(e) => setData(prev => ({ ...prev, newFirstName: e.target.value }))}
+                        disabled={!enable && true}
+
                     />
                 </div>
 
@@ -101,6 +113,8 @@ const UpdateProfile = () => {
                         type='text'
                         value={data.newLastName}
                         onChange={(e) => setData(prev => ({ ...prev, newLastName: e.target.value }))}
+                        disabled={!enable && true}
+
                     />
                 </div>
 
@@ -112,6 +126,7 @@ const UpdateProfile = () => {
                         type='password'
                         value={data.oldPassword}
                         onChange={(e) => setData(prev => ({ ...prev, oldPassword: e.target.value }))}
+
                     />
                 </div>
 
@@ -123,14 +138,16 @@ const UpdateProfile = () => {
                         type='password'
                         value={data.newPassword}
                         onChange={(e) => setData(prev => ({ ...prev, newPassword: e.target.value }))}
+                        disabled={!enable && true}
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className='cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px]'
+                    className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${!enable && 'bg-blue-200'}`}
+                    disabled={!enable && true}
                 >
-                    Save changes
+                    {loading ? 'Saving...' : 'Save changes'}
                 </button>
 
                 <p className="text-[13px] mt-1">Type in the field you intend to change else leave blank</p>

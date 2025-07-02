@@ -160,8 +160,8 @@ export const updateProfile = async (req, res) => {
         );
 
         if (newFirstName || newLastName) {
-            if (newFirstName?.length < 5) throw new Error('Firstname must be at least 5 characters');
-            if (newLastName?.length < 5) throw new Error('Lastname must be at least 5 characters');
+            if (newFirstName?.length < 3) throw new Error('Firstname must be at least 3 characters');
+            if (newLastName?.length < 3) throw new Error('Lastname must be at least 3 characters');
             if (newFirstName?.length > 25) throw new Error('Firstname is too long (25 max)');
             if (newLastName?.length > 25) throw new Error('Lastname is too long (25 max)');
             if (contains) throw new Error('Special characters are not allowed in names');
@@ -199,8 +199,15 @@ export const updateProfile = async (req, res) => {
         res.status(200).json(updatedUser);
 
     } catch (error) {
-        console.error("Update profile error:", error);
-        res.status(400).json({ message: error.message || "Internal server error" });
+        if (error.name === 'TimeoutError') {
+            res.status(500).json({ message: "Network error. Try again" })
+        } else if (error.name === 'ECONNABORTED') {
+            res.status(500).json({ message: "Network issue. Please check your connection and try again" })
+        } else {
+            console.error("Update profile error:", error);
+            res.status(400).json({ message: error.message || "Internal server error" });
+        }
+
     }
 };
 
