@@ -5,15 +5,16 @@ const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const checkAuth = async () => {
-        setLoading(true)
         try {
             const res = await axios.get('/api/v1/users/me', { withCredentials: true });
-            setUser(res.data.user);
+            setUser(res.data); // The bug was here before
+            console.log("User is set : ", user)
+            console.log(res.data)
+            setLoading(false)
         } catch {
             setUser(null);
-        } finally {
             setLoading(false)
         }
     };

@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../Context/AuthContext"
+import { Loader } from "../Components/Loader"
 
 export const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth()
 
     if (loading) {
-        return <div className="w-full h-screen flex justify-center items-center text-lg">Loading...</div>
+        return <Loader />
     }
 
     if (!user) {
