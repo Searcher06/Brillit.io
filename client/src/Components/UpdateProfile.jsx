@@ -17,11 +17,12 @@ const UpdateProfile = () => {
 
     const [preview, setPreview] = useState(null)
     const [enable, setEnable] = useState(true)
-    const [loading, setLoading] = useState(false)
-    const { user, setUser } = useAuth()
+    const [Loading, setLoading] = useState(false)
+    const { user, setUser, setloading } = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
+        setloading(true)
         e.preventDefault()
 
         try {
@@ -44,7 +45,7 @@ const UpdateProfile = () => {
             toast.success("Profile updated successfully")
             const res = await axios.get('/api/v1/users/me', { withCredentials: true });
             console.log(user)
-            setUser(res.data.user)
+            setUser(res.data)
             navigate('/')
         } catch (error) {
             toast.error(error.response?.data?.message || 'Failed to update profile')
@@ -52,6 +53,7 @@ const UpdateProfile = () => {
         } finally {
             setLoading(false)
             setEnable(true)
+            setloading(false)
         }
     }
 
@@ -148,7 +150,7 @@ const UpdateProfile = () => {
                     className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${!enable && 'bg-blue-200'}`}
                     disabled={!enable && true}
                 >
-                    {loading ? 'Saving...' : 'Save changes'}
+                    {Loading ? 'Saving...' : 'Save changes'}
                 </button>
 
                 <p className="text-[13px] mt-1">Type in the field you intend to change else leave blank</p>

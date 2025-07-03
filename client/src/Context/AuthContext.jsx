@@ -5,17 +5,17 @@ const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setloading] = useState(true)
     const checkAuth = async () => {
         try {
             const res = await axios.get('/api/v1/users/me', { withCredentials: true });
             setUser(res.data); // The bug was here before
             console.log("User is set : ", user)
             console.log(res.data)
-            setLoading(false)
+            setloading(false)
         } catch {
             setUser(null);
-            setLoading(false)
+            setloading(false)
         }
     };
 
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         checkAuth();
     }, []);
 
-    return <AuthContext.Provider value={{ user, setUser, loading, checkAuth }}>
+    return <AuthContext.Provider value={{ user, setUser, loading, checkAuth, setloading }}>
         {children}
     </AuthContext.Provider>
 

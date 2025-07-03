@@ -14,12 +14,12 @@ const SignUp = () => {
         email: "",
         password: ""
     })
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const disapledStyle = !data.firstName || !data.lastName || !data.password || !data.email || data.password.length < 6 ? 'bg-pink-200' : null
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         // checking all the fields
         if (!data.firstName || !data.lastName || !data.email || !data.password) {
             toast.error("Please add all fields")
@@ -52,6 +52,8 @@ const SignUp = () => {
         }
 
         try {
+            setLoading(true)
+
             const response = await axios.post("/api/v1/users/sign-up", {
                 ...data,
             })
@@ -78,6 +80,8 @@ const SignUp = () => {
                 toast.error("An error occured.")
             }
             console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
     return <>
@@ -103,6 +107,7 @@ const SignUp = () => {
                         setData({ ...data, firstName: event.target.value })
                     }}
                         value={data.firstName}
+                        disabled={loading ? true : false}
                     />
                 </div>
                 <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
@@ -111,6 +116,7 @@ const SignUp = () => {
                         setData({ ...data, lastName: event.target.value })
                     }}
                         value={data.lastName}
+                        disabled={loading ? true : false}
                     />
                 </div>
                 <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
@@ -119,6 +125,7 @@ const SignUp = () => {
                         setData({ ...data, email: event.target.value })
                     }}
                         value={data.email} type='email'
+                        disabled={loading ? true : false}
                     />
                 </div>
                 <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
@@ -127,6 +134,8 @@ const SignUp = () => {
                         setData({ ...data, password: event.target.value })
                     }}
                         value={data.password}
+                        disabled={loading ? true : false}
+
                     />
                     {show ? <Eye size={17} className='ml-5' onClick={() => {
                         setShow((prevState) => !prevState)
@@ -136,10 +145,10 @@ const SignUp = () => {
                 </div>
                 <button
                     className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
-                    disabled={!data.firstName || !data.lastName || !data.password || !data.email || data.password.length < 6 ? true : false}
+                    disabled={!data.firstName || !data.lastName || !data.password || !data.email || data.password.length < 6 || loading ? true : false}
                     onClick={handleSubmit}
                 >
-                    Create Account
+                    {loading ? "Creating Account..." : "Create Account"}
                 </button>
                 <p className='text-[14px] mt-2'>Already have an account ? <Link to={'/login'} className='text-blue-700'>Login</Link></p>
             </form>

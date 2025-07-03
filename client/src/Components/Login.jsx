@@ -12,6 +12,8 @@ const Login = () => {
     const disapledStyle = !password || !email ? 'bg-pink-200' : null
     const navigate = useNavigate()
     const { setUser } = useAuth()
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = async () => {
         // checking all the fields
         if (!email || !password) {
@@ -78,13 +80,19 @@ const Login = () => {
                     <Mail size={20} className='ml-4' />
                     <input className='outline-0 pl-2 text-sm w-full' placeholder='Email' type='email' onChange={(e) => {
                         setEmail(e.target.value)
-                    }} value={email} />
+                    }} value={email}
+                        disabled={loading ? true : false}
+                    />
+
                 </div>
                 <div className='mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center'>
                     <Lock size={20} className='ml-4' />
                     <input type={`${show ? 'text' : 'password'}`} className='outline-0 pl-2 text-sm' placeholder='Password' onChange={(e) => {
                         setPassword(e.target.value)
-                    }} value={password} />
+                    }} value={password}
+                        disabled={loading ? true : false}
+
+                    />
                     {show ? <Eye size={17} className='ml-5' onClick={() => {
                         setShow((prevState) => !prevState)
                     }} /> : <EyeOff size={17} className='ml-5' onClick={() => {
@@ -93,9 +101,9 @@ const Login = () => {
                 </div>
                 <button className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
                     onClick={handleSubmit}
-                    disabled={!password || !email ? true : false}
+                    disabled={!password || !email || loading ? true : false}
                 >
-                    Login
+                    {loading ? 'Signing in' : 'Login'}
                 </button>
                 <p className='text-[14px] mt-5'>{`Don't have an account`} ? <Link to={'/signup'} className='text-blue-700'>Sign Up</Link></p>
             </form>
