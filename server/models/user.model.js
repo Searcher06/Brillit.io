@@ -46,21 +46,5 @@ const userSchema = new mongoose.Schema({
 // Creating a model
 export const userModel = mongoose.model('User', userSchema)
 
-// Creating a new document
 
-export const createUser = async () => {
-    try {
-        const salt = await bcrypt.genSalt(10)
-        const hashedpwd = await bcrypt.hash('ahmadibrahim2006', salt)
-        const u1 = new userModel({
-            username: "johndoe",
-            email: "john123@gmail.com",
-            password: hashedpwd,
-        })
-        // const result = await u1.save()
-        // console.log(result)
-    } catch (error) {
-        console.log('Error connecting to database', error)
-    }
-}
 
