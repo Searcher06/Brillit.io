@@ -16,7 +16,7 @@ import { seedTypeSense } from '../config/setUpTypesense.js'
 import client from '../config/typesenseClient.js'
 import protect from '../middlewares/authMiddlware.js'
 import dashboardRoute from '../routes/dashboard.js'
-
+import aiRoutes from '../routes/aiSuggestions.js'
 const app = express()
 
 app.use(express.json())
@@ -31,6 +31,7 @@ app.use(Logger)
 
 app.use('/api/v1/videos/', videos,)
 app.use('/api/v1/users', router)
+app.use('/api/v1/ai', aiRoutes)
 
 app.get('/api/v1/special', async (req, res) => {
     try {
