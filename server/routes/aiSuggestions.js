@@ -8,7 +8,7 @@ const router = Router();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-router.post('/chat-gemini', async (req, res) => {
+router.post('/suggest', async (req, res) => {
     try {
         const { message } = req.body;
 
@@ -16,25 +16,30 @@ router.post('/chat-gemini', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // ✨ System Instructions (merged into prompt)
         const systemInstructions = `
 You are an intelligent educational recommendation system built for Brillit — a platform that helps students discover personalized learning videos.
 
-Your job is to analyze a new user's goals, interests, and favorite subjects, and generate a short, powerful list of highly relevant searchable topics or keywords that reflect what the user wants to learn.
+Your job is to analyze a new user's goals, interests, or activity history, and generate a short, powerful list of highly relevant, **searchable topics or keywords** that reflect what the user wants to learn.
 
-Only return a JSON array of keyword strings. Do not explain anything.
+Only return a raw JSON array of keyword strings. Do NOT return any explanations or formatting.
 
-Each keyword should be:
+Each keyword must be:
 - Short and clear (1 to 3 words max)
-- Related to education, tech, science, or self-improvement
+- Strongly related to education, technology, science, productivity, or self-improvement
 - Optimized for video search (e.g., "React", "Differentiation", "Trigonometry", "Big Bang Theory", "Mail Merge")
+
+If the input is vague, empty, or contains non-educational content (like music, gossip, or random phrases):
+- Still return a JSON array of **default educational topics** that are popular and useful for students (e.g., "Time Management", "Algebra", "Web Development").
 
 Do NOT include:
 - Sentences
-- Explanations
 - Quotes
-- Words like "Keywords:", "Here is", or any formatting. Only a raw JSON array.
+- Explanations
+- Labels like "Here are the keywords:"
+
+Final output must only be a valid JSON array of educational keywords.
 `;
+
 
         const fullPrompt = `${systemInstructions}\n\nUser Info: ${message}`;
 

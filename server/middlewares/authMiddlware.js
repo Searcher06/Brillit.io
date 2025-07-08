@@ -23,7 +23,7 @@ const protect = async (req, res, next) => {
 
 
 
-        next(); // let the user in 🟢
+        next(); // let the user in
     } catch (error) {
         console.log(error);
         res.status(401);

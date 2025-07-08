@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import UpdateProfile from './Components/UpdateProfile.jsx';
 import { PrivateRoute } from './routes/PrivateRoute.jsx';
 import { AuthProvider } from './Context/AuthContext.jsx';
+import PersonalizationPage from './Components/InfoBox.jsx';
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AuthProvider>
@@ -45,6 +46,7 @@ createRoot(document.getElementById('root')).render(
                   } />
                   <Route path='/signUp' element={<SignUp />} />
                   <Route path='/login' element={<Login />} />
+                  <Route path='/personalization' element={<PersonalizationPage />} />
                   <Route path='*' element={<h1>Where you dey go 😭</h1>} />
                 </Routes>
                 <ToastContainer
