@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import bcrypt from 'bcryptjs'
 // Defining a Schema
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -34,8 +33,11 @@ const userSchema = new mongoose.Schema({
         default: ''
     },
 
-    suggestedKeywords: { type: Array },
-
+    suggestedKeywords: {
+        type:[String],
+        default:[],
+    }
+,
     createdAt: {
         type: Date,
         default: Date.now

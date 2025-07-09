@@ -1,5 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 const topics = [
     "Web Development",
     "React",
@@ -18,6 +19,7 @@ const topics = [
 export default function PersonalizationPage() {
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [customInterest, setCustomInterest] = useState("");
+    const [showHint, setShowHint] = useState(false);
 
     const toggleTopic = (topic) => {
         setSelectedTopics((prev) =>
@@ -27,14 +29,57 @@ export default function PersonalizationPage() {
         );
     };
 
-    const handleContinue = () => {
-        const finalInterests = [...selectedTopics];
-        if (customInterest.trim()) {
-            finalInterests.push(customInterest.trim());
+    const handleInputChange = (e) => {
+        setCustomInterest(e.target.value);
+        // setShowHint(e.target.value.includes(","));
+        setShowHint(e.target.value)
+    };
+
+    const handleContinue = async () => {
+        let finalInterests = [...selectedTopics];
+
+        const validCustomInterest = customInterest
+            .split(",")
+            .map((item) => item.trim())
+            .every((item) => item === "" || /^[a-zA-Z\s]+$/.test(item));
+        if (customInterest && !validCustomInterest) {
+            toast.error("Please use only letters (A-Z, a-z) and commas to separate interests.");
+            return;
         }
 
+        if (customInterest.trim()) {
+            const extras = customInterest
+                .split(",")
+                .map((item) => item.trim())
+                .filter((item) => item);
+            finalInterests.push(...extras);
+        }
+
+        if(!customInterest && selectedTopics.length === 0){
+            toast.error("Interest should not be blank")
+            return;
+        }
+        finalInterests = finalInterests.toString()
         console.log("User interests:", finalInterests);
-        // Submit to backend or route to dashboard
+        
+        try {
+            const response = await axios.post('/api/v1/ai/suggest',{
+                message:finalInterests
+            })
+            console.log(response.data)
+        } catch (error) {
+            if (error.response) {
+                // server responded with a non-2xx status
+                toast.error(error.response.data.message || 'Failed try again')
+            } else if (error.request) {
+                toast.error("No response from server")
+            }
+            else {
+                // something else happended
+                toast.error("An error occured.")
+            }
+            console.error(error)
+        }
     };
 
     return (
@@ -53,8 +98,8 @@ export default function PersonalizationPage() {
                             key={idx}
                             onClick={() => toggleTopic(topic)}
                             className={`cursor-pointer border p-3 rounded-xl text-sm font-medium text-center transition ${selectedTopics.includes(topic)
-                                ? "bg-blue-600 text-white border-blue-600"
-                                : "bg-white text-gray-700 hover:bg-gray-100"
+                                    ? "bg-blue-600 text-white border-blue-600"
+                                    : "bg-white text-gray-700 hover:bg-gray-100"
                                 }`}
                         >
                             {topic}
@@ -62,18 +107,29 @@ export default function PersonalizationPage() {
                     ))}
                 </div>
 
-                <input
-                    type="text"
-                    value={customInterest}
-                    onChange={(e) => setCustomInterest(e.target.value)}
-                    placeholder="What else do you want to learn?"
-                    className="w-full border border-gray-300 rounded-xl p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                {/* Custom text input for extra interests */}
+                <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Add your own interests
+                    </label>
+                    <input
+                        type="text"
+                        value={customInterest}
+                        onChange={handleInputChange}
+                        placeholder="e.g., Cybersecurity, UI/UX, Robotics"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    {showHint && (
+                        <p className="text-xs text-gray-500 mt-1">
+                            {"If you're adding more than one, separate them with commas. ','"}
+                        </p>
+                    )}
+                </div>
 
                 <div className="text-center">
                     <button
                         onClick={handleContinue}
-                        className="bg-blue-600 text-white px-6 py-2 rounded-xl text-lg hover:bg-blue-700 transition"
+                        className="bg-blue-600 text-white px-6 py-2 rounded-xl text-lg hover:bg-blue-600 transition"
                     >
                         Continue
                     </button>
