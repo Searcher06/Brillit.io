@@ -1,17 +1,17 @@
-import { Navigate } from "react-router-dom"
-import { useAuth } from "../Context/AuthContext"
-import { Loader } from "../Components/Loader"
+import { Navigate } from "react-router-dom";
+import { Loader } from "../Components/Loader";
+import { useAuth } from "../Context/authContext";
 
 export const PrivateRoute = ({ children }) => {
-    const { user, loading } = useAuth()
+  const { user, loading } = useAuth();
 
-    if (loading) {
-        return <Loader />
-    }
+  if (loading) {
+    return <Loader />;
+  }
 
-    if (!user) {
-        return <Navigate to="/login" />
-    }
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
 
-    return children
-}
+  return children;
+};

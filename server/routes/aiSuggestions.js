@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import dotenv from 'dotenv';
-import { GoogleGenAI, Type } from '@google/genai';
-import protect from '../middlewares/authMiddlware.js';
-import { userModel } from '../models/user.model.js';
+import { Router } from "express";
+import dotenv from "dotenv";
+import { GoogleGenAI, Type } from "@google/genai";
+import protect from "../middlewares/authMiddlware.js";
+import { userModel } from "../models/user.model.js";
 
 dotenv.config();
 
@@ -10,20 +10,20 @@ const router = Router();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-router.post('/suggest',protect, async (req, res) => {
-    try {
-        // getting the user prompt
-        const { message } = req.body;
+router.post("/suggest", protect, async (req, res) => {
+  try {
+    // getting the user prompt
+    const { message } = req.body;
 
-        // getting the current user
-        const user = await userModel.findById(req.user._id)
-        // user && console.log(user)
+    // getting the current user
+    const user = await userModel.findById(req.user._id);
+    // user && console.log(user)
 
-        if (!message) {
-            return res.status(400).json({ error: 'Message is required' });
-        }
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
 
-        const systemInstructions = `
+    const systemInstructions = `
 You are an intelligent educational recommendation system built for Brillit — a platform that helps students discover personalized learning videos.
 
 Your job is to analyze a new user's goals, interests, or activity history, and generate a short, powerful list of highly relevant, **searchable topics or keywords** that reflect what the user wants to learn.
@@ -51,43 +51,42 @@ NOTE:
 Final output must only be a valid JSON array of educational keywords.
 `;
 
+    const fullPrompt = `${systemInstructions}\n\nUser Info: ${message}`;
 
-        const fullPrompt = `${systemInstructions}\n\nUser Info: ${message}`;
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-flash",
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: fullPrompt }],
+        },
+      ],
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.ARRAY,
+          items: { type: Type.STRING },
+        },
+      },
+    });
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-1.5-flash',
-            contents: [
-                {
-                    role: 'user',
-                    parts: [{ text: fullPrompt }],
-                },
-            ],
-            config: {
-                responseMimeType: 'application/json',
-                responseSchema: {
-                    type: Type.ARRAY,
-                    items: { type: Type.STRING },
-                },
-            },
-        });
+    const text = response.candidates?.[0]?.content?.parts?.[0]?.text;
 
-        const text = response.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (!text) {
-            console.log('Full Gemini response:', JSON.stringify(response, null, 2));
-            return res.status(500).json({ error: 'Gemini gave no usable text' });
-        }
-
-        // Parse and send JSON array
-        const keywords = JSON.parse(text);
-        if(keywords) user.suggestedKeywords = keywords
-        user.save()
-        // const updatedUser = await userModel.findById(user._id)
-        res.status(200).json({ keywords });
-    } catch (error) {
-        console.error('Gemini error:', error);
-        res.status(500).json({ error: 'Something went wrong with Gemini' });
+    if (!text) {
+      console.log("Full Gemini response:", JSON.stringify(response, null, 2));
+      return res.status(500).json({ error: "Gemini gave no usable text" });
     }
+
+    // Parse and send JSON array
+    const keywords = JSON.parse(text);
+    if (keywords) user.suggestedKeywords = keywords;
+    user.save();
+    // const updatedUser = await userModel.findById(user._id)
+    res.status(200).json({ keywords });
+  } catch (error) {
+    console.error("Gemini error:", error);
+    res.status(500).json({ error: "Something went wrong with Gemini" });
+  }
 });
 
 export default router;
