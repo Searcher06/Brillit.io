@@ -6,7 +6,7 @@ import { useAuth } from "../Context/authContext";
 export function Sidebar() {
     const navigate = useNavigate()
     const { user } = useAuth()
-    console.log("The current user state : ", user)
+    // console.log("The current user state : ", user)
     return <section id="sidebar" className="w-18 h-lvh fixed z-1 flex flex-col items-center mt-12">
         <div className="text-center cursor-pointer" onClick={() => {
             navigate('/')

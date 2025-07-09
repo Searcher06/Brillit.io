@@ -14,8 +14,7 @@ import { searchedVideosContext } from "./Context/searchVideosContext"
 import FormatYouTubeDuration from "./Components/FormatTime"
 import { GetNew } from "./Components/FormatDate"
 import { ErrorOffline } from "./Components/ErrorOffline"
-import { useAuth } from "./Context/AuthContext"
-
+import { useAuth } from "./Context/authContext"
 export default function App() {
   const { search } = useContext(SearchContext)
   const [Loading, setLoading] = useState(true)
@@ -23,8 +22,9 @@ export default function App() {
   const { called } = useContext(CallContext)
   const { searchedVideos, setSearchedVideos } = useContext(searchedVideosContext)
   const { user, loading } = useAuth()
-  console.log("User in App : ", user)
-  console.log("current Loading state :", loading)
+  // console.log("User in App : ", user)
+  // console.log("current Loading state :", loading)
+
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true)
@@ -87,7 +87,16 @@ export default function App() {
       <section id="recommendation" className="font-[calibri] flex justify-between">
         <div className="flex flex-wrap">
           {
-            recommended.map((current, index) => {
+            user.suggestedKeywords
+ ? user.suggestedKeywords.map((current,index)=>{
+   return current === tab ? <span key={index} className="bg-black text-white px-4 py-1 rounded-sm m-1">{current} </span> :
+                <span key={index} onClick={() => {
+                  setTab(current)
+                  setActive("tab")
+                  setError(null)
+                }} className="bg-gray-200 px-4 py-1 rounded-sm m-1">{current} </span>
+ }):
+recommended.map((current, index) => {
               return current === tab ? <span key={index} className="bg-black text-white px-4 py-1 rounded-sm m-1">{current} </span> :
                 <span key={index} onClick={() => {
                   setTab(current)

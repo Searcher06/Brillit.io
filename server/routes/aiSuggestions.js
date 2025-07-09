@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import dotenv from 'dotenv';
 import { GoogleGenAI, Type } from '@google/genai';
+import protect from '../middlewares/authMiddlware.js';
+import { userModel } from '../models/user.model.js';
 
 dotenv.config();
 
@@ -8,9 +10,14 @@ const router = Router();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-router.post('/suggest', async (req, res) => {
+router.post('/suggest',protect, async (req, res) => {
     try {
+        // getting the user prompt
         const { message } = req.body;
+
+        // getting the current user
+        const user = await userModel.findById(req.user._id)
+        // user && console.log(user)
 
         if (!message) {
             return res.status(400).json({ error: 'Message is required' });
@@ -36,6 +43,10 @@ Do NOT include:
 - Quotes
 - Explanations
 - Labels like "Here are the keywords:"
+
+NOTE:
+- The min keywords is 10
+- The max keywords is 15
 
 Final output must only be a valid JSON array of educational keywords.
 `;
@@ -69,6 +80,9 @@ Final output must only be a valid JSON array of educational keywords.
 
         // Parse and send JSON array
         const keywords = JSON.parse(text);
+        if(keywords) user.suggestedKeywords = keywords
+        user.save()
+        // const updatedUser = await userModel.findById(user._id)
         res.status(200).json({ keywords });
     } catch (error) {
         console.error('Gemini error:', error);

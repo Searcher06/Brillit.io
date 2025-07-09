@@ -133,13 +133,8 @@ const generateTokenAndSetCookie = (user, res) => {
 
 
 export const getMe = async (req, res) => {
-    const { _id, firstName, lastName, email } = await userModel.findById(req.user.id);
-    return res.status(200).json({
-        id: _id,
-        firstName,
-        lastName,
-        email,
-    });
+    const userInfo = await userModel.findById(req.user._id).select('-password')
+    return res.status(200).json(userInfo);
 };
 
 
