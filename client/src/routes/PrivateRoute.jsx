@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Navigate } from "react-router-dom";
 import { Loader } from "../Components/Loader";
 import { useAuth } from "../Context/authContext";

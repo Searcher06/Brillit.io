@@ -23,8 +23,8 @@ export default function App() {
   const { searchedVideos, setSearchedVideos } = useContext(
     searchedVideosContext
   );
-  const { user, loading } = useAuth();
-  console.log("User in App : ", user.suggestedKeywords);
+  const { user } = useAuth();
+  // console.log("User in App : ", user);
   // console.log("current Loading state :", loading)
 
   useEffect(() => {

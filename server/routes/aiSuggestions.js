@@ -79,7 +79,10 @@ Final output must only be a valid JSON array of educational keywords.
 
     // Parse and send JSON array
     const keywords = JSON.parse(text);
-    if (keywords) user.suggestedKeywords = keywords;
+    if (keywords) {
+      user.suggestedKeywords = keywords;
+      user.isPersonalized = true;
+    }
     user.save();
     // const updatedUser = await userModel.findById(user._id)
     res.status(200).json({ keywords });
