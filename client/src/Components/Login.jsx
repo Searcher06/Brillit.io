@@ -37,12 +37,12 @@ const Login = () => {
 
       // saving the user info
       setUser(response.data);
+
       // navigating to home
-      navigate("/");
       toast.success("Logged in successfully");
       setEmail("");
       setPassword("");
-      navigate("/");
+      navigate("/personalization");
     } catch (error) {
       if (error.response) {
         // server responded with a non-2xx status

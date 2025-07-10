@@ -24,7 +24,7 @@ export default function App() {
     searchedVideosContext
   );
   const { user, loading } = useAuth();
-  // console.log("User in App : ", user)
+  console.log("User in App : ", user.suggestedKeywords);
   // console.log("current Loading state :", loading)
 
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function App() {
           className="font-[calibri] flex justify-between"
         >
           <div className="flex flex-wrap">
-            {user.suggestedKeywords.length < 0
+            {user?.suggestedKeywords.length > 0
               ? user.suggestedKeywords.map((current, index) => {
                   return current === tab ? (
                     <span
