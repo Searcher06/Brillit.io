@@ -62,11 +62,9 @@ createRoot(document.getElementById("root")).render(
                   <Route
                     path="/personalization"
                     element={
-                      <PrivateRoute>
-                        <ProtectPersonalization>
-                          <PersonalizationPage />
-                        </ProtectPersonalization>
-                      </PrivateRoute>
+                      <ProtectPersonalization>
+                        <PersonalizationPage />
+                      </ProtectPersonalization>
                     }
                   />
                   <Route path="*" element={<h1>Where you dey go 😭</h1>} />

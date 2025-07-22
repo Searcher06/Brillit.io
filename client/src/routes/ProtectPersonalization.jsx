@@ -6,8 +6,13 @@ export const ProtectPersonalization = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return <Loader />;
 
-  if (user.isPersonalized && user) {
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (user.isPersonalized == true && user) {
     return <Navigate to={"/"} />;
   }
+
   return children;
 };
