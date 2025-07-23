@@ -75,13 +75,18 @@ export default function PersonalizationPage() {
         ...prevState,
         suggestedKeywords: response.data.keywords,
       }));
+
+      const res = await axios.get("/api/v1/users/me", {
+        withCredentials: true,
+      });
+      setUser(res.data);
       navigate("/");
       console.log(response.data);
     } catch (error) {
       if (error.response) {
         // server responded with a non-2xx status
-        toast.error(error.response.data.message || "Failed try again");
-        console.error(error);
+        toast.error(error.response.data.error || "Failed try again");
+        console.table(error);
       } else if (error.request) {
         toast.error("No response from server");
       } else {
