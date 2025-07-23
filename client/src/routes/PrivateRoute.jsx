@@ -14,7 +14,7 @@ export const PrivateRoute = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  if (user.isPersonalized == false) {
+  if (!user.isPersonalized) {
     return <Navigate to="/personalization" />;
   }
 

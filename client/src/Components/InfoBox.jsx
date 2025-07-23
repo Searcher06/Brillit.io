@@ -81,6 +81,7 @@ export default function PersonalizationPage() {
       if (error.response) {
         // server responded with a non-2xx status
         toast.error(error.response.data.message || "Failed try again");
+        console.error(error);
       } else if (error.request) {
         toast.error("No response from server");
       } else {

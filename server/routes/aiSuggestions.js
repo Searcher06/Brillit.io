@@ -87,8 +87,15 @@ Final output must only be a valid JSON array of educational keywords.
     // const updatedUser = await userModel.findById(user._id)
     res.status(200).json({ keywords });
   } catch (error) {
-    console.error("Gemini error:", error);
-    res.status(500).json({ error: "Something went wrong with Gemini" });
+    console.log(error.status);
+    if (error.status == 503) {
+      res
+        .status(503)
+        .json({ error: "Too many request at the moment try again later" });
+      return;
+    }
+
+    res.status(500).json({ error: error });
   }
 });
 
