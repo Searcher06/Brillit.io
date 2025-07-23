@@ -76,9 +76,13 @@ export default function PersonalizationPage() {
         suggestedKeywords: response.data.keywords,
       }));
 
+      // calling the api to get the latest user data after
+      // successfully updating the user interests field
       const res = await axios.get("/api/v1/users/me", {
         withCredentials: true,
       });
+
+      // updating the current user state
       setUser(res.data);
       navigate("/");
       console.log(response.data);
