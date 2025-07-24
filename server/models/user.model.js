@@ -45,6 +45,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  videosWatched: {
+    type: [String],
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now,
