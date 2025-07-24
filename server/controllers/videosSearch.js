@@ -122,6 +122,6 @@ export const searchVideos = async (req, res) => {
   } catch (error) {
     console.log("search error: ", error);
     res.status(500);
-    throw new Error(error);
+    throw new Error(error.message || error);
   }
 };

@@ -45,7 +45,7 @@ export const fetchYouTubeVideos = async (query, res) => {
 
     return filtered;
   } catch (error) {
-    console.log("Fetch youtube videos error", error);
+    console.log("Fetch youtube videos error : ", error.message);
     res.status(500);
     throw new Error(error.message);
   }
