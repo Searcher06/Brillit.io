@@ -26,13 +26,15 @@ export default function App() {
   );
   const { user } = useAuth();
   console.log(searchedVideos);
-  // console.log("User in App : ", user);
-  // console.log("current Loading state :", loading)
 
   const searchVideos = async () => {
     try {
-      const response = await axios;
+      const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
+        withCredentials: true,
+      });
+      setSearchedVideos(response.data);
     } catch (error) {
+      setSearchedVideos(null);
       setError(error);
     } finally {
       setLoading(false);
@@ -41,20 +43,7 @@ export default function App() {
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true);
-      fetch(`http://localhost:8000/api/v1/videos/search?q=${search}`)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setSearchedVideos(data);
-          setLoading(false);
-          console.log(data);
-        })
-        .catch((error) => {
-          setError(error);
-          setLoading(false);
-          console.log(typeof error);
-        });
+      searchVideos();
     }
   }, [called]);
 
