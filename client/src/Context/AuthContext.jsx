@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       });
       setUser(res.data); // The bug was here before
       console.log("User is set : ", user);
-      console.table(res.data);
+      // console.table(res.data);
       setloading(false);
     } catch {
       setUser(null);

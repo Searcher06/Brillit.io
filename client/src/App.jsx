@@ -15,6 +15,7 @@ import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
 import { ErrorOffline } from "./Components/ErrorOffline";
 import { useAuth } from "./Context/authContext";
+import axios from "./utils/axiosConfig";
 export default function App() {
   const { search } = useContext(SearchContext);
   const [Loading, setLoading] = useState(true);
@@ -24,9 +25,19 @@ export default function App() {
     searchedVideosContext
   );
   const { user } = useAuth();
+  console.log(searchedVideos);
   // console.log("User in App : ", user);
   // console.log("current Loading state :", loading)
 
+  const searchVideos = async () => {
+    try {
+      const response = await axios;
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true);
