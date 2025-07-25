@@ -24,14 +24,18 @@ export const searchVideos = async (req, res) => {
       .documents()
       .search({
         q: query,
-        query_by: "title,channel,tags", // if the problem persist remove 'tags'
-        query_by_weights: "5,1,3",
+        query_by: "title,description,tags",
+        query_by_weights: "3,2,2",
         sort_by: "views:desc",
-        prefix: "true",
+        prefix: "false,false,true",
+        typo_tolerance: "true",
+        num_typos: 2,
+        exhaustive_search: true,
+        per_page: 50,
       });
 
-    // checking if the result is < 2 || nothing (call the youtube api)
-    if (searchResults.hits.length < 3 || null) {
+    // checking if the result is < 15 || nothing (call the youtube api)
+    if (searchResults.hits.length < 15 || null) {
       const freshVideos = await fetchYouTubeVideos(query, res);
       let savedVideos = [];
 
@@ -114,7 +118,12 @@ export const searchVideos = async (req, res) => {
       const dbVideos = await getVideosFromMongo(ids);
 
       // const typesenseVid = searchResults.hits.map(hit => hit.document)
-
+      console.log(
+        "Founded " +
+          searchResults.hits.length +
+          " that matches the search query : " +
+          query
+      );
       if (dbVideos) {
         res.status(200).json(dbVideos);
       }

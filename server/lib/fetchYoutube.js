@@ -12,7 +12,7 @@ export const fetchYouTubeVideos = async (query, res) => {
           q: query,
           part: "id",
           type: "video",
-          maxResults: 30,
+          maxResults: 50,
           key,
         },
       }
