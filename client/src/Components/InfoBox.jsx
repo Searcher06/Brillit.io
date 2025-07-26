@@ -21,6 +21,7 @@ const topics = [
 export default function PersonalizationPage() {
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [customInterest, setCustomInterest] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const navigate = useNavigate();
   const { setUser, user } = useAuth();
@@ -66,6 +67,7 @@ export default function PersonalizationPage() {
     console.log("User interests:", finalInterests);
 
     try {
+      setLoading(true);
       const response = await axios.post("/api/v1/ai/suggest", {
         message: finalInterests,
       });
@@ -98,6 +100,8 @@ export default function PersonalizationPage() {
         toast.error("An error occured.");
       }
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -115,7 +119,7 @@ export default function PersonalizationPage() {
           {topics.map((topic, idx) => (
             <div
               key={idx}
-              onClick={() => toggleTopic(topic)}
+              onClick={loading ? null : () => toggleTopic(topic)}
               className={`cursor-pointer border p-3 rounded-xl text-sm font-medium text-center transition ${
                 selectedTopics.includes(topic)
                   ? "bg-blue-600 text-white border-blue-600"
@@ -134,6 +138,7 @@ export default function PersonalizationPage() {
           </label>
           <input
             type="text"
+            disabled={loading ? true : false}
             value={customInterest}
             onChange={handleInputChange}
             placeholder="e.g., Cybersecurity, UI/UX, Robotics"
@@ -149,9 +154,10 @@ export default function PersonalizationPage() {
         <div className="text-center">
           <button
             onClick={handleContinue}
+            disabled={loading ? true : false}
             className="bg-blue-600 text-white px-6 py-2 rounded-xl text-lg hover:bg-blue-600 transition"
           >
-            Continue
+            {loading ? "Personalizing..." : "Continue"}
           </button>
         </div>
       </div>

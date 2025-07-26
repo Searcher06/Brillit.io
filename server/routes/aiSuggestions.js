@@ -87,7 +87,7 @@ Final output must only be a valid JSON array of educational keywords.
     // const updatedUser = await userModel.findById(user._id)
     res.status(200).json({ keywords });
   } catch (error) {
-    console.log(error.status);
+    console.log(error);
     if (error.status == 503) {
       res
         .status(503)
@@ -95,7 +95,8 @@ Final output must only be a valid JSON array of educational keywords.
       return;
     }
 
-    res.status(500).json({ error: error });
+    res.status(500);
+    throw new Error("Internal server error");
   }
 });
 

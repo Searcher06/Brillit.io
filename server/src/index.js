@@ -66,8 +66,8 @@ app.use("/api/v1/", protect, dashboardRoute);
 
 connectDB(DATABASE_URI);
 // seedDB()
-// setupTypesense();
 // deleteDocuments();
+// setupTypesense();
 // seedTypeSense()
 
 app.use(errorHandler);
