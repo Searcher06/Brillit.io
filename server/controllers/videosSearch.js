@@ -27,7 +27,7 @@ export const searchVideos = async (req, res) => {
         query_by: "title,description,tags",
         query_by_weights: "3,2,2",
         sort_by: "views:desc",
-        prefix: "false,false,true",
+        prefix: "false,false,false",
         typo_tolerance: "true",
         num_typos: 2,
         exhaustive_search: true,

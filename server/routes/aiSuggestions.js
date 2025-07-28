@@ -100,4 +100,6 @@ Final output must only be a valid JSON array of educational keywords.
   }
 });
 
+// router.post("/videoSuggestion",protect)
+
 export default router;
