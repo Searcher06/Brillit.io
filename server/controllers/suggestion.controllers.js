@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { userModel } from "../models/user.model.js";
-
+import { GoogleGenAI, Type } from "@google/genai";
 dotenv.config();
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -14,7 +14,7 @@ export const videoSuggestion = async (req, res) => {
     const videosWatched = user.videosWatched;
     const currentUserInterest = user.suggestedKeywords;
 
-    // The A.I system instructions
+    // The Model system instructions
     const adaptiveSystemInstructions = `
 You are an intelligent educational keyword refinement system for Brillit — a platform that recommends personalized learning content to students.
 
@@ -51,13 +51,51 @@ Constraints:
 
 Final output must ONLY be a **valid JSON array** of updated educational keywords.
 `;
-
     // Customizing the full prompt
-    const fullPrompt = `${adaptiveSystemInstructions}\n\nVideos Watched:${videosWatched}\n\nCurrent User interest:${currentUserInterest}`;
+    const fullPrompt = `${adaptiveSystemInstructions}\n\nVideos Watched:${videosWatched.toString()}\n\nCurrent User interest:${currentUserInterest.toString()}`;
+
+    // Getting the Model response
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-flash",
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: fullPrompt }],
+        },
+      ],
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.ARRAY,
+          items: { type: Type.STRING },
+        },
+      },
+    });
+
+    const text = response.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!text) {
+      console.log("Full Gemini response:", JSON.stringify(response, null, 2));
+      return res.status(500).json({ error: "Gemini gave no usable text" });
+    }
+
+    // Parse and send JSON array
+    const keywords = JSON.parse(text);
+    if (keywords) {
+      user.suggestedKeywords = keywords;
+    }
+    user.save();
+    res.status(200).json({ keywords });
   } catch (error) {
-    res
-      .status(503)
-      .json({ error: "Too many request at the moment try again later" });
-    return;
+    console.log(error);
+    if (error.status == 503) {
+      res
+        .status(503)
+        .json({ error: "Too many request at the moment try again later" });
+      return;
+    }
+
+    res.status(500);
+    throw new Error("Internal server error");
   }
 };
