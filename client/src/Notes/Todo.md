@@ -4,14 +4,19 @@
 
 <!-- after fetching videos filter out non educational videos using the categoryId for science and technology, education -->
 
-ask gpt about limit video results
+<!-- ask gpt about limit video results -->
 
-Add the filter videos feature by (duration,date) modify the search result by adding the GetNew component [very important but not now] sort || filter && [userdefined dates]
+<!-- Add the filter videos feature by (duration,date) modify the search result by adding the GetNew component [very important but not now] sort || filter && [userdefined dates] -->
 
-build the authentication page
-user info page --> link the user info into the ai
-fetch recommended videos by using the current video title to -> gemini ai -> generate a new search keyword related to the title -> search using the generated keyword
+<!-- build the authentication page -->
+<!-- user info page link the user info into the ai -->
+<!-- fetch recommended videos by using the current video title to -> gemini ai -> generate a new search keyword related to the title -> search using the generated keyword -->
 
-use another model for generating recommended videos [tab]
+<!-- use another model for generating recommended videos [tab] -->
 
-synthai by the side of the homepage
+<!-- synthai by the side of the homepage -->
+
+user watches video ->
+hit gemini with the list of all the videos user watched(strings) and the list of suggestedKeywords(strings) ->
+get the response and update the db.user.suggestdKeywords field with the new response ->
+that's it --->
