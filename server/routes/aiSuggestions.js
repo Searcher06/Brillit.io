@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
 import protect from "../middlewares/authMiddlware.js";
 import { userModel } from "../models/user.model.js";
+import { videoSuggestion } from "../controllers/suggestion.controllers.js";
 
 dotenv.config();
 
@@ -100,6 +101,6 @@ Final output must only be a valid JSON array of educational keywords.
   }
 });
 
-// router.post("/videoSuggestion",protect)
+router.post("/videoSuggestion", protect, videoSuggestion);
 
 export default router;
