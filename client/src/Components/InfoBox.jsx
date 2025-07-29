@@ -75,7 +75,7 @@ export default function PersonalizationPage() {
       // Redirect to the next page or perform any other action
       setUser((prevState) => ({
         ...prevState,
-        suggestedKeywords: response.data.keywords,
+        suggestedKeywords: response.data,
       }));
 
       // calling the api to get the latest user data after
