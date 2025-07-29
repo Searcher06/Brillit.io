@@ -86,7 +86,7 @@ Final output must only be a valid JSON array of educational keywords.
     }
     user.save();
     // const updatedUser = await userModel.findById(user._id)
-    res.status(200).json({ keywords });
+    res.status(200).json(keywords); //incoming
   } catch (error) {
     console.log(error);
     if (error.status == 503) {

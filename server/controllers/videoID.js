@@ -26,6 +26,20 @@ export const videoId = async (req, res) => {
     if (videoInfo) {
       const videoTitle = videoInfo.title;
       user.videosWatched = [...user.videosWatched, videoTitle];
+
+      // Hitting the A.I video keywords suggestion route based on what the user watches
+      // and personal interest
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/v1/ai/videoSuggestion"
+        );
+        if (response.data) {
+          user.suggestedKeywords = response.data;
+        }
+        console.log("Optional axios request success : ", response.data);
+      } catch (error) {
+        console.warn("Optional axios failed continuing anyway!");
+      }
     }
 
     user.save();

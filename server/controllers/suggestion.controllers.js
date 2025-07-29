@@ -5,9 +5,11 @@ dotenv.config();
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-
 export const videoSuggestion = async (req, res) => {
   try {
+    // const models = await ai.models.list();
+    // console.log("The gemini models", models);
+
     // getting the current user
     const user = await userModel.findById(req.user._id);
 
@@ -56,7 +58,7 @@ Final output must ONLY be a **valid JSON array** of updated educational keywords
 
     // Getting the Model response
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: [
         {
           role: "user",
@@ -85,7 +87,7 @@ Final output must ONLY be a **valid JSON array** of updated educational keywords
       user.suggestedKeywords = keywords;
     }
     user.save();
-    res.status(200).json({ keywords });
+    res.status(200).json(keywords);
   } catch (error) {
     console.log(error);
     if (error.status == 503) {
