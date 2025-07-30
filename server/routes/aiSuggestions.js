@@ -55,7 +55,7 @@ Final output must only be a valid JSON array of educational keywords.
     const fullPrompt = `${systemInstructions}\n\nUser Info: ${message}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: [
         {
           role: "user",

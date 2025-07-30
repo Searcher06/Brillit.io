@@ -204,8 +204,8 @@ export default function App() {
               <NetworkError error={error} />
             ) : (
               searchedVideos.map((current, index) => {
-                const date = new Date(current.publishedAt);
-                const isoDuration = current.duration;
+                const date = new Date(current.snippet.publishedAt);
+                const isoDuration = current.contentDetails.duration;
                 return (
                   <div
                     key={index}
@@ -213,11 +213,11 @@ export default function App() {
                   >
                     <div
                       onClick={() => {
-                        navigate(`/videos/${current.youtubeId}`);
+                        navigate(`/videos/${current.id}`);
                       }}
                       className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
                       style={{
-                        backgroundImage: `url(${current.thumbnails.medium})`,
+                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                       }}
                     >
                       <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
@@ -227,10 +227,10 @@ export default function App() {
 
                     <div>
                       <p className="font-medium text-[15.5px]">
-                        {current.title.slice(0, 30)}
+                        {current.snippet.title.slice(0, 30)}
                       </p>
                       <div className="flex justify-between text-[13px] text-gray-700">
-                        <p>{current.channelTitle}</p>
+                        <p>{current.snippet.channelTitle}</p>
                         <p>{<GetNew date={date} />}</p>
                       </div>
                     </div>

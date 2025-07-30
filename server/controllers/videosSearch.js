@@ -19,114 +19,13 @@ export const searchVideos = async (req, res) => {
   }
 
   try {
-    const searchResults = await client
-      .collections("videos")
-      .documents()
-      .search({
-        q: query,
-        query_by: "title,description,tags",
-        query_by_weights: "3,2,2",
-        sort_by: "views:desc",
-        prefix: "false,false,false",
-        typo_tolerance: "true",
-        num_typos: 2,
-        exhaustive_search: true,
-        per_page: 50,
-      });
+    const freshVideos = await fetchYouTubeVideos(query, res);
 
-    // checking if the result is < 15 || nothing (call the youtube api)
-    if (searchResults.hits.length < 15 || null) {
-      const freshVideos = await fetchYouTubeVideos(query, res);
-      let savedVideos = [];
-
-      if (freshVideos[0]) {
-        console.log(
-          `Founded ${freshVideos.length} videos from the youtube response`
-        );
-        const createVideoPromises = freshVideos.map(async (element) => {
-          try {
-            const video = await videoModel.create({
-              youtubeId: element.id,
-              title: element.snippet.title,
-              description: element.snippet.description,
-              channelTitle: element.snippet.channelTitle,
-              channelId: element.snippet.channelId,
-              thumbnails: {
-                default: element.snippet.thumbnails.default.url,
-                medium: element.snippet.thumbnails.medium.url,
-                high: element.snippet.thumbnails.high.url,
-              },
-              tags: element.snippet.tags,
-              category:
-                element.snippet.category === "27"
-                  ? "Education"
-                  : element.snippet.category === "28"
-                  ? "Science and technology"
-                  : "",
-              publishedAt: element.snippet.publishedAt,
-              duration: element.contentDetails.duration,
-              searchTerms: query,
-              curated: true,
-              addedBySearch: true,
-              createdAt: Date.now(),
-            });
-
-            savedVideos.push(video);
-          } catch (err) {
-            if (err.code === 11000) {
-              console.log(`Duplicate video skipped: ${element.id}`);
-            } else {
-              console.error("Error creating video:", err);
-            }
-          }
-        });
-
-        await Promise.all(createVideoPromises);
-
-        if (savedVideos) {
-          try {
-            const typesenseFormat = savedVideos.map((current) => ({
-              id: current.youtubeId,
-              title: current.title || "",
-              description: current.description || "",
-              url: `https://youtube.com/watch?v=${current.youtubeId}`,
-              channel: current.channelTitle,
-              tags: current.tags || [],
-              views: 0,
-              publishedAt: current.publishedAt
-                ? new Date(current.publishedAt).getTime()
-                : Date.now(),
-              createdAt: Date.now(),
-            }));
-
-            // storing videos in typesense
-            const typesenseResult = await client
-              .collections("videos")
-              .documents()
-              .import(typesenseFormat, { action: "upsert" });
-            console.log("Saved to typesense successfully : ", typesenseResult);
-          } catch (error) {
-            console.log("Typesense insert error", error);
-          }
-        }
-
-        return res.status(200).json(savedVideos);
-      }
-    } else {
-      const ids = searchResults.hits.map((hit) => hit.document.id);
-
-      const dbVideos = await getVideosFromMongo(ids);
-
-      // const typesenseVid = searchResults.hits.map(hit => hit.document)
+    if (freshVideos[0]) {
       console.log(
-        "Founded " +
-          searchResults.hits.length +
-          " that matches the search query : " +
-          query
+        `Founded ${freshVideos.length} videos from the youtube response`
       );
-      if (dbVideos) {
-        res.status(200).json(dbVideos);
-      }
+      return res.status(200).json(freshVideos);
     }
   } catch (error) {
     console.log("search error: ", error);
