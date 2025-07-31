@@ -9,11 +9,15 @@ import { Loader } from "./Loader";
 import { VideoplayError } from "./VideoplayError";
 import { SearchContext } from "../Context/SearchContext";
 import axios from "../utils/axiosConfig";
+import { useCurrentVideo } from "../Context/currentVideoContext";
 export default function Videoplay() {
-  const { id } = useParams();
   const [videos, setVideos] = useState();
   const [loading, setLoading] = useState(true);
   const { search } = useContext(SearchContext);
+  const { currentVideo, setCurrentVideo } = useCurrentVideo();
+  const title = currentVideo.snippet.title;
+  const channelId = currentVideo.snippet.channelTitle;
+  const { id } = useParams();
   const [error, setError] = useState();
   const navigate = useNavigate();
 
@@ -22,7 +26,7 @@ export default function Videoplay() {
       setLoading(true);
       try {
         const response = await axios.get(`/api/v1/videos/${id}`, {
-          params: { q: search },
+          params: { q: search, title, id, channelId },
         });
         try {
           const aiSuggestion = await axios.post("/api/v1/ai/videoSuggestion");
@@ -99,6 +103,7 @@ export default function Videoplay() {
                         key={index}
                         onClick={() => {
                           navigate(`/videos/${current.id.videoId}`);
+                          setCurrentVideo(current);
                         }}
                         className="font-[calibri] m-3"
                       >
@@ -151,7 +156,14 @@ export default function Videoplay() {
                 const date = new Date(current.publishedAt);
                 const isoDuration = current.duration;
                 return (
-                  <div key={index} className="font-[calibri] m-3">
+                  <div
+                    key={index}
+                    className="font-[calibri] m-3"
+                    onClick={() => {
+                      navigate(`/videos/${current.id.videoId}`);
+                      setCurrentVideo(current);
+                    }}
+                  >
                     <div
                       className={`bg-center rounded-sm bg-cover h-40 w-68 flex items-end justify-end`}
                       style={{

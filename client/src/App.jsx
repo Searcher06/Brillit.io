@@ -15,6 +15,7 @@ import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
 import { ErrorOffline } from "./Components/ErrorOffline";
 import { useAuth } from "./Context/authContext";
+import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 export default function App() {
   const { search } = useContext(SearchContext);
@@ -24,6 +25,7 @@ export default function App() {
   const { searchedVideos, setSearchedVideos } = useContext(
     searchedVideosContext
   );
+  const { currentVideo, setCurrentVideo } = useCurrentVideo();
   const { user } = useAuth();
   console.log(searchedVideos);
 
@@ -172,6 +174,7 @@ export default function App() {
                 <div
                   onClick={() => {
                     navigate(`/videos/${current.id}`);
+                    setCurrentVideo(current);
                   }}
                   key={index}
                   className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
@@ -214,6 +217,7 @@ export default function App() {
                     <div
                       onClick={() => {
                         navigate(`/videos/${current.id}`);
+                        setCurrentVideo(current);
                       }}
                       className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
                       style={{

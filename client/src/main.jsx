@@ -16,72 +16,75 @@ import { PrivateRoute } from "./routes/PrivateRoute.jsx";
 import PersonalizationPage from "./Components/InfoBox.jsx";
 import { AuthProvider } from "./Context/authContext.jsx";
 import { ProtectPersonalization } from "./routes/ProtectPersonalization.jsx";
+import { CurrentVideoProvider } from "./Context/currentVideoContext.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
-      <FilterProvider>
-        <SearchVideoProvider>
-          <ContextProvider>
-            <CallContextProvider>
-              <ActiveContextProvider>
-                <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <PrivateRoute>
-                        <App />
-                      </PrivateRoute>
-                    }
+      <CurrentVideoProvider>
+        <FilterProvider>
+          <SearchVideoProvider>
+            <ContextProvider>
+              <CallContextProvider>
+                <ActiveContextProvider>
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <PrivateRoute>
+                          <App />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/synthai"
+                      element={
+                        <PrivateRoute>
+                          <Chatbot />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/videos/:id"
+                      element={
+                        <PrivateRoute>
+                          <Videoplay />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/update-profile"
+                      element={
+                        <PrivateRoute>
+                          <UpdateProfile />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route path="/signUp" element={<SignUp />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="/personalization"
+                      element={
+                        <ProtectPersonalization>
+                          <PersonalizationPage />
+                        </ProtectPersonalization>
+                      }
+                    />
+                    <Route path="*" element={<h1>Where you dey go 😭</h1>} />
+                  </Routes>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    closeOnClick
+                    pauseOnHover
+                    theme="light"
                   />
-                  <Route
-                    path="/synthai"
-                    element={
-                      <PrivateRoute>
-                        <Chatbot />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/videos/:id"
-                    element={
-                      <PrivateRoute>
-                        <Videoplay />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/update-profile"
-                    element={
-                      <PrivateRoute>
-                        <UpdateProfile />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route path="/signUp" element={<SignUp />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route
-                    path="/personalization"
-                    element={
-                      <ProtectPersonalization>
-                        <PersonalizationPage />
-                      </ProtectPersonalization>
-                    }
-                  />
-                  <Route path="*" element={<h1>Where you dey go 😭</h1>} />
-                </Routes>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={3000}
-                  hideProgressBar={false}
-                  closeOnClick
-                  pauseOnHover
-                  theme="light"
-                />
-              </ActiveContextProvider>
-            </CallContextProvider>
-          </ContextProvider>
-        </SearchVideoProvider>
-      </FilterProvider>
+                </ActiveContextProvider>
+              </CallContextProvider>
+            </ContextProvider>
+          </SearchVideoProvider>
+        </FilterProvider>
+      </CurrentVideoProvider>
     </AuthProvider>
   </BrowserRouter>
 );
