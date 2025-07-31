@@ -3,14 +3,16 @@ import dontenv from "dotenv";
 import { videoModel } from "../models/video.model.js";
 import client from "../config/typesenseClient.js";
 import { getVideosFromMongo } from "../lib/getVideosfromDB.js";
+import { fetchYouTubeVideos } from "../lib/fetchYoutube.js";
+
 dontenv.config();
 import { userModel } from "../models/user.model.js";
 const key = process.env.API_KEY;
 
 export const videoId = async (req, res) => {
-  const id = req.params.id;
-  const query = req.query.q;
-  const videoTitle = req.query.title;
+  // const id = req.params.id;
+  // const query = req.query.q;
+  // const videoTitle = req.query.title;
   const channelId = req.query.channelId;
 
   try {
@@ -96,7 +98,38 @@ export const videoId = async (req, res) => {
 
     // If the query is empty, we will return the channel videos
 
-    res.status(200).json({});
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/search",
+      {
+        params: {
+          part: "snippet",
+          channelId,
+          type: "video",
+          key,
+          order: "date",
+          maxResults: 15,
+          type: "video",
+        },
+      }
+    );
+
+    const videoIds = response.data.items
+      .map((item) => item.id.videoId)
+      .join(",");
+
+    const videoRes = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          key,
+          id: videoIds,
+          part: "snippet,contentDetails", // get all the good stuff
+        },
+      }
+    );
+    // Storing the channel videos in a variable
+    const channelVideos = await videoRes.data;
+    res.status(200).json({ channelVideos });
   } catch (error) {
     console.log("Error in youtube ID controller : ", error);
     res.status(500);

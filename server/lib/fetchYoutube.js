@@ -3,7 +3,7 @@ import axios from "axios";
 dotenv.config();
 const key = process.env.API_KEY;
 
-export const fetchYouTubeVideos = async (query, res) => {
+export const fetchYouTubeVideos = async (req, res, query) => {
   try {
     const response = await axios.get(
       "https://www.googleapis.com/youtube/v3/search",

@@ -19,7 +19,7 @@ export const searchVideos = async (req, res) => {
   }
 
   try {
-    const freshVideos = await fetchYouTubeVideos(query, res);
+    const freshVideos = await fetchYouTubeVideos(req, res, query);
 
     if (freshVideos[0]) {
       console.log(
