@@ -27,7 +27,6 @@ export default function App() {
   );
   const { currentVideo, setCurrentVideo } = useCurrentVideo();
   const { user } = useAuth();
-  console.log(searchedVideos);
 
   const searchVideos = async () => {
     try {

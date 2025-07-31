@@ -17,6 +17,7 @@ import PersonalizationPage from "./Components/InfoBox.jsx";
 import { AuthProvider } from "./Context/authContext.jsx";
 import { ProtectPersonalization } from "./routes/ProtectPersonalization.jsx";
 import { CurrentVideoProvider } from "./Context/currentVideoContext.jsx";
+import { ProtectWatchVideoPage } from "./routes/ProtectWatchVideoPage.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
@@ -47,7 +48,9 @@ createRoot(document.getElementById("root")).render(
                       path="/videos/:id"
                       element={
                         <PrivateRoute>
-                          <Videoplay />
+                          <ProtectWatchVideoPage>
+                            <Videoplay />
+                          </ProtectWatchVideoPage>
                         </PrivateRoute>
                       }
                     />
