@@ -13,7 +13,7 @@ import { NetworkError } from "./Components/NetworkError";
 import { searchedVideosContext } from "./Context/searchVideosContext";
 import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
-import { ErrorOffline } from "./Components/ErrorOffline";
+// import { ErrorOffline } from "./Components/ErrorOffline";
 import { useAuth } from "./Context/authContext";
 import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
@@ -25,7 +25,7 @@ export default function App() {
   const { searchedVideos, setSearchedVideos } = useContext(
     searchedVideosContext
   );
-  const { currentVideo, setCurrentVideo } = useCurrentVideo();
+  const { setCurrentVideo } = useCurrentVideo();
   const { user } = useAuth();
 
   const searchVideos = async () => {
@@ -34,6 +34,7 @@ export default function App() {
         withCredentials: true,
       });
       setSearchedVideos(response.data);
+      setError(null);
     } catch (error) {
       setSearchedVideos(null);
       setError(error);
@@ -61,7 +62,7 @@ export default function App() {
     "Trigonometry",
   ];
   const [tabVideos, setTabVideos] = useState({});
-  const [tab, setTab] = useState("All");
+  const [tab, setTab] = useState(user?.suggestedKeywords[0]);
 
   useEffect(() => {
     if (!tabVideos[tab]) {
@@ -160,11 +161,14 @@ export default function App() {
           </div>
         </section>
 
+        {/* Main layout */}
         <section className={`flex flex-wrap`}>
           {Loading ? (
+            // If the current state is loading then return this <Loader /> component
             <Loader />
-          ) : error ? (
-            <ErrorOffline error={error.message} />
+          ) : // If there is an error the return the <NetworkError /> component
+          error ? (
+            <NetworkError error={error} />
           ) : active == "tab" ? (
             tabVideos[tab]?.items.map((current, index) => {
               const date = new Date(current.snippet.publishedAt);
@@ -202,45 +206,41 @@ export default function App() {
               );
             })
           ) : active == "search" ? (
-            error ? (
-              <NetworkError error={error} />
-            ) : (
-              searchedVideos.map((current, index) => {
-                const date = new Date(current.snippet.publishedAt);
-                const isoDuration = current.contentDetails.duration;
-                return (
+            searchedVideos.map((current, index) => {
+              const date = new Date(current.snippet.publishedAt);
+              const isoDuration = current.contentDetails.duration;
+              return (
+                <div
+                  key={index}
+                  className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
+                >
                   <div
-                    key={index}
-                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
+                    onClick={() => {
+                      navigate(`/videos/${current.id}`);
+                      setCurrentVideo(current);
+                    }}
+                    className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
+                    style={{
+                      backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                    }}
                   >
-                    <div
-                      onClick={() => {
-                        navigate(`/videos/${current.id}`);
-                        setCurrentVideo(current);
-                      }}
-                      className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
-                      style={{
-                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
-                      }}
-                    >
-                      <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
-                        {<FormatYouTubeDuration isoDuration={isoDuration} />}
-                      </span>
-                    </div>
+                    <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                      {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                    </span>
+                  </div>
 
-                    <div>
-                      <p className="font-medium text-[15.5px]">
-                        {current.snippet.title.slice(0, 30)}
-                      </p>
-                      <div className="flex justify-between text-[13px] text-gray-700">
-                        <p>{current.snippet.channelTitle}</p>
-                        <p>{<GetNew date={date} />}</p>
-                      </div>
+                  <div>
+                    <p className="font-medium text-[15.5px]">
+                      {current.snippet.title.slice(0, 30)}
+                    </p>
+                    <div className="flex justify-between text-[13px] text-gray-700">
+                      <p>{current.snippet.channelTitle}</p>
+                      <p>{<GetNew date={date} />}</p>
                     </div>
                   </div>
-                );
-              })
-            )
+                </div>
+              );
+            })
           ) : null}
         </section>
       </section>
