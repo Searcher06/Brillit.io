@@ -111,7 +111,7 @@ export default function Videoplay() {
                       <div
                         key={index}
                         onClick={() => {
-                          navigate(`/videos/${current.id.videoId}`);
+                          navigate(`/videos/${current.id}`);
                           setCurrentVideo(current);
                         }}
                         className="font-[calibri] m-3"
