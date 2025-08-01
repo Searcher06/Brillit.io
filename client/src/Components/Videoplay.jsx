@@ -31,10 +31,8 @@ export default function Videoplay() {
       try {
         const response = await axios.get(`/api/v1/videos/${id}`, {
           params: {
-            // q: search,
-            // title: title,
-            // id: id,
             channelId: channelId,
+            title: title,
           },
         });
         try {

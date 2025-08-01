@@ -12,13 +12,15 @@ const key = process.env.API_KEY;
 export const videoId = async (req, res) => {
   // const id = req.params.id;
   // const query = req.query.q;
-  // const videoTitle = req.query.title;
+  const videoTitle = req.query.title;
   const channelId = req.query.channelId;
 
   try {
     // getting the current user
     const user = await userModel.findById(req.user._id);
-
+    if (videoTitle) {
+      user.videosWatched = [...user.videosWatched, videoTitle];
+    }
     // // Finding the video using youtube Id from the DB
     // const videoInfo = await videoModel.findOne({ youtubeId: id });
 
@@ -97,7 +99,7 @@ export const videoId = async (req, res) => {
     // const recommendedVideos = recommendedDB;
 
     // If the query is empty, we will return the channel videos
-
+    user.save();
     const response = await axios.get(
       "https://www.googleapis.com/youtube/v3/search",
       {
