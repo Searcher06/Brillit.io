@@ -18,6 +18,7 @@ import { AuthProvider } from "./Context/authContext.jsx";
 import { ProtectPersonalization } from "./routes/ProtectPersonalization.jsx";
 import { CurrentVideoProvider } from "./Context/currentVideoContext.jsx";
 import { ProtectWatchVideoPage } from "./routes/ProtectWatchVideoPage.jsx";
+import { Responsive } from "./Components/Responsive.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
@@ -72,6 +73,7 @@ createRoot(document.getElementById("root")).render(
                         </ProtectPersonalization>
                       }
                     />
+                    <Route path="/responsive" element={<Responsive />} />
                     <Route path="*" element={<h1>Where you dey go 😭</h1>} />
                   </Routes>
                   <ToastContainer

@@ -162,7 +162,7 @@ export default function App() {
         </section>
 
         {/* Main layout */}
-        <section className={`flex flex-wrap`}>
+        <section className={`block md:flex flex-wrap`}>
           {Loading ? (
             // If the current state is loading then return this <Loader /> component
             <Loader />
