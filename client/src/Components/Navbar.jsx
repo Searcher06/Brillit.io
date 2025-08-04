@@ -3,12 +3,13 @@ import { SearchContext } from "../Context/SearchContext";
 import { faSearch, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { CallContext } from "../Context/CallContext";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ActiveContext } from "../Context/ActiveContext";
 import { Filter } from "./Filter";
 import { FilterContext } from "../Context/FilterContext";
 import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
+import { LogOutIcon } from "lucide-react";
 
 export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext);
@@ -43,7 +44,7 @@ export function Navbar() {
 
   return (
     <nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0">
-      <div className="logo  text-3xl text-blue-600 font-semibold pl-8">
+      <div className="logo text-3xl text-blue-600 font-semibold pl-4">
         Brillit.io
       </div>
       <div className="search">
@@ -54,7 +55,7 @@ export function Navbar() {
           }}
           value={search}
           placeholder="Search"
-          className="h-11 bg-gray-100 pl-5 outline-0 w-120 rounded-l-full"
+          className="h-8 bg-gray-100 pl-2 outline-0 w-35 rounded-l-lg text-sm"
         />
         <button
           onClick={() => {
@@ -63,7 +64,7 @@ export function Navbar() {
             navigator(navigate);
             console.log("executed");
           }}
-          className="w-14 bg-blue-600 h-11 rounded-r-full"
+          className="w-7 bg-blue-600 h-8 rounded-r-lg"
         >
           <FontAwesomeIcon icon={faSearch} className="text-white" />
         </button>
@@ -71,19 +72,19 @@ export function Navbar() {
           onClick={() => {
             setDisplayfilter(true);
           }}
-          className="ml-4 text-[17px] text-gray-900 hover:text-gray-700"
+          className="hidden ml-4 text-[17px] text-gray-900 hover:text-gray-700"
         >
           <FontAwesomeIcon icon={faSliders} />
         </button>
       </div>
-      <div className="icons pr-7">
+      <div className="icons pr-3">
         <button
-          className="w-17 bg-blue-600 h-9 text-white  font-[calibri] rounded-sm"
+          className="text-blue-700 text-sm"
           onClick={() => {
             LogOut();
           }}
         >
-          Log out
+          <LogOutIcon />
         </button>
       </div>
       {displayfilter && <Filter />}
