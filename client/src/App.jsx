@@ -100,13 +100,11 @@ export default function App() {
   return (
     <>
       <Navbar />
-
       <Sidebar
         faHome={faHome}
         faSnowflake={faSnowflake}
         faCircleUser={faCircleUser}
       />
-
       <section id="main_content" className=" ml-18 mt-18">
         <section
           id="recommendation"
