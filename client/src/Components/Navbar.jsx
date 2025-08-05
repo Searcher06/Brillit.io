@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchContext } from "../Context/SearchContext";
-import { faSearch, faSliders } from "@fortawesome/free-solid-svg-icons";
+import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { CallContext } from "../Context/CallContext";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { Filter } from "./Filter";
 import { FilterContext } from "../Context/FilterContext";
 import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
-import { LogOutIcon } from "lucide-react";
+import { LogOutIcon, Search } from "lucide-react";
 
 export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext);
@@ -44,10 +44,10 @@ export function Navbar() {
 
   return (
     <nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0">
-      <div className="logo text-3xl text-blue-600 font-semibold pl-4">
+      <div className="logo text-3xl text-blue-600 font-semibold pl-3">
         Brillit.io
       </div>
-      <div className="search">
+      <div className="search flex mr-2">
         <input
           type="text"
           onChange={(event) => {
@@ -55,7 +55,7 @@ export function Navbar() {
           }}
           value={search}
           placeholder="Search"
-          className="h-8 bg-gray-100 pl-2 outline-0 w-35 rounded-l-lg text-sm"
+          className="h-9 bg-gray-50 pl-2 outline-0 w-39 rounded-l-sm text-sm"
         />
         <button
           onClick={() => {
@@ -64,9 +64,9 @@ export function Navbar() {
             navigator(navigate);
             console.log("executed");
           }}
-          className="w-7 bg-blue-600 h-8 rounded-r-lg"
+          className="w-8 bg-blue-600 h-9 rounded-r-sm mr-1 flex justify-center items-center"
         >
-          <FontAwesomeIcon icon={faSearch} className="text-white" />
+          <Search className="text-white align-middle" size={23} />
         </button>
         <button
           onClick={() => {
@@ -76,15 +76,14 @@ export function Navbar() {
         >
           <FontAwesomeIcon icon={faSliders} />
         </button>
-      </div>
-      <div className="icons pr-3">
+
         <button
           className="text-blue-700 text-sm"
           onClick={() => {
             LogOut();
           }}
         >
-          <LogOutIcon />
+          <LogOutIcon size={23} strokeWidth={1.7} />
         </button>
       </div>
       {displayfilter && <Filter />}
