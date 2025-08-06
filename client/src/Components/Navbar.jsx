@@ -44,7 +44,7 @@ export function Navbar() {
 
   return (
     <nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0">
-      <div className="logo text-3xl text-blue-600 font-semibold pl-3">
+      <div className="logo text-4xl text-blue-600 font-semibold pl-3">
         Brillit.io
       </div>
       <div className="search flex mr-2">
@@ -55,7 +55,7 @@ export function Navbar() {
           }}
           value={search}
           placeholder="Search"
-          className="h-9 bg-gray-50 pl-2 outline-0 w-39 rounded-l-sm text-sm"
+          className="h-9 bg-gray-50 pl-2 outline-0 w-39 rounded-l-sm text-sm md:h-14 md:w-49"
         />
         <button
           onClick={() => {
@@ -64,7 +64,7 @@ export function Navbar() {
             navigator(navigate);
             console.log("executed");
           }}
-          className="w-8 bg-blue-600 h-9 rounded-r-sm mr-1 flex justify-center items-center"
+          className="w-8 bg-blue-600 h-9 rounded-r-sm mr-1 flex justify-center items-center md:h-14"
         >
           <Search className="text-white align-middle" size={23} />
         </button>
@@ -72,7 +72,7 @@ export function Navbar() {
           onClick={() => {
             setDisplayfilter(true);
           }}
-          className="hidden ml-4 text-[17px] text-gray-900 hover:text-gray-700"
+          className="hidden ml-4 text-[17px] text-gray-900 hover:text-gray-700 md:block"
         >
           <FontAwesomeIcon icon={faSliders} />
         </button>

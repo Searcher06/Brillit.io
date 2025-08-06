@@ -158,7 +158,6 @@ export default function App() {
                 })}
           </div>
         </section>
-
         {/* Main layout */}
         <section className={`block md:flex flex-wrap`}>
           {Loading ? (
