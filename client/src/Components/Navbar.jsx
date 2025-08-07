@@ -44,7 +44,7 @@ export function Navbar() {
 
   return (
     <nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0">
-      <div className="logo text-4xl text-blue-600 font-semibold pl-3">
+      <div className="logo text-3xl text-blue-600 font-semibold pl-3 sm:text-4xl sm:pl-5">
         Brillit.io
       </div>
       <div className="search flex mr-2">
