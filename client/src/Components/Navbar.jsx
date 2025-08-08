@@ -47,7 +47,7 @@ export function Navbar() {
       <div className="logo text-3xl text-blue-600 font-semibold pl-3 sm:text-4xl sm:pl-5 lg:pl-9  xl:pl-10">
         Brillit.io
       </div>
-      <div className="search flex mr-2">
+      <div className="search flex">
         <input
           type="text"
           onChange={(event) => {
@@ -55,7 +55,7 @@ export function Navbar() {
           }}
           value={search}
           placeholder="Search"
-          className="h-9 bg-gray-100 pl-2 outline-0 w-39 rounded-l-sm text-sm sm:h-10 sm:w-49 md:w-65 lg:w-85 lg:h-11 xl:w-98 xl:pl-4 xl:text-base xl:rounded-l-lg"
+          className="h-9 bg-gray-100 pl-2 outline-0 w-39 rounded-l-sm text-sm sm:h-10 sm:w-65 md:w-65 lg:w-85 lg:h-11 xl:w-98 xl:pl-4 xl:text-base xl:rounded-l-lg"
         />
         <button
           onClick={() => {
@@ -76,16 +76,15 @@ export function Navbar() {
         >
           <FontAwesomeIcon icon={faSliders} />
         </button>
-
-        <button
-          className="text-blue-700 text-sm sm:mr-2 lg:mr-4"
-          onClick={() => {
-            LogOut();
-          }}
-        >
-          <LogOutIcon size={23} strokeWidth={1.7} />
-        </button>
       </div>
+      <button
+        className="text-blue-700 mr-3 text-sm sm:mr-5 md:mr-4 lg:mr-9 xl:mr-10"
+        onClick={() => {
+          LogOut();
+        }}
+      >
+        <LogOutIcon size={23} strokeWidth={1.7} />
+      </button>
       {displayfilter && <Filter />}
     </nav>
   );
