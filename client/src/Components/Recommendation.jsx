@@ -38,7 +38,7 @@ export default function Recommendation({
   return (
     <section
       id="recommendation"
-      className="font-[calibri] flex items-center gap-2"
+      className="font-[calibri] flex items-center gap-2 w-[95%]  m-auto"
     >
       {/* Left button - only desktop */}
       <button
@@ -58,7 +58,7 @@ export default function Recommendation({
             key={index}
             ref={(el) => (chipRefs.current[index] = el)}
             onClick={() => handleClick(current, index)}
-            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors
+            className={`flex-shrink-0 p-1.5 rounded-sm text-sm font-medium transition-colors sm:text-[15px] sm:p-2
               ${
                 current === tab
                   ? "bg-black text-white"

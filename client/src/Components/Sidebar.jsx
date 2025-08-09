@@ -8,10 +8,7 @@ export function Sidebar() {
   const { user } = useAuth();
   // console.log("The current user state : ", user)
   return (
-    <section
-      id="sidebar"
-      className="md:w-18 md:h-lvh fixed md:z-1 md:flex md:flex-col md:items-center md:mt-12"
-    >
+    <section id="sidebar" className="">
       <div
         className="text-center cursor-pointer"
         onClick={() => {

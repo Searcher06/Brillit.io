@@ -102,12 +102,12 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Sidebar
+      {/* <Sidebar
         faHome={faHome}
         faSnowflake={faSnowflake}
         faCircleUser={faCircleUser}
-      />
-      <section id="main_content" className=" ml-18 mt-18">
+      /> */}
+      <section id="main_content" className="mt-18">
         {/* <section
           id="recommendation"
           className="font-[calibri] flex justify-between"
@@ -169,7 +169,9 @@ export default function App() {
           setActive={setActive}
         />
         {/* Main layout */}
-        <section className={`block md:flex flex-wrap`}>
+        <section
+          className={`flex flex-col items-center p-4 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
+        >
           {Loading ? (
             // If the current state is loading then return this <Loader /> component
             <Loader />
@@ -187,21 +189,21 @@ export default function App() {
                     setCurrentVideo(current);
                   }}
                   key={index}
-                  className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
+                  className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-65 md:w-72 xl:w-85"
                 >
                   <div
-                    className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
+                    className=" bg-center rounded-sm bg-cover h-40 sm:w-65 md:w-72 xl:w-85 flex items-end justify-end"
                     style={{
                       backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                     }}
                   >
-                    <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                    <span className="text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1 sm:text-[14px]">
                       {<FormatYouTubeDuration isoDuration={isoDuration} />}
                     </span>
                   </div>
 
                   <div>
-                    <p className="font-medium text-[15.5px]">
+                    <p className="font-medium text-base">
                       {current.snippet.title.slice(0, 30) + "..."}
                     </p>
                     <div className="flex justify-between text-[13px] text-gray-700">
