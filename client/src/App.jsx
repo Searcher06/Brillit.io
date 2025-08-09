@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Sidebar } from "./Components/Sidebar";
 import { faCircleUser, faSnowflake } from "@fortawesome/free-regular-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
@@ -108,58 +109,6 @@ export default function App() {
         faCircleUser={faCircleUser}
       /> */}
       <section id="main_content" className="mt-18">
-        {/* <section
-          id="recommendation"
-          className="font-[calibri] flex justify-between"
-        >
-          <div className="flex flex-wrap">
-            {user?.suggestedKeywords.length > 0
-              ? user.suggestedKeywords.map((current, index) => {
-                  return current === tab ? (
-                    <span
-                      key={index}
-                      className="bg-black text-white px-4 py-1 rounded-sm m-1"
-                    >
-                      {current}{" "}
-                    </span>
-                  ) : (
-                    <span
-                      key={index}
-                      onClick={() => {
-                        setTab(current);
-                        setActive("tab");
-                        setError(null);
-                      }}
-                      className="bg-gray-200 px-4 py-1 rounded-sm m-1"
-                    >
-                      {current}{" "}
-                    </span>
-                  );
-                })
-              : recommended.map((current, index) => {
-                  return current === tab ? (
-                    <span
-                      key={index}
-                      className="bg-black text-white px-4 py-1 rounded-sm m-1"
-                    >
-                      {current}{" "}
-                    </span>
-                  ) : (
-                    <span
-                      key={index}
-                      onClick={() => {
-                        setTab(current);
-                        setActive("tab");
-                        setError(null);
-                      }}
-                      className="bg-gray-200 px-4 py-1 rounded-sm m-1"
-                    >
-                      {current}{" "}
-                    </span>
-                  );
-                })}
-          </div>
-        </section> */}
         <Recommendation
           user={user}
           recommended={recommended}
