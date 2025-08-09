@@ -17,6 +17,7 @@ import { GetNew } from "./Components/FormatDate";
 import { useAuth } from "./Context/authContext";
 import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
+import Recommendation from "./Components/Recommendation";
 export default function App() {
   const { search } = useContext(SearchContext);
   const [Loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ export default function App() {
   );
   const { setCurrentVideo } = useCurrentVideo();
   const { user } = useAuth();
+  const suggestedKeywords = user?.suggestedKeywords;
 
   const searchVideos = async () => {
     try {
@@ -106,7 +108,7 @@ export default function App() {
         faCircleUser={faCircleUser}
       />
       <section id="main_content" className=" ml-18 mt-18">
-        <section
+        {/* <section
           id="recommendation"
           className="font-[calibri] flex justify-between"
         >
@@ -157,7 +159,15 @@ export default function App() {
                   );
                 })}
           </div>
-        </section>
+        </section> */}
+        <Recommendation
+          user={user}
+          recommended={recommended}
+          tab={tab}
+          setError={setError}
+          setTab={setTab}
+          setActive={setActive}
+        />
         {/* Main layout */}
         <section className={`block md:flex flex-wrap`}>
           {Loading ? (
