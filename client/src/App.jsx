@@ -109,98 +109,103 @@ export default function App() {
         faCircleUser={faCircleUser}
       /> */}
       <section id="main_content" className="mt-18">
-        <Recommendation
-          user={user}
-          recommended={recommended}
-          tab={tab}
-          setError={setError}
-          setTab={setTab}
-          setActive={setActive}
-        />
-        {/* Main layout */}
-        <section
-          className={`flex flex-col items-center p-4 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
-        >
-          {Loading ? (
-            // If the current state is loading then return this <Loader /> component
-            <Loader />
-          ) : // If there is an error the return the <NetworkError /> component
-          error ? (
-            <NetworkError error={error} />
-          ) : active == "tab" ? (
-            tabVideos[tab]?.items.map((current, index) => {
-              const date = new Date(current.snippet.publishedAt);
-              const isoDuration = current.contentDetails.duration;
-              return (
-                <div
-                  onClick={() => {
-                    navigate(`/videos/${current.id}`);
-                    setCurrentVideo(current);
-                  }}
-                  key={index}
-                  className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-65 md:w-72 xl:w-85"
-                >
-                  <div
-                    className=" bg-center rounded-sm bg-cover h-40 sm:w-65 md:w-72 xl:w-85 flex items-end justify-end"
-                    style={{
-                      backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
-                    }}
-                  >
-                    <span className="text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1 sm:text-[14px]">
-                      {<FormatYouTubeDuration isoDuration={isoDuration} />}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="font-medium text-base">
-                      {current.snippet.title.slice(0, 30) + "..."}
-                    </p>
-                    <div className="flex justify-between text-[13px] text-gray-700">
-                      <p>{current.snippet.channelTitle.slice(0, 30)}</p>
-                      <p>{<GetNew date={date} />}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          ) : active == "search" ? (
-            searchedVideos.map((current, index) => {
-              const date = new Date(current.snippet.publishedAt);
-              const isoDuration = current.contentDetails.duration;
-              return (
-                <div
-                  key={index}
-                  className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
-                >
+        <div>
+          <Recommendation
+            user={user}
+            recommended={recommended}
+            tab={tab}
+            setError={setError}
+            setTab={setTab}
+            setActive={setActive}
+          />
+          {/* Main layout */}
+          <section
+            className={`mb-18 flex flex-col items-center p-4 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
+          >
+            {Loading ? (
+              // If the current state is loading then return this <Loader /> component
+              <Loader />
+            ) : // If there is an error the return the <NetworkError /> component
+            error ? (
+              <NetworkError error={error} />
+            ) : active == "tab" ? (
+              tabVideos[tab]?.items.map((current, index) => {
+                const date = new Date(current.snippet.publishedAt);
+                const isoDuration = current.contentDetails.duration;
+                return (
                   <div
                     onClick={() => {
                       navigate(`/videos/${current.id}`);
                       setCurrentVideo(current);
                     }}
-                    className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
-                    style={{
-                      backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
-                    }}
+                    key={index}
+                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-65 md:w-72 xl:w-85"
                   >
-                    <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
-                      {<FormatYouTubeDuration isoDuration={isoDuration} />}
-                    </span>
-                  </div>
+                    <div
+                      className=" bg-center rounded-sm bg-cover h-40 sm:w-65 md:w-72 xl:w-85 flex items-end justify-end"
+                      style={{
+                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                      }}
+                    >
+                      <span className="text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1 sm:text-[14px]">
+                        {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                      </span>
+                    </div>
 
-                  <div>
-                    <p className="font-medium text-[15.5px]">
-                      {current.snippet.title.slice(0, 30)}
-                    </p>
-                    <div className="flex justify-between text-[13px] text-gray-700">
-                      <p>{current.snippet.channelTitle}</p>
-                      <p>{<GetNew date={date} />}</p>
+                    <div>
+                      <p className="font-medium text-base">
+                        {current.snippet.title.slice(0, 30) + "..."}
+                      </p>
+                      <div className="flex justify-between text-[13px] text-gray-700">
+                        <p>{current.snippet.channelTitle.slice(0, 30)}</p>
+                        <p>{<GetNew date={date} />}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          ) : null}
-        </section>
+                );
+              })
+            ) : active == "search" ? (
+              searchedVideos.map((current, index) => {
+                const date = new Date(current.snippet.publishedAt);
+                const isoDuration = current.contentDetails.duration;
+                return (
+                  <div
+                    key={index}
+                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
+                  >
+                    <div
+                      onClick={() => {
+                        navigate(`/videos/${current.id}`);
+                        setCurrentVideo(current);
+                      }}
+                      className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
+                      style={{
+                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                      }}
+                    >
+                      <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                        {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                      </span>
+                    </div>
+
+                    <div>
+                      <p className="font-medium text-[15.5px]">
+                        {current.snippet.title.slice(0, 30)}
+                      </p>
+                      <div className="flex justify-between text-[13px] text-gray-700">
+                        <p>{current.snippet.channelTitle}</p>
+                        <p>{<GetNew date={date} />}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : null}
+          </section>
+        </div>
+
+        {/* Sidebar */}
+        <Sidebar />
       </section>
     </>
   );

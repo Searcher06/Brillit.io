@@ -1,45 +1,65 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { faSnowflake } from "@fortawesome/free-regular-svg-icons";
-import { useAuth } from "../Context/authContext";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
+// import { useNavigate } from "react-router-dom";
+// import { faSnowflake } from "@fortawesome/free-regular-svg-icons";
+// import { useAuth } from "../Context/authContext";
+// export function Sidebar() {
+//   const navigate = useNavigate();
+//   const { user } = useAuth();
+//   // console.log("The current user state : ", user)
+//   return (
+//     <section id="sidebar" className="">
+//       <div
+//         className="text-center cursor-pointer"
+//         onClick={() => {
+//           navigate("/");
+//         }}
+//       >
+//         <FontAwesomeIcon icon={faHome} className=" text-xl md:mt-8" />
+//         <p className="font-[calibri] text-sm">Home</p>
+//       </div>
+//       <div
+//         className="text-center cursor-pointer"
+//         onClick={() => {
+//           navigate("/synthai");
+//         }}
+//       >
+//         <FontAwesomeIcon
+//           icon={faSnowflake}
+//           className="text-gray-700 text-xl md:mt-4"
+//         />
+//         <p className="font-[calibri] text-sm">SynthAi</p>
+//       </div>
+//       <div
+//         className="text-center cursor-pointer"
+//         onClick={() => navigate("/update-profile")}
+//       >
+//         <img
+//           src={`${user?.profilePic ? user?.profilePic : null}`}
+//           className="w-10 h-10 rounded-full flex justify-center items-center md:mt-4"
+//         />
+//         <p className="font-[calibri] text-sm">{`${user.firstName}`}</p>
+//       </div>
+//     </section>
+//   );
+// }
+
+import { Home, Snowflake, User } from "lucide-react";
 export function Sidebar() {
-  const navigate = useNavigate();
-  const { user } = useAuth();
-  // console.log("The current user state : ", user)
   return (
-    <section id="sidebar" className="">
-      <div
-        className="text-center cursor-pointer"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        <FontAwesomeIcon icon={faHome} className=" text-xl md:mt-8" />
-        <p className="font-[calibri] text-sm">Home</p>
+    <div className="h-13  w-full bg-white fixed bottom-0 flex justify-between pl-4 pr-4 items-center">
+      <div className="flex justify-center flex-col items-center">
+        <Home strokeWidth={1.5} />
+        <p className="font-[calibri] text-[13px]">Home</p>
       </div>
-      <div
-        className="text-center cursor-pointer"
-        onClick={() => {
-          navigate("/synthai");
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faSnowflake}
-          className="text-gray-700 text-xl md:mt-4"
-        />
-        <p className="font-[calibri] text-sm">SynthAi</p>
+      <div className="flex justify-center flex-col items-center">
+        <Snowflake strokeWidth={1.5} />
+        <p className="font-[calibri] text-[13px]">SynthAI</p>
       </div>
-      <div
-        className="text-center cursor-pointer"
-        onClick={() => navigate("/update-profile")}
-      >
-        <img
-          src={`${user?.profilePic ? user?.profilePic : null}`}
-          className="w-10 h-10 rounded-full flex justify-center items-center md:mt-4"
-        />
-        <p className="font-[calibri] text-sm">{`${user.firstName}`}</p>
+      <div className="flex justify-center flex-col items-center">
+        <User strokeWidth={1.5} />
+        <p className="font-[calibri] text-[13px]">You</p>
       </div>
-    </section>
+    </div>
   );
 }
