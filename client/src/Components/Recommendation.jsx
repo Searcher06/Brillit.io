@@ -38,7 +38,7 @@ export default function Recommendation({
   return (
     <section
       id="recommendation"
-      className="font-[calibri] flex items-center gap-2 sm:ml-17 sm:mr-3"
+      className="font-[calibri] flex items-center mr-2 ml-2 gap-2 sm:ml-17 sm:mr-3"
     >
       {/* Left button - only desktop */}
       <button
