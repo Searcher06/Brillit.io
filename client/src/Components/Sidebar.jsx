@@ -47,7 +47,7 @@
 import { Home, Snowflake, User } from "lucide-react";
 export function Sidebar() {
   return (
-    <div className="h-13  w-full bg-white fixed bottom-0 flex justify-between pl-4 pr-4 items-center">
+    <div className="h-13  w-full bg-white fixed bottom-0 flex justify-between pl-4 pr-4 items-center sm:w-16 sm:h-full sm:bg-gray-200 sm:flex-col sm:justify-normal sm:gap-4 sm:pt-20">
       <div className="flex justify-center flex-col items-center">
         <Home strokeWidth={1.5} />
         <p className="font-[calibri] text-[13px]">Home</p>

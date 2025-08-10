@@ -120,7 +120,7 @@ export default function App() {
           />
           {/* Main layout */}
           <section
-            className={`mb-18 flex flex-col items-center p-4 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
+            className={`mb-18 flex flex-col items-center flex-wrap p-4 sm:ml-16 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
           >
             {Loading ? (
               // If the current state is loading then return this <Loader /> component
@@ -139,10 +139,10 @@ export default function App() {
                       setCurrentVideo(current);
                     }}
                     key={index}
-                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-65 md:w-72 xl:w-85"
+                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full md:w-72 xl:w-85"
                   >
                     <div
-                      className=" bg-center rounded-sm bg-cover h-40 sm:w-65 md:w-72 xl:w-85 flex items-end justify-end"
+                      className=" bg-center rounded-sm bg-cover h-40 sm:w-full md:w-72 xl:w-85 flex items-end justify-end"
                       style={{
                         backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                       }}
