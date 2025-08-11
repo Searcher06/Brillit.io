@@ -142,7 +142,7 @@ export default function App() {
                     className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full md:w-72 lg:w-90 xl:w-88"
                   >
                     <div
-                      className=" bg-center rounded-sm bg-cover h-40 sm:w-full md:w-72 lg:w-90 xl:w-88 flex items-end justify-end"
+                      className=" bg-center rounded-sm bg-cover h-40 sm:w-full md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
                         backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                       }}
@@ -153,7 +153,7 @@ export default function App() {
                     </div>
 
                     <div>
-                      <p className="font-medium text-sm">
+                      <p className="font-medium text-sm md:text-base">
                         {current.snippet.title.slice(0, 30) + "..."}
                       </p>
                       <div className="flex justify-between text-[13px] text-gray-700 mr-4">

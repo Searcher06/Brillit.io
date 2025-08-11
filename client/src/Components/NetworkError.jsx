@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function NetworkError({ error }) {
   const errorMessage = error.response.data.message.includes("getaddrinfo")
     ? "Network Error Please chech your network connection"
-    : error.response.data.message;
+    : error.response.message;
   console.log(errorMessage);
   return (
     <div
