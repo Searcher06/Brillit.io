@@ -171,28 +171,28 @@ export default function App() {
                 return (
                   <div
                     key={index}
-                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300"
+                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full md:w-72 lg:w-90 xl:w-88"
                   >
                     <div
                       onClick={() => {
                         navigate(`/videos/${current.id}`);
                         setCurrentVideo(current);
                       }}
-                      className=" bg-center rounded-sm bg-cover h-40 w-70 flex items-end justify-end"
+                      className=" bg-center rounded-sm bg-cover h-40 sm:w-full md:w-72 lg:w-90 xl:w-88 flex items-end justify-end"
                       style={{
                         backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                       }}
                     >
-                      <span className="text-sm text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
+                      <span className="text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-4 sm:text-[14px]">
                         {<FormatYouTubeDuration isoDuration={isoDuration} />}
                       </span>
                     </div>
 
                     <div>
-                      <p className="font-medium text-[15.5px]">
+                      <p className="font-medium text-sm">
                         {current.snippet.title.slice(0, 30)}
                       </p>
-                      <div className="flex justify-between text-[13px] text-gray-700">
+                      <div className="flex justify-between text-[13px] text-gray-700 mr-4">
                         <p>{current.snippet.channelTitle}</p>
                         <p>{<GetNew date={date} />}</p>
                       </div>
