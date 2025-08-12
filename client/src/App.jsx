@@ -120,7 +120,7 @@ export default function App() {
           />
           {/* Main layout */}
           <section
-            className={`mb-18 flex flex-col items-center flex-wrap p-5 sm:ml-16 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
+            className={`mb-18 flex flex-col items-center flex-wrap gap-4 sm:ml-16 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
           >
             {Loading ? (
               // If the current state is loading then return this <Loader /> component
@@ -139,12 +139,12 @@ export default function App() {
                       setCurrentVideo(current);
                     }}
                     key={index}
-                    className="font-[calibri] m-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full md:w-72 lg:w-90 xl:w-88"
+                    className="font-[calibri] p-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full  md:w-72 lg:w-90 xl:w-88"
                   >
                     <div
-                      className=" bg-center rounded-sm bg-cover h-40 sm:w-full md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
+                      className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
-                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                        backgroundImage: `url(${current.snippet.thumbnails.standard.url})`,
                       }}
                     >
                       <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-4 sm:text-[14px]">
@@ -153,8 +153,8 @@ export default function App() {
                     </div>
 
                     <div>
-                      <p className="font-medium text-sm md:text-base">
-                        {current.snippet.title.slice(0, 30) + "..."}
+                      <p className="font-medium text-sm sm:text-base md:text-base">
+                        {current.snippet.title.slice(0, 34)}
                       </p>
                       <div className="flex justify-between text-[13px] text-gray-700 mr-4">
                         <p>{current.snippet.channelTitle.slice(0, 30)}</p>
