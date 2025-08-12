@@ -49,6 +49,7 @@ export default function App() {
     if (search.length > 0) {
       setLoading(true);
       searchVideos();
+      console.log(searchedVideos);
     }
   }, [called]);
 
@@ -165,7 +166,7 @@ export default function App() {
                 );
               })
             ) : active == "search" ? (
-              tabVideos[tab]?.items.map((current, index) => {
+              searchedVideos.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
                 return (
