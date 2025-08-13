@@ -66,31 +66,35 @@ export default function Videoplay() {
       <section className="mt-18">
         <section id="videoplay_section" className="flex flex-col w-full">
           <div>
-            <div id="video_player" className="sm:ml-18">
+            <div id="video_player" className="sm:ml-18 md:mr-10 lg:mr-16">
               <video
                 src="/src/assets/video.mp4"
                 controls
                 className="w-full"
               ></video>
-              <p className="text-sm font-semibold pl-1.5 pt-1.5">{title}</p>
-              <p className="text-[12px] text-gray-700 pl-1.5">{channelTitle}</p>
+              <p className="text-sm font-semibold pl-1.5 pt-1.5 md:text-lg lg:text-xl">
+                {title}
+              </p>
+              <p className="text-[12px] text-gray-700 pl-1.5 md:text-base lg:text-[17px]">
+                {channelTitle}
+              </p>
             </div>
             <div className="mt-5 sm:ml-18">
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center lg:flex-row lg:flex-wrap lg:justify-center">
                 {searchedVideos.map((current, index) => {
                   const date = new Date(current.snippet.publishedAt);
                   const isoDuration = current.contentDetails.duration;
                   return (
                     <div
                       key={index}
-                      className="font-[calibri] lg:w-90"
+                      className="font-[calibri] md:w-80 lg:w-100"
                       onClick={() => {
                         navigate(`/videos/${current.id}`);
                         setCurrentVideo(current);
                       }}
                     >
                       <div
-                        className={`bg-center bg-cover h-45 w-full flex items-end justify-end sm:h-60 md:h-70 lg:w-90 lg:h-46`}
+                        className={`bg-center bg-cover h-50 w-full flex items-end justify-end sm:h-60 md:h-50 md:w-83 lg:w-100 lg:h-60`}
                         style={{
                           backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
                         }}
@@ -101,10 +105,10 @@ export default function Videoplay() {
                       </div>
 
                       <div className="mt-2">
-                        <p className="font-medium text-[14px] pl-2 pr-2 md:text-lg lg:text-base lg:pl-0">
+                        <p className="font-medium text-[14px] pl-2 pr-2 md:text-base lg:text-base lg:pl-0">
                           {current.snippet.title.slice(0, 38)}
                         </p>
-                        <div className="flex justify-between text-[13px] text-gray-700 pl-2 pr-2 md:text-[15px] lg:text-[13px] lg:pr-0 lg:pl-0">
+                        <div className="flex justify-between text-[13px] text-gray-700 pl-2 pr-2 md:text-[14px] lg:text-[13px] lg:pr-0 lg:pl-0">
                           <p>{current.snippet.channelTitle}</p>
                           <p>{<GetNew date={date} />}</p>
                         </div>
