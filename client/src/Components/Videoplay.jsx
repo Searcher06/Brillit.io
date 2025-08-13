@@ -65,57 +65,54 @@ export default function Videoplay() {
       <Sidebar />
       <section className="mt-18">
         <section id="videoplay_section" className="flex flex-col w-full">
-          <div id="video_player" className="">
-            <video
-              src="/src/assets/video.mp4"
-              controls
-              className="h-full w-full"
-            ></video>
-            <p className="text-sm font-semibold pl-1.5 pt-1.5">{title}</p>
-            <p className="text-[12px] text-gray-700 pl-1.5">{channelTitle}</p>
-          </div>
           <div>
-            <div className="mt-4">
-              <p className="text-[14px] font-semibold pl-1.5">
-                Recommended Videos
-              </p>
+            <div id="video_player" className="">
+              <video
+                src="/src/assets/video.mp4"
+                controls
+                className="h-full w-full"
+              ></video>
+              <p className="text-sm font-semibold pl-1.5 pt-1.5">{title}</p>
+              <p className="text-[12px] text-gray-700 pl-1.5">{channelTitle}</p>
             </div>
-            <div>
-              {searchedVideos.map((current, index) => {
-                const date = new Date(current.snippet.publishedAt);
-                const isoDuration = current.contentDetails.duration;
-                return (
-                  <div
-                    key={index}
-                    className="font-[calibri] m-3"
-                    onClick={() => {
-                      navigate(`/videos/${current.id}`);
-                      setCurrentVideo(current);
-                    }}
-                  >
+            <div className="mt-5">
+              <div className="flex flex-col gap-6">
+                {searchedVideos.map((current, index) => {
+                  const date = new Date(current.snippet.publishedAt);
+                  const isoDuration = current.contentDetails.duration;
+                  return (
                     <div
-                      className={`bg-center rounded-sm bg-cover h-40 w-68 flex items-end justify-end`}
-                      style={{
-                        backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                      key={index}
+                      className="font-[calibri]"
+                      onClick={() => {
+                        navigate(`/videos/${current.id}`);
+                        setCurrentVideo(current);
                       }}
                     >
-                      <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-1">
-                        {<FormatYouTubeDuration isoDuration={isoDuration} />}
-                      </span>
-                    </div>
+                      <div
+                        className={`bg-center bg-cover h-45 w-full flex items-end justify-end`}
+                        style={{
+                          backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                        }}
+                      >
+                        <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-2">
+                          {<FormatYouTubeDuration isoDuration={isoDuration} />}
+                        </span>
+                      </div>
 
-                    <div>
-                      <p className="font-medium text-[15.5px]">
-                        {current.snippet.title.slice(0, 30) + "..."}
-                      </p>
-                      <div className="flex justify-between text-[13px] text-gray-700">
-                        <p>{current.snippet.channelTitle}</p>
-                        <p>{<GetNew date={date} />}</p>
+                      <div className="mt-2">
+                        <p className="font-medium text-[14px] pl-2 pr-2">
+                          {current.snippet.title.slice(0, 38)}
+                        </p>
+                        <div className="flex justify-between text-[13px] text-gray-700 pl-2 pr-2">
+                          <p>{current.snippet.channelTitle}</p>
+                          <p>{<GetNew date={date} />}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>

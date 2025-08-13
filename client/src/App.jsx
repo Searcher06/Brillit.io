@@ -148,7 +148,7 @@ export default function App() {
                         backgroundImage: `url(${current.snippet.thumbnails.standard.url})`,
                       }}
                     >
-                      <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-4 sm:text-[14px]">
+                      <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
                         {<FormatYouTubeDuration isoDuration={isoDuration} />}
                       </span>
                     </div>
@@ -184,7 +184,7 @@ export default function App() {
                         backgroundImage: `url(${current.snippet.thumbnails.standard.url})`,
                       }}
                     >
-                      <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-4 sm:text-[14px]">
+                      <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
                         {<FormatYouTubeDuration isoDuration={isoDuration} />}
                       </span>
                     </div>
