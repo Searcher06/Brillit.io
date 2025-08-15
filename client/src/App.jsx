@@ -77,8 +77,10 @@ export default function App() {
         ...prevState,
         [tab]: {
           ...response.data,
+          tabName: [tab],
         },
       }));
+      console.log("The response:", response);
       setError(null);
     } catch (error) {
       setError(error);
@@ -116,7 +118,11 @@ export default function App() {
     //       console.log(err);
     //     });
     // }
-  }, [tab, tabVideos]);
+
+    searchTabVideos();
+    console.log(tabVideos[tab]);
+    console.log(tabVideos);
+  }, [tab]);
 
   const navigate = useNavigate();
   const { active, setActive } = useContext(ActiveContext);
@@ -144,7 +150,7 @@ export default function App() {
             error ? (
               <NetworkError error={error} />
             ) : active == "tab" ? (
-              tabVideos[tab]?.items.map((current, index) => {
+              tabVideos[tab]?.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
                 return (
