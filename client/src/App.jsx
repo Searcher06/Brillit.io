@@ -65,50 +65,64 @@ export default function App() {
     "Descrete structures",
     "Trigonometry",
   ];
-  const [tabVideos, setTabVideos] = useState({});
   const [tab, setTab] = useState(user?.suggestedKeywords[0]);
+  const [tabVideos, setTabVideos] = useState({});
 
-  useEffect(() => {
-    if (!tabVideos[tab]) {
-      fetch("/duration.json")
-        .then((response) => {
-          setLoading(true);
-          return response.json();
-        })
-        .then((data) => {
-          setTabVideos((prevs) => ({
-            ...prevs,
-            [tab]: {
-              ...data,
-              items: data.items.filter((current) => {
-                return (
-                  current.snippet.categoryId === "26" ||
-                  current.snippet.categoryId === "27"
-                );
-              }),
-              [tab]: tab,
-            },
-          }));
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err);
-          setLoading(false);
-          console.log(err);
-        });
+  const searchTabVideos = async () => {
+    try {
+      const response = await axios.get(`/api/v1/videos/search?q=${tab}`, {
+        withCredentials: true,
+      });
+      setTabVideos((prevState) => ({
+        ...prevState,
+        [tab]: {
+          ...response.data,
+        },
+      }));
+      setError(null);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
     }
-  }, [tab]);
+  };
+  useEffect(() => {
+    console.log("The current value of tab : ", tab);
+    // if (tab) {
+    //   fetch("/duration.json")
+    //     .then((response) => {
+    //       setLoading(true);
+    //       return response.json();
+    //     })
+    //     .then((data) => {
+    //       setTabVideos((prevs) => ({
+    //         ...prevs,
+    //         [tab]: {
+    //           ...data,
+    //           items: data.items.filter((current) => {
+    //             return (
+    //               current.snippet.categoryId === "26" ||
+    //               current.snippet.categoryId === "27"
+    //             );
+    //           }),
+    //           [tab]: tab,
+    //         },
+    //       }));
+    //       setLoading(false);
+    //     })
+    //     .catch((err) => {
+    //       setError(err);
+    //       setLoading(false);
+    //       console.log(err);
+    //     });
+    // }
+  }, [tab, tabVideos]);
 
   const navigate = useNavigate();
   const { active, setActive } = useContext(ActiveContext);
   return (
     <>
       <Navbar />
-      {/* <Sidebar
-        faHome={faHome}
-        faSnowflake={faSnowflake}
-        faCircleUser={faCircleUser}
-      /> */}
       <section id="main_content" className="mt-18">
         <div>
           <Recommendation
