@@ -14,11 +14,11 @@ import { NetworkError } from "./Components/NetworkError";
 import { searchedVideosContext } from "./Context/searchVideosContext";
 import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
-// import { ErrorOffline } from "./Components/ErrorOffline";
 import { useAuth } from "./Context/authContext";
 import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
+import picture from "../src/assets/bf.png";
 export default function App() {
   const { search } = useContext(SearchContext);
   const [Loading, setLoading] = useState(true);
@@ -76,7 +76,7 @@ export default function App() {
       setTabVideos((prevState) => ({
         ...prevState,
         [tab]: {
-          ...response.data,
+          items: [...response.data],
           tabName: [tab],
         },
       }));
@@ -118,10 +118,13 @@ export default function App() {
     //       console.log(err);
     //     });
     // }
-
-    searchTabVideos();
-    console.log(tabVideos[tab]);
-    console.log(tabVideos);
+    if (!tabVideos[tab]) {
+      setLoading(true);
+      searchTabVideos();
+      console.log(tabVideos[tab]);
+      console.log(tabVideos);
+      console.log(tab);
+    }
   }, [tab]);
 
   const navigate = useNavigate();
@@ -150,7 +153,7 @@ export default function App() {
             error ? (
               <NetworkError error={error} />
             ) : active == "tab" ? (
-              tabVideos[tab]?.map((current, index) => {
+              tabVideos[tab]?.items.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
                 return (
@@ -165,7 +168,9 @@ export default function App() {
                     <div
                       className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
-                        backgroundImage: `url(${current.snippet.thumbnails.standard.url})`,
+                        backgroundImage: `url(${
+                          current.snippet.thumbnails.standard?.url || picture
+                        })`,
                       }}
                     >
                       <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
@@ -201,7 +206,9 @@ export default function App() {
                     <div
                       className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
-                        backgroundImage: `url(${current.snippet.thumbnails.standard.url})`,
+                        backgroundImage: `url(${
+                          current.snippet.thumbnails.maxres.url || ""
+                        })`,
                       }}
                     >
                       <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
