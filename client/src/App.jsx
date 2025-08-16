@@ -18,7 +18,7 @@ import { useAuth } from "./Context/authContext";
 import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
-import picture from "../src/assets/bf.png";
+import { useTabVideosContext } from "./Context/TabVideosContext";
 export default function App() {
   const { search } = useContext(SearchContext);
   const [Loading, setLoading] = useState(true);
@@ -66,7 +66,7 @@ export default function App() {
     "Trigonometry",
   ];
   const [tab, setTab] = useState(user?.suggestedKeywords[0]);
-  const [tabVideos, setTabVideos] = useState({});
+  const { tabVideos, setTabVideos } = useTabVideosContext();
 
   const searchTabVideos = async () => {
     try {
@@ -169,7 +169,9 @@ export default function App() {
                       className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
                         backgroundImage: `url(${
-                          current.snippet.thumbnails.standard?.url || picture
+                          current.snippet.thumbnails.maxres?.url ||
+                          current.snippet.thumbnails.standard?.url ||
+                          null
                         })`,
                       }}
                     >
@@ -207,7 +209,9 @@ export default function App() {
                       className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
                       style={{
                         backgroundImage: `url(${
-                          current.snippet.thumbnails.maxres.url || ""
+                          current.snippet.thumbnails.maxres?.url ||
+                          current.snippet.thumbnails.standard?.url ||
+                          null
                         })`,
                       }}
                     >

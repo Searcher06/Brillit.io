@@ -96,7 +96,11 @@ export default function Videoplay() {
                       <div
                         className={`bg-center bg-cover h-50 w-full flex items-end justify-end sm:h-60 md:h-50 md:w-83 lg:w-100 lg:h-60`}
                         style={{
-                          backgroundImage: `url(${current.snippet.thumbnails.medium.url})`,
+                          backgroundImage: `url(${
+                            current.snippet.thumbnails.maxres?.url ||
+                            current.snippet.thumbnails.standard?.url ||
+                            null
+                          })`,
                         }}
                       >
                         <span className="text-sm  text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-2">

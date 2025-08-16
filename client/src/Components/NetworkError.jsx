@@ -9,7 +9,7 @@ export function NetworkError({ error }) {
   return (
     <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-8 md:px-12 bg-gray-50 rounded-lg max-w-full sm:max-w-md md:max-w-lg mx-auto mt-16 shadow-md">
       <AlertCircle className="text-red-500 w-12 h-12 mb-4" />
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-red-700 mb-2 text-center">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-red-500 mb-2 text-center">
         Network Error
       </h2>
       <p className="text-gray-600 text-center mb-6 text-base sm:text-lg">
