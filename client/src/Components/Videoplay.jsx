@@ -12,6 +12,7 @@ import { SearchContext } from "../Context/SearchContext";
 import axios from "../utils/axiosConfig";
 import { useCurrentVideo } from "../Context/currentVideoContext";
 import { searchedVideosContext } from "../Context/searchVideosContext";
+import { ActiveContext } from "../Context/ActiveContext";
 
 export default function Videoplay() {
   const [videos, setVideos] = useState();
@@ -26,6 +27,7 @@ export default function Videoplay() {
   const { searchedVideos } = useContext(searchedVideosContext);
   console.log(currentVideo.snippet.title);
   const navigate = useNavigate();
+  const { active, setActive } = useContext(ActiveContext);
 
   useEffect(() => {
     const fetchVideos = async () => {

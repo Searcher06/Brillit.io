@@ -19,6 +19,7 @@ import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
 import { useTabVideosContext } from "./Context/TabVideosContext";
+import { useTabContext } from "./Context/TabContext";
 export default function App() {
   const { search } = useContext(SearchContext);
   const [Loading, setLoading] = useState(true);
@@ -65,7 +66,7 @@ export default function App() {
     "Descrete structures",
     "Trigonometry",
   ];
-  const [tab, setTab] = useState(user?.suggestedKeywords[0]);
+  const { tab, setTab } = useTabContext();
   const { tabVideos, setTabVideos } = useTabVideosContext();
 
   const searchTabVideos = async () => {
