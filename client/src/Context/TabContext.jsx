@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from "react";
-import { useAuth } from "./authContext";
+// import { useAuth } from "./authContext";
 
 const TabContext = createContext();
 export const TabContextProvider = ({ children }) => {
-  const { user } = useAuth();
-  const [tab, setTab] = useState(user?.suggestedKeywords[0]);
+  const [tab, setTab] = useState();
   return (
     <TabContext.Provider value={{ tab, setTab }}>
       {children}

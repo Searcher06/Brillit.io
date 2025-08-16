@@ -22,14 +22,14 @@ import { useTabVideosContext } from "./Context/TabVideosContext";
 import { useTabContext } from "./Context/TabContext";
 export default function App() {
   const { search } = useContext(SearchContext);
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { called } = useContext(CallContext);
   const { searchedVideos, setSearchedVideos } = useContext(
     searchedVideosContext
   );
   const { setCurrentVideo } = useCurrentVideo();
-  const { user } = useAuth();
+  const { user, tab, setTab } = useAuth();
   const suggestedKeywords = user?.suggestedKeywords;
 
   const searchVideos = async () => {
@@ -47,10 +47,11 @@ export default function App() {
     }
   };
   useEffect(() => {
-    if (search.length > 0) {
+    if (search.length > 0 && !searchedVideos) {
       setLoading(true);
       searchVideos();
       console.log(searchedVideos);
+      console.log("Search Videos only executed");
     }
   }, [called]);
 
@@ -66,7 +67,7 @@ export default function App() {
     "Descrete structures",
     "Trigonometry",
   ];
-  const { tab, setTab } = useTabContext();
+
   const { tabVideos, setTabVideos } = useTabVideosContext();
 
   const searchTabVideos = async () => {
@@ -90,41 +91,13 @@ export default function App() {
     }
   };
   useEffect(() => {
-    console.log("The current value of tab : ", tab);
-    // if (tab) {
-    //   fetch("/duration.json")
-    //     .then((response) => {
-    //       setLoading(true);
-    //       return response.json();
-    //     })
-    //     .then((data) => {
-    //       setTabVideos((prevs) => ({
-    //         ...prevs,
-    //         [tab]: {
-    //           ...data,
-    //           items: data.items.filter((current) => {
-    //             return (
-    //               current.snippet.categoryId === "26" ||
-    //               current.snippet.categoryId === "27"
-    //             );
-    //           }),
-    //           [tab]: tab,
-    //         },
-    //       }));
-    //       setLoading(false);
-    //     })
-    //     .catch((err) => {
-    //       setError(err);
-    //       setLoading(false);
-    //       console.log(err);
-    //     });
-    // }
     if (!tabVideos[tab]) {
       setLoading(true);
       searchTabVideos();
       console.log(tabVideos[tab]);
       console.log(tabVideos);
       console.log(tab);
+      console.log("Search Tab Videos executed");
     }
   }, [tab]);
 
