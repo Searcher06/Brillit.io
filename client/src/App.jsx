@@ -11,10 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { CallContext } from "./Context/CallContext";
 import { ActiveContext } from "./Context/ActiveContext";
 import { NetworkError } from "./Components/NetworkError";
-import {
-  searchedVideosContext,
-  useSearchedVideos,
-} from "./Context/searchVideosContext";
+import { useSearchedVideos } from "./Context/searchVideosContext";
 import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
 import { useAuth } from "./Context/authContext";
@@ -34,6 +31,7 @@ export default function App() {
 
   const searchVideos = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
         withCredentials: true,
       });
@@ -48,7 +46,6 @@ export default function App() {
   };
   useEffect(() => {
     if (search.length > 0) {
-      setLoading(true);
       searchVideos();
       console.log(searchedVideos);
       console.log("Search Videos only executed");
@@ -166,7 +163,7 @@ export default function App() {
                   </div>
                 );
               })
-            ) : active == "search" ? (
+            ) : active == "search" && searchedVideos[0] ? ( // delay updating seach
               searchedVideos.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
