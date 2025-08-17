@@ -57,6 +57,7 @@ export default function Recommendation({
           <button
             key={index}
             ref={(el) => (chipRefs.current[index] = el)}
+            disabled={tab == current ? true : false}
             onClick={() => handleClick(current, index)}
             className={`flex-shrink-0 p-1.5 rounded-sm text-sm font-medium transition-colors sm:text-[15px] sm:p-2
               ${

@@ -11,7 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { CallContext } from "./Context/CallContext";
 import { ActiveContext } from "./Context/ActiveContext";
 import { NetworkError } from "./Components/NetworkError";
-import { searchedVideosContext } from "./Context/searchVideosContext";
+import {
+  searchedVideosContext,
+  useSearchedVideos,
+} from "./Context/searchVideosContext";
 import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
 import { useAuth } from "./Context/authContext";
@@ -25,12 +28,9 @@ export default function App() {
   const [Loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { called } = useContext(CallContext);
-  const { searchedVideos, setSearchedVideos } = useContext(
-    searchedVideosContext
-  );
+  const { searchedVideos, setSearchedVideos } = useSearchedVideos();
   const { setCurrentVideo } = useCurrentVideo();
   const { user, tab, setTab } = useAuth();
-  const suggestedKeywords = user?.suggestedKeywords;
 
   const searchVideos = async () => {
     try {
@@ -47,7 +47,7 @@ export default function App() {
     }
   };
   useEffect(() => {
-    if (search.length > 0 && !searchedVideos) {
+    if (search.length > 0) {
       setLoading(true);
       searchVideos();
       console.log(searchedVideos);
