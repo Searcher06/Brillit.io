@@ -31,7 +31,6 @@ export default function App() {
 
   const searchVideos = async () => {
     try {
-      setLoading(true);
       const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
         withCredentials: true,
       });
@@ -46,6 +45,7 @@ export default function App() {
   };
   useEffect(() => {
     if (search.length > 0) {
+      setLoading(true);
       searchVideos();
       console.log(searchedVideos);
       console.log("Search Videos only executed");
@@ -102,7 +102,7 @@ export default function App() {
   const { active, setActive } = useContext(ActiveContext);
   return (
     <>
-      <Navbar />
+      <Navbar Loading={Loading} setLoading={setLoading} />
       <section id="main_content" className="mt-18">
         <div>
           <Recommendation
@@ -163,7 +163,7 @@ export default function App() {
                   </div>
                 );
               })
-            ) : active == "search" && searchedVideos[0] ? ( // delay updating seach
+            ) : active == "search" ? ( // delay updating seach
               searchedVideos.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;

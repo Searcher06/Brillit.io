@@ -11,7 +11,7 @@ import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 import { LogOutIcon, Search } from "lucide-react";
 
-export function Navbar() {
+export function Navbar({ loading, setLoading }) {
   const { search, SearchHandler } = useContext(SearchContext);
   const { setIscalled } = useContext(CallContext);
   const { setActive } = useContext(ActiveContext);
@@ -60,10 +60,12 @@ export function Navbar() {
         <button
           onClick={() => {
             setIscalled((prevState) => !prevState);
+            setLoading(true);
             setActive("search");
             navigator(navigate);
             console.log("executed");
           }}
+          disabled={search.trim() == "" ? true : false}
           className="w-8 bg-blue-600 h-8 rounded-r-sm mr-1 flex justify-center items-center sm:h-10 sm:mr-2 sm:w-12 md:w-14 md:rounded-r-full lg:h-11 xl:rounded-r-full xl:w-12"
         >
           <Search className="text-white align-middle text-sm" size={21} />
