@@ -30,20 +30,6 @@ export default function App() {
   const { setCurrentVideo } = useCurrentVideo();
   const { user, tab, setTab } = useAuth();
 
-  // const searchVideos = async () => {
-  //   try {
-  //     const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
-  //       withCredentials: true,
-  //     });
-  //     setSearchedVideos(response.data);
-  //     setError(null);
-  //   } catch (error) {
-  //     setError(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // App.jsx
   const searchVideos = async () => {
     try {
       // avoid API call if already cached
@@ -126,6 +112,7 @@ export default function App() {
 
   const navigate = useNavigate();
   const { active, setActive } = useContext(ActiveContext);
+  console.log(tabVideos[tab]);
   return (
     <>
       <Navbar />

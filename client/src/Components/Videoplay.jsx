@@ -15,6 +15,7 @@ import { searchedVideosContext } from "../Context/searchVideosContext";
 import { ActiveContext } from "../Context/ActiveContext";
 import { useTabContext } from "../Context/TabContext";
 import { useAuth } from "../Context/authContext";
+import { useTabVideosContext } from "../Context/TabVideosContext";
 
 export default function Videoplay() {
   const [videos, setVideos] = useState();
@@ -30,7 +31,7 @@ export default function Videoplay() {
   console.log(currentVideo.snippet.title);
   const navigate = useNavigate();
   const { active, setActive } = useContext(ActiveContext);
-  const { tabVideos, setTabVideos } = useTabContext();
+  const { tabVideos, setTabVideos } = useTabVideosContext();
   const { user, tab, setTab } = useAuth();
   useEffect(() => {
     const fetchVideos = async () => {
@@ -64,6 +65,7 @@ export default function Videoplay() {
     fetchVideos();
   }, [id]);
 
+  console.log(tabVideos);
   return (
     <>
       <Navbar />
@@ -86,51 +88,8 @@ export default function Videoplay() {
             </div>
             <div className="mt-5 sm:ml-18">
               <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center lg:flex-row lg:flex-wrap lg:justify-center">
-                {active == "tab"
-                  ? tabVideos[tab]?.items?.map((current, index) => {
-                      const date = new Date(current.snippet.publishedAt);
-                      const isoDuration = current.contentDetails.duration;
-                      return (
-                        <div
-                          onClick={() => {
-                            navigate(`/videos/${current.id}`);
-                            setCurrentVideo(current);
-                          }}
-                          key={index}
-                          className="font-[calibri] p-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full  md:w-72 lg:w-90 xl:w-88"
-                        >
-                          <div
-                            className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
-                            style={{
-                              backgroundImage: `url(${
-                                current.snippet.thumbnails.maxres?.url ||
-                                current.snippet.thumbnails.standard?.url ||
-                                null
-                              })`,
-                            }}
-                          >
-                            <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
-                              {
-                                <FormatYouTubeDuration
-                                  isoDuration={isoDuration}
-                                />
-                              }
-                            </span>
-                          </div>
-
-                          <div>
-                            <p className="font-medium text-sm sm:text-base md:text-base">
-                              {current.snippet.title.slice(0, 34)}
-                            </p>
-                            <div className="flex justify-between text-[13px] text-gray-700 mr-4">
-                              <p>{current.snippet.channelTitle.slice(0, 30)}</p>
-                              <p>{<GetNew date={date} />}</p>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  : searchedVideos[search]?.map((current, index) => {
+                {active == "search"
+                  ? searchedVideos[search]?.map((current, index) => {
                       const date = new Date(current.snippet.publishedAt);
                       const isoDuration = current.contentDetails.duration;
                       return (
@@ -167,6 +126,49 @@ export default function Videoplay() {
                             </p>
                             <div className="flex justify-between text-[13px] text-gray-700 pl-2 pr-2 md:text-[14px] lg:text-[13px] lg:pr-0 lg:pl-0">
                               <p>{current.snippet.channelTitle}</p>
+                              <p>{<GetNew date={date} />}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  : tabVideos[tab]?.items.map((current, index) => {
+                      const date = new Date(current.snippet.publishedAt);
+                      const isoDuration = current.contentDetails.duration;
+                      return (
+                        <div
+                          onClick={() => {
+                            navigate(`/videos/${current.id}`);
+                            setCurrentVideo(current);
+                          }}
+                          key={index}
+                          className="font-[calibri] p-3 hover:scale-[1.05] transition duration-300 w-full sm:w-full  md:w-72 lg:w-90 xl:w-88"
+                        >
+                          <div
+                            className=" bg-center rounded-sm bg-cover w-full h-40 sm:w-full sm:h-60 md:w-72 lg:w-90 lg:h-46 xl:w-88 flex items-end justify-end"
+                            style={{
+                              backgroundImage: `url(${
+                                current.snippet.thumbnails.maxres?.url ||
+                                current.snippet.thumbnails.standard?.url ||
+                                null
+                              })`,
+                            }}
+                          >
+                            <span className=" text-[13px] text-white font-[calibri] bg-black/80 rounded-xs px-1 py-0 mb-1 mr-3 sm:text-[14px]">
+                              {
+                                <FormatYouTubeDuration
+                                  isoDuration={isoDuration}
+                                />
+                              }
+                            </span>
+                          </div>
+
+                          <div>
+                            <p className="font-medium text-sm sm:text-base md:text-base">
+                              {current.snippet.title.slice(0, 34)}
+                            </p>
+                            <div className="flex justify-between text-[13px] text-gray-700 mr-4">
+                              <p>{current.snippet.channelTitle.slice(0, 30)}</p>
                               <p>{<GetNew date={date} />}</p>
                             </div>
                           </div>
