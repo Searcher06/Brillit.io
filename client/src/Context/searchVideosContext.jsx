@@ -4,8 +4,9 @@ import { createContext, useContext, useState } from "react";
 
 export const searchedVideosContext = createContext();
 
+// searchVideosContext.jsx
 export function SearchVideoProvider({ children }) {
-  const [searchedVideos, setSearchedVideos] = useState();
+  const [searchedVideos, setSearchedVideos] = useState({}); // now an object, not array
   return (
     <searchedVideosContext.Provider
       value={{ searchedVideos, setSearchedVideos }}

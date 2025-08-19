@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchContext } from "../Context/SearchContext";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
@@ -10,13 +11,15 @@ import { FilterContext } from "../Context/FilterContext";
 import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 import { LogOutIcon, Search } from "lucide-react";
+import { useLoading } from "../Context/LoadingContext";
 
-export function Navbar({ loading, setLoading }) {
+export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext);
   const { setIscalled } = useContext(CallContext);
   const { setActive } = useContext(ActiveContext);
   const { displayfilter, setDisplayfilter } = useContext(FilterContext);
   const navigate = useNavigate();
+  const { setLLoading } = useLoading();
   function navigator(param) {
     if (param) {
       navigate("/");
@@ -59,8 +62,8 @@ export function Navbar({ loading, setLoading }) {
         />
         <button
           onClick={() => {
-            setIscalled((prevState) => !prevState);
-            setLoading(true);
+            setIscalled(true);
+            setLLoading(true);
             setActive("search");
             navigator(navigate);
             console.log("executed");

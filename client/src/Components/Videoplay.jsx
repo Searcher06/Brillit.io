@@ -16,7 +16,7 @@ import { ActiveContext } from "../Context/ActiveContext";
 
 export default function Videoplay() {
   const [videos, setVideos] = useState();
-  const [loading, setLoading] = useState(true);
+  const [Loading, setLLoading] = useState(true);
   const { search } = useContext(SearchContext);
   const { currentVideo, setCurrentVideo } = useCurrentVideo();
   const title = currentVideo?.snippet.title;
@@ -31,7 +31,7 @@ export default function Videoplay() {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      setLoading(true);
+      setLLoading(true);
       try {
         const response = await axios.get(`/api/v1/videos/${id}`, {
           params: {
@@ -54,7 +54,7 @@ export default function Videoplay() {
           error.response?.data?.message || "An unexpected error occurred"
         );
       } finally {
-        setLoading(false);
+        setLLoading(false);
       }
     };
 
@@ -83,7 +83,7 @@ export default function Videoplay() {
             </div>
             <div className="mt-5 sm:ml-18">
               <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center lg:flex-row lg:flex-wrap lg:justify-center">
-                {searchedVideos.map((current, index) => {
+                {searchedVideos[search]?.map((current, index) => {
                   const date = new Date(current.snippet.publishedAt);
                   const isoDuration = current.contentDetails.duration;
                   return (

@@ -20,32 +20,58 @@ import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
 import { useTabVideosContext } from "./Context/TabVideosContext";
 import { useTabContext } from "./Context/TabContext";
+import { useLoading } from "./Context/LoadingContext";
 export default function App() {
   const { search } = useContext(SearchContext);
-  const [Loading, setLoading] = useState(false);
+  const { LLoading, setLLoading } = useLoading();
   const [error, setError] = useState(null);
-  const { called } = useContext(CallContext);
+  const { called, setIscalled } = useContext(CallContext);
   const { searchedVideos, setSearchedVideos } = useSearchedVideos();
   const { setCurrentVideo } = useCurrentVideo();
   const { user, tab, setTab } = useAuth();
 
+  // const searchVideos = async () => {
+  //   try {
+  //     const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
+  //       withCredentials: true,
+  //     });
+  //     setSearchedVideos(response.data);
+  //     setError(null);
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // App.jsx
   const searchVideos = async () => {
     try {
+      // avoid API call if already cached
+      if (searchedVideos[search]) {
+        console.log("Cache hit, no API call");
+        return;
+      }
+
       const response = await axios.get(`/api/v1/videos/search?q=${search}`, {
         withCredentials: true,
       });
-      setSearchedVideos(response.data);
+
+      setSearchedVideos((prev) => ({
+        ...prev,
+        [search]: response.data, // store by query term
+      }));
+
       setError(null);
     } catch (error) {
-      setSearchedVideos(null);
       setError(error);
     } finally {
-      setLoading(false);
+      setLLoading(false);
     }
   };
+
   useEffect(() => {
     if (search.length > 0) {
-      setLoading(true);
+      setLLoading(true);
       searchVideos();
       console.log(searchedVideos);
       console.log("Search Videos only executed");
@@ -84,12 +110,12 @@ export default function App() {
     } catch (error) {
       setError(error);
     } finally {
-      setLoading(false);
+      setLLoading(false);
     }
   };
   useEffect(() => {
     if (!tabVideos[tab]) {
-      setLoading(true);
+      setLLoading(true);
       searchTabVideos();
       console.log(tabVideos[tab]);
       console.log(tabVideos);
@@ -102,7 +128,7 @@ export default function App() {
   const { active, setActive } = useContext(ActiveContext);
   return (
     <>
-      <Navbar Loading={Loading} setLoading={setLoading} />
+      <Navbar />
       <section id="main_content" className="mt-18">
         <div>
           <Recommendation
@@ -117,7 +143,7 @@ export default function App() {
           <section
             className={`mb-18 flex flex-col items-center flex-wrap gap-4 sm:ml-16 sm:flex-row sm:flex-wrap sm:justify-self-stretch sm:gap-3 md:justify-center`}
           >
-            {Loading ? (
+            {LLoading ? (
               // If the current state is loading then return this <Loader /> component
               <Loader />
             ) : // If there is an error the return the <NetworkError /> component
@@ -164,7 +190,7 @@ export default function App() {
                 );
               })
             ) : active == "search" ? ( // delay updating seach
-              searchedVideos.map((current, index) => {
+              searchedVideos[search]?.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
                 return (
