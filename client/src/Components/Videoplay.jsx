@@ -64,12 +64,34 @@ export default function Videoplay() {
       <section className="mt-18">
         <section id="videoplay_section" className="flex flex-col w-full">
           <div>
-            <div id="video_player" className="sm:ml-18 md:mr-10 lg:mr-16">
-              <video
+            <div
+              id="video_player"
+              className="h-54 sm:h-74 md:h-84 lg:h-104 xl:h-124 sm:ml-18 md:mr-10 lg:mr-16"
+            >
+              {/* <video
                 src="/src/assets/video.mp4"
                 controls
                 className="w-full"
-              ></video>
+              ></video> */}
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${id}`}
+                width={"100%"}
+                height={"100%"}
+                controls={true}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      modestbranding: 1,
+                      rel: 0,
+                      showinfo: 0,
+                      controls: 1,
+                    },
+                  },
+                }}
+                style={{
+                  all: "unset",
+                }}
+              />
               <p className="text-sm font-semibold pl-1.5 pt-1.5 md:text-lg lg:text-xl">
                 {title}
               </p>
@@ -77,7 +99,7 @@ export default function Videoplay() {
                 {channelTitle}
               </p>
             </div>
-            <div className="mt-5 sm:ml-18">
+            <div className="mt-14 md:mt-18 lg:mt-20 sm:ml-18">
               <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center lg:flex-row lg:flex-wrap lg:justify-center">
                 {active == "search"
                   ? searchedVideos[search]?.map((current, index) => {
