@@ -3,7 +3,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 import videos from "../routes/videosRoutes.js";
 import connectDB from "../config/connectDB.js";
 const DATABASE_URI = process.env.DATABASE_URI;

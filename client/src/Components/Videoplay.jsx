@@ -99,7 +99,7 @@ export default function Videoplay() {
                 {channelTitle}
               </p>
             </div>
-            <div className="mt-14 md:mt-18 lg:mt-20 sm:ml-18">
+            <div className="mt-16 md:mt-18 lg:mt-20 sm:ml-18">
               <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center lg:flex-row lg:flex-wrap lg:justify-center">
                 {active == "search"
                   ? searchedVideos[search]?.map((current, index) => {
