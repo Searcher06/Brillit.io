@@ -37,21 +37,12 @@ export default function Videoplay() {
     const fetchVideos = async () => {
       setLLoading(true);
       try {
-        const response = await axios.get(`/api/v1/videos/${id}`, {
-          params: {
-            channelId: channelId,
-            title: title,
-          },
-        });
         try {
           const aiSuggestion = await axios.post("/api/v1/ai/videoSuggestion");
           console.log("Optional axios request succeeded : ", aiSuggestion.data);
         } catch (error) {
           console.warn("Optional axios request failed continuing!", error);
         }
-
-        setVideos(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
         setError(
