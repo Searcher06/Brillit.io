@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// ⚠️ IMPORTANT: Update this in production
+// IMPORTANT: Update this in production
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "http://localhost:5173",
@@ -67,6 +67,11 @@ app.get("/api/v1/getAll", async (req, res) => {
 
 // Private routes
 app.use("/api/v1", protect, dashboardRoute);
+
+// Test deployment
+app.get("/api/v1/hello", async (req, res) => {
+  res.status(200).json({ message: "Hello am active and running online" });
+});
 
 // DB Connection
 connectDB(DATABASE_URI);
