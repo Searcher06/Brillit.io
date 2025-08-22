@@ -3,38 +3,38 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
-const port = process.env.PORT || 5000;
 import videos from "../routes/videosRoutes.js";
 import connectDB from "../config/connectDB.js";
-const DATABASE_URI = process.env.DATABASE_URI;
 import router from "../routes/userRoutes.js";
 import Logger from "../middlewares/logger.js";
 import { errorHandler } from "../middlewares/errorhandler.js";
-import { seedDB, videoModel } from "../models/video.model.js";
-import setupTypesense, {
-  deleteDocuments,
-  getAllDocs,
-} from "../config/setUpTypesense.js";
-import { seedTypeSense } from "../config/setUpTypesense.js";
+import { videoModel } from "../models/video.model.js";
 import client from "../config/typesenseClient.js";
 import protect from "../middlewares/authMiddlware.js";
 import dashboardRoute from "../routes/dashboard.js";
 import aiRoutes from "../routes/aiSuggestions.js";
-const app = express();
 
+const app = express();
+const port = process.env.PORT || 5000;
+const DATABASE_URI = process.env.DATABASE_URI;
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// ⚠️ IMPORTANT: Update this in production
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   })
 );
+
 app.use(Logger);
 
-app.use("/api/v1/videos/", videos);
+// Routes
+app.use("/api/v1/videos", videos);
 app.use("/api/v1/users", router);
 app.use("/api/v1/ai", aiRoutes);
 
@@ -46,31 +46,44 @@ app.get("/api/v1/special", async (req, res) => {
       .trim()
       .split("\n")
       .map((line) => JSON.parse(line));
-    console.log("Fetched all the docs successfully from typesense ");
+
+    console.log("Fetched all the docs successfully from typesense");
     res.status(200).json(jsonArray);
   } catch (error) {
-    console.log("Error in getting docs : ", error);
+    console.error("Error in getting docs from Typesense: ", error);
+    res.status(500).json({ error: "Failed to fetch docs" });
   }
 });
+
 app.get("/api/v1/getAll", async (req, res) => {
   try {
     const allVideos = await videoModel.find({});
     res.status(200).json(allVideos);
   } catch (error) {
-    console.log("Error in getting all videos from DB");
+    console.error("Error in getting all videos from DB", error);
+    res.status(500).json({ error: "Failed to fetch videos" });
   }
 });
 
-// private route
-app.use("/api/v1/", protect, dashboardRoute);
+// Private routes
+app.use("/api/v1", protect, dashboardRoute);
 
+// DB Connection
 connectDB(DATABASE_URI);
-// seedDB()
-// deleteDocuments();
-// setupTypesense();
-// seedTypeSense()
 
+// Error handler middleware
 app.use(errorHandler);
+
+// Start server
 app.listen(port, "0.0.0.0", () => {
-  console.log("Server up and running on port 😁 : " + port);
+  console.log("Server up and running on port: " + port);
+});
+
+// Global error catchers (so your app never crashes unexpectedly)
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection:", reason);
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
 });

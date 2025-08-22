@@ -79,12 +79,20 @@ Final output must only be a valid JSON array of educational keywords.
     }
 
     // Parse and send JSON array
-    const keywords = JSON.parse(text);
+
+    let keywords;
+    try {
+      keywords = JSON.parse(text);
+    } catch (err) {
+      console.error("Failed to parse Gemini response:", text);
+      return res.status(500).json({ error: "Gemini returned invalid JSON" });
+    }
+
     if (keywords) {
       user.suggestedKeywords = keywords;
       user.isPersonalized = true;
     }
-    user.save();
+    await user.save();
     // const updatedUser = await userModel.findById(user._id)
     res.status(200).json(keywords); //incoming
   } catch (error) {
