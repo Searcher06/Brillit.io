@@ -14,7 +14,7 @@ import { NetworkError } from "./Components/NetworkError";
 import { useSearchedVideos } from "./Context/searchVideosContext";
 import FormatYouTubeDuration from "./Components/FormatTime";
 import { GetNew } from "./Components/FormatDate";
-import { useAuth } from "./Context/authContext";
+import { useAuth } from "./Context/AuthContext";
 import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
