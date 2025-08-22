@@ -14,7 +14,7 @@ import { useCurrentVideo } from "../Context/currentVideoContext";
 import { searchedVideosContext } from "../Context/searchVideosContext";
 import { ActiveContext } from "../Context/ActiveContext";
 import { useTabContext } from "../Context/TabContext";
-import { useAuth } from "../Context/authContext";
+import { useAuth } from "../Context/AuthContext";
 import { useTabVideosContext } from "../Context/TabVideosContext";
 
 export default function Videoplay() {

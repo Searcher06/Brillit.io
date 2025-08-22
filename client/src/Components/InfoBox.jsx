@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Context/authContext";
+import { useAuth } from "../Context/AuthContext";
 const topics = [
   "Web Development",
   "React",

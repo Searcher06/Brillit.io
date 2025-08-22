@@ -4,7 +4,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../utils/axiosConfig";
-import { useAuth } from "../Context/authContext";
+import { useAuth } from "../Context/AuthContext";
 const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");

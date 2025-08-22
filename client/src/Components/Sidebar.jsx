@@ -2,7 +2,7 @@
 // import { faHome } from "@fortawesome/free-solid-svg-icons";
 // import { useNavigate } from "react-router-dom";
 // import { faSnowflake } from "@fortawesome/free-regular-svg-icons";
-// import { useAuth } from "../Context/authContext";
+// import { useAuth } from "../Context/AuthContext";
 // export function Sidebar() {
 //   const navigate = useNavigate();
 //   const { user } = useAuth();

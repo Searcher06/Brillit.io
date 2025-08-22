@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 import UpdateProfile from "./Components/UpdateProfile.jsx";
 import { PrivateRoute } from "./routes/PrivateRoute.jsx";
 import PersonalizationPage from "./Components/InfoBox.jsx";
-import { AuthProvider } from "./Context/authContext.jsx";
+import { AuthProvider } from "./Context/AuthContext.jsx";
 import { ProtectPersonalization } from "./routes/ProtectPersonalization.jsx";
 import { CurrentVideoProvider } from "./Context/currentVideoContext.jsx";
 import { ProtectWatchVideoPage } from "./routes/ProtectWatchVideoPage.jsx";

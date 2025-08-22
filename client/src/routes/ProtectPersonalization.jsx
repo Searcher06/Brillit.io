@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useAuth } from "../Context/authContext";
+import { useAuth } from "../Context/AuthContext";
 import { Loader } from "../Components/Loader";
 import { Navigate } from "react-router-dom";
 export const ProtectPersonalization = ({ children }) => {
