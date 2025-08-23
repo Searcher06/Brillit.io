@@ -46,6 +46,7 @@
 
 import { Home, Snowflake, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export function Sidebar() {
   const navigate = useNavigate();
   return (
@@ -65,7 +66,8 @@ export function Sidebar() {
       <div
         className="flex justify-center flex-col items-center"
         onClick={() => {
-          navigate("/synthai");
+          // navigate("/synthai");
+          toast.success("SynthAI coming soon...");
         }}
       >
         <Snowflake strokeWidth={1.5} />
