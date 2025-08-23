@@ -42,11 +42,11 @@ const UpdateProfile = () => {
         },
         withCredentials: true,
       });
+
       toast.success("Profile updated successfully");
       const res = await axios.get("/api/v1/users/me", {
         withCredentials: true,
       });
-      console.log(user);
       setUser(res.data);
       navigate("/");
     } catch (error) {
@@ -60,23 +60,25 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="w-full h-lvh flex justify-center items-center">
+    <div className="w-full min-h-screen flex justify-center items-center px-4">
       <form
         onSubmit={handleSubmit}
-        className="w-90 h-130 rounded-2xl shadow-2xl flex flex-col items-center text-center"
+        className="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center"
       >
-        <h2 className="text-3xl text-blue-700 font-semibold mt-3">
+        <h2 className="text-2xl md:text-3xl text-blue-700 font-semibold">
           Update Profile
         </h2>
 
-        <div className="rounded-full w-19 h-19 flex justify-center items-center mt-4">
+        {/* Profile Picture */}
+        <div className="rounded-full w-24 h-24 flex justify-center items-center mt-4 overflow-hidden">
           <img
             src={preview ? preview : profile}
-            className="w-full rounded-full h-[100%]"
+            alt="Profile"
+            className="w-full h-full object-cover"
           />
         </div>
 
-        <label>
+        <label className="mt-3">
           <input
             type="file"
             accept="image/*"
@@ -91,48 +93,51 @@ const UpdateProfile = () => {
                 reader.readAsDataURL(file);
               }
             }}
-            disabled={!enable && true}
+            disabled={!enable}
           />
-          <label
+          <span
             htmlFor="photo-upload"
-            className="mt-4 border-[1.6px] rounded-sm border-gray-300 pl-4 pr-4 pt-1 pb-1 font-semibold cursor-pointer active:bg-gray-100 inline-block"
+            className="cursor-pointer border border-gray-300 px-4 py-1 text-sm rounded-md font-medium text-gray-700 hover:bg-gray-100 active:scale-95 inline-block"
           >
             Upload new photo
-          </label>
+          </span>
         </label>
 
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
-          <User size={20} className="ml-4" />
+        {/* First Name */}
+        <div className="mt-4 h-11 w-full border border-gray-200 rounded-md flex items-center px-3">
+          <User size={20} className="text-gray-500" />
           <input
-            className="outline-0 pl-2 text-sm w-full"
+            className="outline-none pl-2 text-sm w-full"
             placeholder={user ? user.firstName : "Firstname"}
             type="text"
             value={data.newFirstName}
             onChange={(e) =>
               setData((prev) => ({ ...prev, newFirstName: e.target.value }))
             }
-            disabled={!enable && true}
+            disabled={!enable}
           />
         </div>
 
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
-          <User size={20} className="ml-4" />
+        {/* Last Name */}
+        <div className="mt-3 h-11 w-full border border-gray-200 rounded-md flex items-center px-3">
+          <User size={20} className="text-gray-500" />
           <input
-            className="outline-0 pl-2 text-sm w-full"
+            className="outline-none pl-2 text-sm w-full"
             placeholder={user ? user.lastName : "Lastname"}
             type="text"
             value={data.newLastName}
             onChange={(e) =>
               setData((prev) => ({ ...prev, newLastName: e.target.value }))
             }
-            disabled={!enable && true}
+            disabled={!enable}
           />
         </div>
 
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
-          <Lock size={20} className="ml-4" />
+        {/* Old Password */}
+        <div className="mt-3 h-11 w-full border border-gray-200 rounded-md flex items-center px-3">
+          <Lock size={20} className="text-gray-500" />
           <input
-            className="outline-0 pl-2 text-sm w-full"
+            className="outline-none pl-2 text-sm w-full"
             placeholder="Old Password"
             type="password"
             value={data.oldPassword}
@@ -142,32 +147,34 @@ const UpdateProfile = () => {
           />
         </div>
 
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
-          <Lock size={20} className="ml-4" />
+        {/* New Password */}
+        <div className="mt-3 h-11 w-full border border-gray-200 rounded-md flex items-center px-3">
+          <Lock size={20} className="text-gray-500" />
           <input
-            className="outline-0 pl-2 text-sm w-full"
+            className="outline-none pl-2 text-sm w-full"
             placeholder="New Password"
             type="password"
             value={data.newPassword}
             onChange={(e) =>
               setData((prev) => ({ ...prev, newPassword: e.target.value }))
             }
-            disabled={!enable && true}
+            disabled={!enable}
           />
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${
-            !enable && "bg-blue-200"
+          className={`cursor-pointer h-11 w-full bg-blue-700 rounded-md mt-5 text-white text-[15px] transition-all ${
+            !enable ? "bg-blue-300" : "hover:bg-blue-800 active:scale-95"
           }`}
-          disabled={!enable && true}
+          disabled={!enable}
         >
           {Loading ? "Saving..." : "Save changes"}
         </button>
 
-        <p className="text-[13px] mt-1">
-          Type in the field you intend to change else leave blank
+        <p className="text-xs mt-2 text-gray-500">
+          Type in the field you intend to change, else leave blank
         </p>
       </form>
     </div>
@@ -175,5 +182,3 @@ const UpdateProfile = () => {
 };
 
 export default UpdateProfile;
-// This component allows users to update their profile information including first name, last name, password, and profile photo.
-// It uses a form to collect the new data and sends it to the server using an Axios
