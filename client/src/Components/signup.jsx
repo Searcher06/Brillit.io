@@ -166,7 +166,7 @@ const SignUp = () => {
             />
             {show ? (
               <Eye
-                size={17}
+                size={20}
                 className="ml-5"
                 onClick={() => {
                   setShow((prevState) => !prevState);
@@ -174,7 +174,7 @@ const SignUp = () => {
               />
             ) : (
               <EyeOff
-                size={17}
+                size={20}
                 className="ml-5"
                 onClick={() => {
                   setShow((prevState) => !prevState);

@@ -24,7 +24,7 @@ export default function PersonalizationPage() {
   const [loading, setLoading] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const navigate = useNavigate();
-  const { setUser, user } = useAuth();
+  const { setUser } = useAuth();
   const toggleTopic = (topic) => {
     setSelectedTopics((prev) =>
       prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
