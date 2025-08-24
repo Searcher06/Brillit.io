@@ -91,99 +91,100 @@ const SignUp = () => {
   };
   return (
     <>
-      <div className="w-full h-lvh flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8 bg-sky-50">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          className="w-90 h-133 shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200"
+          onSubmit={(e) => e.preventDefault()}
+          className="w-full max-w-md sm:max-w-lg lg:max-w-xl shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200 p-6 sm:p-8"
         >
-          <h2 className="text-3xl text-blue-700 font-semibold mt-4">
+          <h2 className="text-2xl sm:text-3xl text-blue-700 font-semibold mt-4">
             Brillit.io
           </h2>
-          <p className=" text-xl mt-2 font-semibold w-80">
+          <p className="text-lg sm:text-xl mt-2 font-semibold w-full sm:w-80">
             Join Brillit and level up your study game
           </p>
-          <button className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center">
+
+          <button className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center">
             <FcGoogle size={20} className="mr-3" />
             <span className="font-semibold text-[15px]">
               Sign Up with Google
             </span>
           </button>
-          <div className="flex mt-1 gap-2 items-center">
-            <hr className="h-[1px] bg-gray-500 border-0 w-28" />
+
+          <div className="flex mt-3 gap-2 items-center w-full sm:w-auto">
+            <hr className="h-[1px] bg-gray-500 border-0 flex-1" />
             <p className="text-[13px] text-gray-800">OR</p>
-            <hr className="h-[1px] bg-gray-500 border-0 w-28" />
+            <hr className="h-[1px] bg-gray-500 border-0 flex-1" />
           </div>
-          <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+
+          <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
             <User size={20} className="ml-4" />
             <input
-              className="outline-0 pl-2 text-sm"
+              className="outline-0 pl-2 text-sm w-full"
               placeholder="Firstname"
-              onChange={(event) => {
-                setData({ ...data, firstName: event.target.value });
-              }}
+              onChange={(event) =>
+                setData({ ...data, firstName: event.target.value })
+              }
               value={data.firstName}
-              disabled={loading ? true : false}
+              disabled={loading}
             />
           </div>
-          <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+
+          <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
             <User size={20} className="ml-4" />
             <input
-              className="outline-0 pl-2 text-sm"
+              className="outline-0 pl-2 text-sm w-full"
               placeholder="Lastname"
-              onChange={(event) => {
-                setData({ ...data, lastName: event.target.value });
-              }}
+              onChange={(event) =>
+                setData({ ...data, lastName: event.target.value })
+              }
               value={data.lastName}
-              disabled={loading ? true : false}
+              disabled={loading}
             />
           </div>
-          <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+
+          <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
             <Mail size={20} className="ml-4" />
             <input
               className="outline-0 pl-2 text-sm w-full"
               placeholder="Email"
-              onChange={(event) => {
-                setData({ ...data, email: event.target.value });
-              }}
+              onChange={(event) =>
+                setData({ ...data, email: event.target.value })
+              }
               value={data.email}
               type="email"
-              disabled={loading ? true : false}
+              disabled={loading}
             />
           </div>
-          <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+
+          <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
             <Lock size={20} className="ml-4" />
             <input
               type={`${show ? "text" : "password"}`}
-              className="outline-0 pl-2 text-sm"
+              className="outline-0 pl-2 text-sm w-full"
               placeholder="Password"
-              onChange={(event) => {
-                setData({ ...data, password: event.target.value });
-              }}
+              onChange={(event) =>
+                setData({ ...data, password: event.target.value })
+              }
               value={data.password}
-              disabled={loading ? true : false}
+              disabled={loading}
             />
             {show ? (
               <Eye
                 size={20}
-                className="ml-5"
-                onClick={() => {
-                  setShow((prevState) => !prevState);
-                }}
+                className="ml-5 cursor-pointer"
+                onClick={() => setShow((prevState) => !prevState)}
               />
             ) : (
               <EyeOff
                 size={20}
-                className="ml-5"
-                onClick={() => {
-                  setShow((prevState) => !prevState);
-                }}
+                className="ml-5 cursor-pointer"
+                onClick={() => setShow((prevState) => !prevState)}
               />
             )}
           </div>
+
           <button
-            className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
+            className={`cursor-pointer h-11 w-full sm:w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
             disabled={
               !data.firstName ||
               !data.lastName ||
@@ -191,15 +192,14 @@ const SignUp = () => {
               !data.email ||
               data.password.length < 6 ||
               loading
-                ? true
-                : false
             }
             onClick={handleSubmit}
           >
             {loading ? "Creating Account..." : "Create Account"}
           </button>
+
           <p className="text-[14px] mt-2">
-            Already have an account ?{" "}
+            Already have an account?{" "}
             <Link to={"/login"} className="text-blue-700">
               Login
             </Link>

@@ -58,79 +58,76 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-lvh flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8 bg-sky-50">
       <form
-        className="w-90 h-120  shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200"
+        className="w-full max-w-md sm:max-w-lg lg:max-w-xl shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200 p-6 sm:p-8"
         onSubmit={(e) => e.preventDefault()}
       >
-        <h2 className="text-3xl text-blue-700 font-semibold mt-4">
+        <h2 className="text-2xl sm:text-3xl text-blue-700 font-semibold mt-4">
           Brillit.io
         </h2>
-        <p className=" text-xl mt-2 font-semibold w-80">
+        <p className="text-lg sm:text-xl mt-2 font-semibold w-full sm:w-80">
           Welcome back to Brillit
         </p>
-        <button className="cursor-pointer mt-4 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center">
+
+        <button className="cursor-pointer mt-4 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center">
           <FcGoogle size={20} className="mr-3" />
           <span className="font-semibold text-[15px]">Sign In with Google</span>
         </button>
-        <div className="flex mt-3 gap-2 items-center">
-          <hr className="h-[1px] bg-gray-500 border-0 w-28" />
+
+        <div className="flex mt-3 gap-2 items-center w-full sm:w-auto">
+          <hr className="h-[1px] bg-gray-500 border-0 flex-1" />
           <p className="text-[13px] text-gray-800">OR</p>
-          <hr className="h-[1px] bg-gray-500 border-0 w-28" />
+          <hr className="h-[1px] bg-gray-500 border-0 flex-1" />
         </div>
 
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+        <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
           <Mail size={20} className="ml-4" />
           <input
             className="outline-0 pl-2 text-sm w-full"
             placeholder="Email"
             type="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={(e) => setEmail(e.target.value)}
             value={email}
-            disabled={loading ? true : false}
+            disabled={loading}
           />
         </div>
-        <div className="mt-3 h-11 w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
+
+        <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
           <Lock size={20} className="ml-4" />
           <input
             type={`${show ? "text" : "password"}`}
-            className="outline-0 pl-2 text-sm"
+            className="outline-0 pl-2 text-sm w-full"
             placeholder="Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
-            disabled={loading ? true : false}
+            disabled={loading}
           />
           {show ? (
             <Eye
               size={20}
-              className="ml-5"
-              onClick={() => {
-                setShow((prevState) => !prevState);
-              }}
+              className="ml-5 cursor-pointer"
+              onClick={() => setShow((prev) => !prev)}
             />
           ) : (
             <EyeOff
               size={20}
-              className="ml-5"
-              onClick={() => {
-                setShow((prevState) => !prevState);
-              }}
+              className="ml-5 cursor-pointer"
+              onClick={() => setShow((prev) => !prev)}
             />
           )}
         </div>
+
         <button
-          className={`cursor-pointer h-11 w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
+          className={`cursor-pointer h-11 w-full sm:w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
           onClick={handleSubmit}
-          disabled={!password || !email || loading ? true : false}
+          disabled={!password || !email || loading}
         >
           {loading ? "Signing in" : "Login"}
         </button>
+
         <p className="text-[14px] mt-5">
-          {`Don't have an account`} ?{" "}
+          {"Don't have an account?"}{" "}
           <Link to={"/signup"} className="text-blue-700">
             Sign Up
           </Link>
