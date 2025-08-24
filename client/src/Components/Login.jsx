@@ -12,7 +12,7 @@ const Login = () => {
   const disapledStyle = !password || !email ? "bg-pink-200" : null;
   const navigate = useNavigate();
   const { setUser } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   const handleSubmit = async () => {
     // checking all the fields

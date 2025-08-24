@@ -106,21 +106,21 @@ export default function PersonalizationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-white flex items-center justify-center px-4">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-2xl w-full">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 lg:p-10 w-full max-w-md sm:max-w-lg lg:max-w-2xl">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-4">
           Personalize Your Experience
         </h1>
-        <p className="text-center text-gray-600 mb-6">
+        <p className="text-center text-gray-600 mb-6 text-sm sm:text-base">
           Select your interests so we can tailor content just for you.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
           {topics.map((topic, idx) => (
             <div
               key={idx}
               onClick={loading ? null : () => toggleTopic(topic)}
-              className={`cursor-pointer border p-3 rounded-xl text-sm font-medium text-center transition ${
+              className={`cursor-pointer border p-2 sm:p-3 rounded-xl text-xs sm:text-sm font-medium text-center transition ${
                 selectedTopics.includes(topic)
                   ? "bg-blue-600 text-white border-blue-600"
                   : "bg-white text-gray-700 hover:bg-gray-100"
@@ -131,22 +131,21 @@ export default function PersonalizationPage() {
           ))}
         </div>
 
-        {/* Custom text input for extra interests */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
             Add your own interests
           </label>
           <input
             type="text"
-            disabled={loading ? true : false}
+            disabled={loading}
             value={customInterest}
             onChange={handleInputChange}
             placeholder="e.g., Cybersecurity, UI/UX, Robotics"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
           />
           {showHint && (
-            <p className="text-xs text-gray-500 mt-1">
-              {"If you're adding more than one, separate them with commas. ','"}
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
+              {"If you're adding more than one, separate them with commas."}
             </p>
           )}
         </div>
@@ -154,8 +153,8 @@ export default function PersonalizationPage() {
         <div className="text-center">
           <button
             onClick={handleContinue}
-            disabled={loading ? true : false}
-            className="bg-blue-600 text-white px-6 py-2 rounded-xl text-lg hover:bg-blue-600 transition"
+            disabled={loading}
+            className="bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-lg hover:bg-blue-700 transition"
           >
             {loading ? "Personalizing..." : "Continue"}
           </button>
