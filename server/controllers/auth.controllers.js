@@ -4,17 +4,20 @@ import jwt from "jsonwebtoken";
 import cloudinary from "../config/cloudinary.js";
 
 export const signUp = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  let { firstName, lastName, email, password } = req.body;
 
   if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
+  firstName = firstName.trim();
+  lastName = lastName.trim();
+  password = password.trim();
 
-  if (firstName.includes(" ") || lastName.includes(" ")) {
-    res.status(400);
-    throw new Error("No whitespaces allowed for Firstname and Lastname");
-  }
+  // if (firstName.includes(" ") || lastName.includes(" ")) {
+  //   res.status(400);
+  //   throw new Error("No whitespaces allowed for Firstname and Lastname");
+  // }
 
   // check if email is valid
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
