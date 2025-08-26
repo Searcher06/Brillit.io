@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const disapledStyle = !password || !email ? "bg-pink-200" : null;
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, setTab } = useAuth();
   const [loading] = useState(false);
 
   const handleSubmit = async () => {
@@ -37,7 +37,7 @@ const Login = () => {
 
       // saving the user info
       setUser(response.data);
-
+      setTab(response.data.suggestedKeywords[0]);
       // navigating to home
       toast.success("Logged in successfully");
       setEmail("");

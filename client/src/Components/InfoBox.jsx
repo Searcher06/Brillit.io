@@ -24,7 +24,7 @@ export default function PersonalizationPage() {
   const [loading, setLoading] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, setTab } = useAuth();
   const toggleTopic = (topic) => {
     setSelectedTopics((prev) =>
       prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
@@ -90,6 +90,7 @@ export default function PersonalizationPage() {
 
       // updating the current user state
       setUser(res.data);
+      setTab(response.data[0]);
       navigate("/");
       console.log(response.data);
     } catch (error) {
