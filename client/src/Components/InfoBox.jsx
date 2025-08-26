@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/axiosConfig";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -68,9 +68,13 @@ export default function PersonalizationPage() {
 
     try {
       setLoading(true);
-      const response = await axios.post("/api/v1/ai/suggest", {
-        message: finalInterests,
-      });
+      const response = await axios.post(
+        "/api/v1/ai/suggest",
+        {
+          message: finalInterests,
+        },
+        { withCredentials: true }
+      );
       toast.success("Interests saved successfully!");
       // Redirect to the next page or perform any other action
       setUser((prevState) => ({

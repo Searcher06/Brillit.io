@@ -2,7 +2,7 @@ import profile from "../assets/user.png";
 import { Lock, User } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../Context/AuthContext";
-import axios from "axios";
+import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
