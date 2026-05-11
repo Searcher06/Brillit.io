@@ -77,8 +77,8 @@ export default function PersonalizationPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12"
-      style={{ backgroundColor: "#0a0a0f" }}>
+    <div className="min-h-screen w-full overflow-x-hidden flex items-center justify-center px-4 py-12"
+      style={{ backgroundColor: "var(--bg-primary)" }}>
       {/* Background glow */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-20 pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #7c3aed, transparent)" }} />

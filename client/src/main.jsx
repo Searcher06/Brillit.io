@@ -21,106 +21,115 @@ import { ProtectWatchVideoPage } from "./routes/ProtectWatchVideoPage.jsx";
 import { TabVideosContextProvider } from "./Context/TabVideosContext.jsx";
 import { TabContextProvider } from "./Context/TabContext.jsx";
 import { LoadingContextProvider } from "./Context/LoadingContext.jsx";
+import { ThemeProvider } from "./Context/ThemeContext.jsx";
+import { SidebarProvider } from "./Context/SidebarContext.jsx";
+
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AuthProvider>
-      <CurrentVideoProvider>
-        <FilterProvider>
-          <SearchVideoProvider>
-            <ContextProvider>
-              <CallContextProvider>
-                <ActiveContextProvider>
-                  <TabVideosContextProvider>
-                    <TabContextProvider>
-                      <LoadingContextProvider>
-                        <Routes>
-                          <Route
-                            path="/"
-                            element={
-                              <PrivateRoute>
-                                <App />
-                              </PrivateRoute>
-                            }
-                          />
-                          <Route
-                            path="/synthai"
-                            element={
-                              <PrivateRoute>
-                                <Chatbot />
-                              </PrivateRoute>
-                            }
-                          />
-                          <Route
-                            path="/videos/:id"
-                            element={
-                              <PrivateRoute>
-                                <ProtectWatchVideoPage>
-                                  <Videoplay />
-                                </ProtectWatchVideoPage>
-                              </PrivateRoute>
-                            }
-                          />
-                          <Route
-                            path="/update-profile"
-                            element={
-                              <PrivateRoute>
-                                <UpdateProfile />
-                              </PrivateRoute>
-                            }
-                          />
-                          <Route path="/signUp" element={<SignUp />} />
-                          <Route path="/login" element={<Login />} />
-                          <Route
-                            path="/personalization"
-                            element={
-                              <ProtectPersonalization>
-                                <PersonalizationPage />
-                              </ProtectPersonalization>
-                            }
-                          />
-                          <Route
-                            path="*"
-                            element={
-                              <div
-                                className="min-h-screen flex flex-col items-center justify-center text-center px-4"
-                                style={{ backgroundColor: "#0a0a0f" }}
-                              >
-                                <div
-                                  className="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10 pointer-events-none"
-                                  style={{ background: "radial-gradient(circle, #7c3aed, transparent)" }}
-                                />
-                                <p className="text-8xl font-bold gradient-text mb-4">404</p>
-                                <h1 className="text-2xl font-bold text-white mb-2">Page not found</h1>
-                                <p className="text-gray-500 mb-8 max-w-xs">
-                                  The page you&apos;re looking for doesn&apos;t exist or has been moved.
-                                </p>
-                                <a
-                                  href="/"
-                                  className="btn-gradient h-11 px-8 rounded-xl text-white text-sm font-semibold inline-flex items-center"
-                                >
-                                  Go Home
-                                </a>
-                              </div>
-                            }
-                          />
-                        </Routes>
-                        <ToastContainer
-                          position="top-right"
-                          autoClose={3000}
-                          hideProgressBar={false}
-                          closeOnClick
-                          pauseOnHover
-                          theme="dark"
-                        />
-                      </LoadingContextProvider>
-                    </TabContextProvider>
-                  </TabVideosContextProvider>
-                </ActiveContextProvider>
-              </CallContextProvider>
-            </ContextProvider>
-          </SearchVideoProvider>
-        </FilterProvider>
-      </CurrentVideoProvider>
-    </AuthProvider>
-  </BrowserRouter>
+  <ThemeProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <SidebarProvider>
+          <CurrentVideoProvider>
+            <FilterProvider>
+              <SearchVideoProvider>
+                <ContextProvider>
+                  <CallContextProvider>
+                    <ActiveContextProvider>
+                      <TabVideosContextProvider>
+                        <TabContextProvider>
+                          <LoadingContextProvider>
+                            <Routes>
+                              <Route
+                                path="/"
+                                element={
+                                  <PrivateRoute>
+                                    <App />
+                                  </PrivateRoute>
+                                }
+                              />
+                              <Route
+                                path="/synthai"
+                                element={
+                                  <PrivateRoute>
+                                    <Chatbot />
+                                  </PrivateRoute>
+                                }
+                              />
+                              <Route
+                                path="/videos/:id"
+                                element={
+                                  <PrivateRoute>
+                                    <ProtectWatchVideoPage>
+                                      <Videoplay />
+                                    </ProtectWatchVideoPage>
+                                  </PrivateRoute>
+                                }
+                              />
+                              <Route
+                                path="/update-profile"
+                                element={
+                                  <PrivateRoute>
+                                    <UpdateProfile />
+                                  </PrivateRoute>
+                                }
+                              />
+                              <Route path="/signUp" element={<SignUp />} />
+                              <Route path="/login" element={<Login />} />
+                              <Route
+                                path="/personalization"
+                                element={
+                                  <ProtectPersonalization>
+                                    <PersonalizationPage />
+                                  </ProtectPersonalization>
+                                }
+                              />
+                              <Route
+                                path="*"
+                                element={
+                                  <div
+                                    className="min-h-screen flex flex-col items-center justify-center text-center px-4"
+                                    style={{ backgroundColor: "var(--bg-primary)" }}
+                                  >
+                                    <div
+                                      className="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10 pointer-events-none"
+                                      style={{ background: "radial-gradient(circle, #7c3aed, transparent)" }}
+                                    />
+                                    <p className="text-8xl font-bold gradient-text mb-4">404</p>
+                                    <h1 className="text-2xl font-bold mb-2" style={{ color: "var(--text-primary)" }}>
+                                      Page not found
+                                    </h1>
+                                    <p className="mb-8 max-w-xs" style={{ color: "var(--text-muted)" }}>
+                                      The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                                    </p>
+                                    <a
+                                      href="/"
+                                      className="btn-gradient h-11 px-8 rounded-xl text-sm font-semibold inline-flex items-center"
+                                    >
+                                      Go Home
+                                    </a>
+                                  </div>
+                                }
+                              />
+                            </Routes>
+                            <ToastContainer
+                              position="top-right"
+                              autoClose={3000}
+                              hideProgressBar={false}
+                              closeOnClick
+                              pauseOnHover
+                              theme="dark"
+                            />
+                          </LoadingContextProvider>
+                        </TabContextProvider>
+                      </TabVideosContextProvider>
+                    </ActiveContextProvider>
+                  </CallContextProvider>
+                </ContextProvider>
+              </SearchVideoProvider>
+            </FilterProvider>
+          </CurrentVideoProvider>
+        </SidebarProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  </ThemeProvider>
 );

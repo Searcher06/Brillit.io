@@ -16,15 +16,36 @@ import { useCurrentVideo } from "./Context/currentVideoContext";
 import axios from "./utils/axiosConfig";
 import Recommendation from "./Components/Recommendation";
 import { useTabVideosContext } from "./Context/TabVideosContext";
-import { useTabContext } from "./Context/TabContext";
 import { useLoading } from "./Context/LoadingContext";
-import { SearchX } from "lucide-react";
+import { useSidebar } from "./Context/SidebarContext";
+import { SearchX, Link } from "lucide-react";
 
 const recommended = [
   "All", "Calculus", "Differential equation", "Kirchoffs law",
   "Big bang theory", "Java programming", "Indices", "Mail merge",
   "Discrete structures", "Trigonometry",
 ];
+
+// ── Pure helpers (testable) ──────────────────────────────────────────────────
+
+export function getSearchLoadingMessage(query) {
+  return `Searching for "${query}"...`;
+}
+
+export function getSearchErrorMessage(error) {
+  if (!error?.response) return "Network error — check your connection and try again.";
+  const status = error.response.status;
+  if (status === 401) return "Your session has expired. Please log in again.";
+  if (status === 404) return "No results found for that query.";
+  if (status >= 500) return "Server error — please try again in a moment.";
+  return error.response.data?.message || "An unexpected error occurred.";
+}
+
+export function getEmptyStateSuggestions(recommendedList) {
+  return recommendedList.slice(0, 3);
+}
+
+// ── VideoCard ────────────────────────────────────────────────────────────────
 
 function VideoCard({ video, onClick }) {
   const date = new Date(video.snippet.publishedAt);
@@ -37,8 +58,7 @@ function VideoCard({ video, onClick }) {
 
   return (
     <div onClick={onClick} className="video-card fade-in">
-      {/* Thumbnail */}
-      <div className="relative w-full aspect-video overflow-hidden">
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
         {thumb ? (
           <img
             src={thumb}
@@ -47,30 +67,33 @@ function VideoCard({ video, onClick }) {
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center"
-            style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
-            <span className="text-gray-600 text-xs">No thumbnail</span>
+          <div
+            className="w-full h-full flex items-center justify-center"
+            style={{ backgroundColor: "var(--bg-secondary)" }}
+          >
+            <span className="text-xs" style={{ color: "var(--text-faint)" }}>No thumbnail</span>
           </div>
         )}
-        {/* Duration badge */}
         <span
-          className="absolute bottom-2 right-2 text-xs text-white font-medium px-1.5 py-0.5 rounded"
+          className="absolute bottom-2 right-2 text-xs font-medium px-1.5 py-0.5 rounded text-white"
           style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
         >
           <FormatYouTubeDuration isoDuration={isoDuration} />
         </span>
       </div>
 
-      {/* Info */}
       <div className="p-3">
-        <p className="text-white text-sm font-medium leading-snug line-clamp-2 mb-1.5">
+        <p
+          className="text-sm font-medium leading-snug line-clamp-2 mb-1.5"
+          style={{ color: "var(--text-primary)" }}
+        >
           {video.snippet.title}
         </p>
-        <div className="flex items-center justify-between">
-          <p className="text-gray-500 text-xs truncate max-w-[70%]">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs truncate" style={{ color: "var(--text-muted)" }}>
             {video.snippet.channelTitle}
           </p>
-          <p className="text-gray-600 text-xs flex-shrink-0">
+          <p className="text-xs flex-shrink-0" style={{ color: "var(--text-faint)" }}>
             <GetNew date={date} />
           </p>
         </div>
@@ -79,38 +102,83 @@ function VideoCard({ video, onClick }) {
   );
 }
 
-function EmptyState({ query }) {
+// ── EmptyState ───────────────────────────────────────────────────────────────
+
+function EmptyState({ query, suggestions, onSuggestionClick }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 fade-in">
+    <div className="flex flex-col items-center justify-center py-20 fade-in">
       <div
         className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5"
         style={{ background: "rgba(139, 92, 246, 0.1)", border: "1px solid rgba(139, 92, 246, 0.2)" }}
       >
         <SearchX size={28} className="text-violet-400" />
       </div>
-      <h3 className="text-white font-semibold text-lg mb-2">No results found</h3>
-      <p className="text-gray-500 text-sm text-center max-w-xs">
-        No videos found for &ldquo;{query}&rdquo;. Try a different search term.
+      <h3 className="font-semibold text-lg mb-2" style={{ color: "var(--text-primary)" }}>
+        No videos found
+      </h3>
+      <p className="text-sm text-center max-w-xs mb-6" style={{ color: "var(--text-muted)" }}>
+        No results for &ldquo;{query}&rdquo;. Try one of these:
       </p>
+      <div className="flex flex-wrap gap-2 justify-center">
+        {suggestions.map((s) => (
+          <button
+            key={s}
+            onClick={() => onSuggestionClick(s)}
+            className="chip"
+          >
+            {s}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
 
+// ── LoadingState ─────────────────────────────────────────────────────────────
+
+function LoadingState({ message }) {
+  return (
+    <div className="flex flex-col items-center py-20 gap-3">
+      <Loader />
+      <p className="text-sm" style={{ color: "var(--text-muted)" }}>{message}</p>
+    </div>
+  );
+}
+
+// ── ErrorState ───────────────────────────────────────────────────────────────
+
+function ErrorState({ error, onRetry, is401 }) {
+  const message = getSearchErrorMessage(error);
+  return (
+    <NetworkError
+      error={error}
+      message={message}
+      onRetry={onRetry}
+      showLoginLink={is401}
+    />
+  );
+}
+
+// ── App ──────────────────────────────────────────────────────────────────────
+
 export default function App() {
-  const { search } = useContext(SearchContext);
+  const { search, SearchHandler } = useContext(SearchContext);
   const { LLoading, setLLoading } = useLoading();
   const [error, setError] = useState(null);
-  const { called } = useContext(CallContext);
+  const { called, setIscalled } = useContext(CallContext);
   const { searchedVideos, setSearchedVideos } = useSearchedVideos();
   const { setCurrentVideo } = useCurrentVideo();
   const { user, tab, setTab } = useAuth();
   const { tabVideos, setTabVideos } = useTabVideosContext();
   const { active, setActive } = useContext(ActiveContext);
+  const { sidebarExpanded } = useSidebar();
   const navigate = useNavigate();
+
+  const sidebarWidth = sidebarExpanded ? 200 : 64;
 
   const searchVideos = async () => {
     try {
-      if (searchedVideos[search]) return; // cache hit
+      if (searchedVideos[search]) { setLLoading(false); return; }
       const response = await axios.get(`/api/v1/videos/search?q=${encodeURIComponent(search)}`, {
         withCredentials: true,
       });
@@ -159,27 +227,42 @@ export default function App() {
     navigate(`/videos/${video.id}`);
   };
 
+  const handleSuggestionClick = (term) => {
+    SearchHandler(term);
+    setIscalled((p) => !p);
+    setLLoading(true);
+    setActive("search");
+  };
+
   const currentVideos =
     active === "search"
       ? searchedVideos[search]
       : tabVideos[tab]?.items;
 
+  const loadingMessage =
+    active === "search"
+      ? getSearchLoadingMessage(search)
+      : "Loading your feed...";
+
+  const is401 = error?.response?.status === 401;
+
   return (
     <>
       <Navbar />
-      <div className="flex">
+      <div className="flex w-full overflow-x-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>
         <Sidebar />
 
-        {/* Main content — offset for sidebar on desktop, bottom bar on mobile */}
-        <main className="flex-1 sm:ml-16 mt-16 mb-16 sm:mb-0 min-h-screen"
-          style={{ backgroundColor: "#0a0a0f" }}>
-          {/* Recommendation chips */}
+        <main
+          className="flex-1 mt-16 mb-16 sm:mb-0 min-h-screen w-full overflow-x-hidden"
+          style={{ marginLeft: `${sidebarWidth}px`, transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)" }}
+        >
+          {/* Sticky chips bar */}
           <div
             className="sticky top-16 z-30 py-2"
             style={{
-              backgroundColor: "rgba(10, 10, 15, 0.9)",
+              backgroundColor: "var(--glass-bg)",
               backdropFilter: "blur(12px)",
-              borderBottom: "1px solid rgba(255,255,255,0.05)",
+              borderBottom: "1px solid var(--border-subtle)",
             }}
           >
             <Recommendation
@@ -192,13 +275,14 @@ export default function App() {
             />
           </div>
 
-          {/* Video grid */}
+          {/* Content */}
           <div className="px-3 sm:px-4 py-6">
             {LLoading ? (
-              <Loader />
+              <LoadingState message={loadingMessage} />
             ) : error ? (
-              <NetworkError
+              <ErrorState
                 error={error}
+                is401={is401}
                 onRetry={() => {
                   setError(null);
                   setLLoading(true);
@@ -206,9 +290,13 @@ export default function App() {
                 }}
               />
             ) : currentVideos?.length === 0 ? (
-              <EmptyState query={active === "search" ? search : tab} />
+              <EmptyState
+                query={active === "search" ? search : tab}
+                suggestions={getEmptyStateSuggestions(recommended)}
+                onSuggestionClick={handleSuggestionClick}
+              />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                 {currentVideos?.map((video, index) => (
                   <VideoCard
                     key={video.id || index}

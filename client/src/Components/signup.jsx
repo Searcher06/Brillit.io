@@ -55,10 +55,10 @@ const SignUp = () => {
   );
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: "#0a0a0f" }}>
+    <div className="min-h-screen w-full overflow-x-hidden flex" style={{ backgroundColor: "var(--bg-primary)" }}>
       {/* Left branding panel */}
       <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #0a0a0f 60%, #1a0533 100%)" }}>
+        style={{ background: "linear-gradient(135deg, #1e1b4b 0%, var(--bg-primary) 60%, #1a0533 100%)" }}>
         <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-20"
           style={{ background: "radial-gradient(circle, #7c3aed, transparent)" }} />
         <div className="absolute bottom-32 right-10 w-56 h-56 rounded-full opacity-15"
@@ -96,7 +96,7 @@ const SignUp = () => {
       </div>
 
       {/* Right form panel */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 overflow-x-hidden">
         <div className="w-full max-w-md">
           <div className="flex items-center gap-2 mb-8 lg:hidden">
             <Sparkles size={20} className="text-violet-400" />
