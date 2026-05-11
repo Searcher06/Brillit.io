@@ -3,19 +3,13 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { Sparkles, ArrowRight } from "lucide-react";
+
 const topics = [
-  "Web Development",
-  "React",
-  "Physics",
-  "Productivity",
-  "AI",
-  "Machine Learning",
-  "Space Science",
-  "Astrophysics",
-  "JavaScript",
-  "Python",
-  "Algebra",
-  "Trigonometry",
+  "Web Development", "React", "Physics", "Productivity",
+  "AI", "Machine Learning", "Space Science", "Astrophysics",
+  "JavaScript", "Python", "Algebra", "Trigonometry",
+  "Data Structures", "Cybersecurity", "UI/UX Design", "Chemistry",
 ];
 
 export default function PersonalizationPage() {
@@ -25,7 +19,9 @@ export default function PersonalizationPage() {
   const [showHint, setShowHint] = useState(false);
   const navigate = useNavigate();
   const { setUser, setTab } = useAuth();
+
   const toggleTopic = (topic) => {
+    if (loading) return;
     setSelectedTopics((prev) =>
       prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
     );
@@ -33,8 +29,7 @@ export default function PersonalizationPage() {
 
   const handleInputChange = (e) => {
     setCustomInterest(e.target.value);
-    // setShowHint(e.target.value.includes(","));
-    setShowHint(e.target.value);
+    setShowHint(!!e.target.value);
   };
 
   const handleContinue = async () => {
@@ -44,66 +39,37 @@ export default function PersonalizationPage() {
       .split(",")
       .map((item) => item.trim())
       .every((item) => item === "" || /^[a-zA-Z\s]+$/.test(item));
+
     if (customInterest && !validCustomInterest) {
-      toast.error(
-        "Please use only letters (A-Z, a-z) and commas to separate interests."
-      );
+      toast.error("Use only letters and commas to separate interests.");
       return;
     }
 
     if (customInterest.trim()) {
-      const extras = customInterest
-        .split(",")
-        .map((item) => item.trim())
-        .filter((item) => item);
+      const extras = customInterest.split(",").map((i) => i.trim()).filter(Boolean);
       finalInterests.push(...extras);
     }
 
     if (!customInterest && selectedTopics.length === 0) {
-      toast.error("Interest should not be blank");
+      toast.error("Please select or enter at least one interest.");
       return;
     }
-    finalInterests = finalInterests.toString();
-    console.log("User interests:", finalInterests);
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        "/api/v1/ai/suggest",
-        {
-          message: finalInterests,
-        },
-        { withCredentials: true }
-      );
-      toast.success("Interests saved successfully!");
-      // Redirect to the next page or perform any other action
-      setUser((prevState) => ({
-        ...prevState,
-        suggestedKeywords: response.data,
-      }));
+      const response = await axios.post("/api/v1/ai/suggest", {
+        message: finalInterests.toString(),
+      }, { withCredentials: true });
 
-      // calling the api to get the latest user data after
-      // successfully updating the user interests field
-      const res = await axios.get("/api/v1/users/me", {
-        withCredentials: true,
-      });
+      toast.success("Interests saved!");
+      setUser((prev) => ({ ...prev, suggestedKeywords: response.data }));
 
-      // updating the current user state
+      const res = await axios.get("/api/v1/users/me", { withCredentials: true });
       setUser(res.data);
       setTab(response.data[0]);
       navigate("/");
-      console.log(response.data);
     } catch (error) {
-      if (error.response) {
-        // server responded with a non-2xx status
-        toast.error(error.response.data.error || "Failed try again");
-        console.table(error);
-      } else if (error.request) {
-        toast.error("No response from server");
-      } else {
-        // something else happended
-        toast.error("An error occured.");
-      }
+      toast.error(error.response?.data?.error || "Something went wrong, try again.");
       console.error(error);
     } finally {
       setLoading(false);
@@ -111,33 +77,46 @@ export default function PersonalizationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 lg:p-10 w-full max-w-md sm:max-w-lg lg:max-w-2xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-4">
-          Personalize Your Experience
-        </h1>
-        <p className="text-center text-gray-600 mb-6 text-sm sm:text-base">
-          Select your interests so we can tailor content just for you.
-        </p>
+    <div className="min-h-screen flex items-center justify-center px-4 py-12"
+      style={{ backgroundColor: "#0a0a0f" }}>
+      {/* Background glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-20 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #7c3aed, transparent)" }} />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-          {topics.map((topic, idx) => (
-            <div
-              key={idx}
-              onClick={loading ? null : () => toggleTopic(topic)}
-              className={`cursor-pointer border p-2 sm:p-3 rounded-xl text-xs sm:text-sm font-medium text-center transition ${
-                selectedTopics.includes(topic)
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {topic}
-            </div>
-          ))}
+      <div className="relative z-10 w-full max-w-2xl">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6">
+            <Sparkles size={14} className="text-violet-400" />
+            <span className="text-violet-300 text-sm font-medium">Powered by Gemini AI</span>
+          </div>
+          <h1 className="text-4xl font-bold text-white mb-3">
+            What do you want to <span className="gradient-text">learn?</span>
+          </h1>
+          <p className="text-gray-400 text-base">
+            Select your interests and we&apos;ll build a personalized feed just for you.
+          </p>
         </div>
 
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+        {/* Topic chips */}
+        <div className="glass rounded-2xl p-6 mb-6">
+          <p className="text-gray-400 text-sm font-medium mb-4">Popular topics</p>
+          <div className="flex flex-wrap gap-2.5">
+            {topics.map((topic) => (
+              <button
+                key={topic}
+                onClick={() => toggleTopic(topic)}
+                className={`chip ${selectedTopics.includes(topic) ? "chip-active" : ""}`}
+              >
+                {topic}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Custom input */}
+        <div className="glass rounded-2xl p-6 mb-8">
+          <label className="block text-gray-400 text-sm font-medium mb-3">
             Add your own interests
           </label>
           <input
@@ -145,25 +124,42 @@ export default function PersonalizationPage() {
             disabled={loading}
             value={customInterest}
             onChange={handleInputChange}
-            placeholder="e.g., Cybersecurity, UI/UX, Robotics"
-            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+            placeholder="e.g., Robotics, Quantum Physics, Blockchain"
+            className="input-dark w-full h-11 rounded-xl px-4 text-sm"
           />
           {showHint && (
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              {"If you're adding more than one, separate them with commas."}
+            <p className="text-gray-600 text-xs mt-2">
+              Separate multiple interests with commas.
             </p>
           )}
         </div>
 
-        <div className="text-center">
+        {/* CTA */}
+        <div className="flex justify-center">
           <button
             onClick={handleContinue}
             disabled={loading}
-            className="bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-lg hover:bg-blue-700 transition"
+            className="btn-gradient h-12 px-8 rounded-xl text-white font-semibold flex items-center gap-2"
           >
-            {loading ? "Personalizing..." : "Continue"}
+            {loading ? (
+              <>
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Personalizing your feed...
+              </>
+            ) : (
+              <>
+                Continue
+                <ArrowRight size={16} />
+              </>
+            )}
           </button>
         </div>
+
+        {selectedTopics.length > 0 && (
+          <p className="text-center text-gray-600 text-sm mt-4">
+            {selectedTopics.length} topic{selectedTopics.length > 1 ? "s" : ""} selected
+          </p>
+        )}
       </div>
     </div>
   );

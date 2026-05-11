@@ -2,14 +2,7 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Recommendation({
-  user,
-  recommended,
-  tab,
-  setTab,
-  setActive,
-  setError,
-}) {
+export default function Recommendation({ user, recommended, tab, setTab, setActive, setError }) {
   const chipRefs = useRef([]);
   const containerRef = useRef(null);
 
@@ -24,59 +17,47 @@ export default function Recommendation({
     });
   };
 
-  const scrollLeft = () => {
-    containerRef.current.scrollBy({ left: -200, behavior: "smooth" });
-  };
+  const scrollLeft = () => containerRef.current?.scrollBy({ left: -200, behavior: "smooth" });
+  const scrollRight = () => containerRef.current?.scrollBy({ left: 200, behavior: "smooth" });
 
-  const scrollRight = () => {
-    containerRef.current.scrollBy({ left: 200, behavior: "smooth" });
-  };
-
-  const chips =
-    user?.suggestedKeywords.length > 0 ? user.suggestedKeywords : recommended;
+  const chips = user?.suggestedKeywords?.length > 0 ? user.suggestedKeywords : recommended;
 
   return (
-    <section
-      id="recommendation"
-      className="font-[calibri] flex items-center mr-2 ml-2 gap-2 sm:ml-17 sm:mr-3"
-    >
-      {/* Left button - only desktop */}
+    <section className="flex items-center gap-2 px-2 sm:pl-20 sm:pr-4 py-3">
+      {/* Left arrow — desktop only */}
       <button
         onClick={scrollLeft}
-        className="hidden md:flex bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+        className="hidden md:flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-all hover:bg-white/10"
+        style={{ color: "#6b7280", border: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft size={16} />
       </button>
 
-      {/* Chips container */}
+      {/* Chips */}
       <div
         ref={containerRef}
-        className="flex space-x-3 overflow-x-auto p-3 scrollbar-hide scroll-smooth"
+        className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth py-1"
       >
         {chips.map((current, index) => (
           <button
             key={index}
             ref={(el) => (chipRefs.current[index] = el)}
-            disabled={tab == current ? true : false}
+            disabled={tab === current}
             onClick={() => handleClick(current, index)}
-            className={`flex-shrink-0 p-1.5 rounded-sm text-sm font-medium transition-colors sm:text-[15px] sm:p-2
-              ${
-                current === tab
-                  ? "bg-black text-white"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-              }`}
+            className={`chip flex-shrink-0 ${current === tab ? "chip-active" : ""}`}
           >
             {current}
           </button>
         ))}
       </div>
 
-      {/* Right button - only desktop */}
+      {/* Right arrow — desktop only */}
       <button
         onClick={scrollRight}
-        className="hidden md:flex bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+        className="hidden md:flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-all hover:bg-white/10"
+        style={{ color: "#6b7280", border: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight size={16} />
       </button>
     </section>
   );

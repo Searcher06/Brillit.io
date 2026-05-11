@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SearchContext } from "../Context/SearchContext";
-import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
+import { SearchContext } from "../Context/SearchContext";
 import { CallContext } from "../Context/CallContext";
 import { useNavigate } from "react-router-dom";
 import { ActiveContext } from "../Context/ActiveContext";
-import { Filter } from "./Filter";
 import { FilterContext } from "../Context/FilterContext";
+import { Filter } from "./Filter";
 import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
-import { LogOutIcon, Search } from "lucide-react";
+import { LogOut, Search, Sparkles } from "lucide-react";
 import { useLoading } from "../Context/LoadingContext";
 
 export function Navbar() {
@@ -21,83 +19,90 @@ export function Navbar() {
   const navigate = useNavigate();
   const { setLLoading } = useLoading();
 
-  function navigator(param) {
-    if (param) {
-      navigate("/");
-    }
-  }
-
   const triggerSearch = () => {
     if (search.trim() === "") return;
-    setIscalled(true);
+    setIscalled((p) => !p);
     setLLoading(true);
     setActive("search");
-    navigator(navigate);
+    navigate("/");
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      triggerSearch();
-    }
+    if (e.key === "Enter") triggerSearch();
   };
 
-  const LogOut = async () => {
+  const handleLogOut = async () => {
     try {
       await axios.post("/api/v1/users/sign-out", {}, { withCredentials: true });
-      toast.success("Logged out successfully");
+      toast.success("Logged out");
       navigate("/login");
     } catch (error) {
-      if (error.response) {
-        toast.error(error.response.data.message || "Sign out failed");
-      } else if (error.request) {
-        toast.error("No response from server");
-      } else {
-        toast.error("An error occurred.");
-      }
+      toast.error(error.response?.data?.message || "Sign out failed");
       console.error(error);
     }
   };
 
   return (
-    <nav className="bg-white z-10 w-full flex h-16 items-center justify-between fixed top-0 left-0 shadow-sm">
-      <div className="logo text-2xl text-blue-600 font-semibold pl-2 sm:text-4xl sm:pl-5 lg:pl-9 xl:pl-10">
-        Brillit.io
-      </div>
-      <div className="search flex">
-        <input
-          type="text"
-          onChange={(event) => {
-            SearchHandler(event.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          value={search}
-          placeholder="Search"
-          className="h-8 bg-gray-100 pl-2 outline-0 w-39 rounded-l-sm text-sm font-mono sm:h-10 sm:w-69 md:w-74 md:pl-4 md:rounded-l-full lg:w-85 lg:h-11 xl:w-110 xl:pl-4 xl:text-base xl:rounded-l-full"
-        />
-        <button
-          onClick={triggerSearch}
-          disabled={search.trim() === ""}
-          className="w-8 bg-blue-600 h-8 rounded-r-sm mr-1 flex justify-center items-center sm:h-10 sm:mr-2 sm:w-12 md:w-14 md:rounded-r-full lg:h-11 xl:rounded-r-full xl:w-12 disabled:opacity-50"
-        >
-          <Search className="text-white align-middle text-sm" size={21} />
-        </button>
-        <button
-          onClick={() => {
-            setDisplayfilter(true);
-          }}
-          className="hidden ml-4 text-[17px] text-gray-900 hover:text-gray-700"
-        >
-          <FontAwesomeIcon icon={faSliders} />
-        </button>
-      </div>
-      <button
-        className="text-blue-700 mr-2 text-sm sm:mr-5 md:mr-4 lg:mr-9 xl:mr-10"
-        onClick={LogOut}
-        aria-label="Log out"
+    <>
+      <nav
+        className="w-full h-16 fixed top-0 left-0 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8"
+        style={{
+          backgroundColor: "rgba(10, 10, 15, 0.85)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}
       >
-        <LogOutIcon size={23} strokeWidth={1.7} />
-      </button>
+        {/* Logo */}
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 flex-shrink-0"
+        >
+          <Sparkles size={18} className="text-violet-400" />
+          <span className="text-lg font-bold gradient-text hidden sm:block">Brillit.io</span>
+          <span className="text-lg font-bold gradient-text sm:hidden">B.</span>
+        </button>
+
+        {/* Search bar */}
+        <div className="flex items-center flex-1 max-w-xl mx-4 sm:mx-8">
+          <div className="relative w-full">
+            <Search
+              size={15}
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+            />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => SearchHandler(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Search educational videos..."
+              className="input-dark w-full h-10 rounded-xl pl-9 pr-4 text-sm"
+            />
+          </div>
+          <button
+            onClick={triggerSearch}
+            disabled={search.trim() === ""}
+            className="btn-gradient ml-2 h-10 px-4 rounded-xl text-white text-sm font-medium flex-shrink-0 disabled:opacity-40 flex items-center gap-1.5"
+          >
+            <Search size={14} />
+            <span className="hidden sm:inline">Search</span>
+          </button>
+        </div>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <button
+            onClick={handleLogOut}
+            className="flex items-center gap-1.5 text-gray-400 hover:text-violet-400 transition-colors text-sm px-2 py-2 rounded-lg hover:bg-white/5"
+            aria-label="Log out"
+          >
+            <LogOut size={18} strokeWidth={1.7} />
+            <span className="hidden md:inline text-sm">Logout</span>
+          </button>
+        </div>
+      </nav>
+
       {displayfilter && <Filter />}
-    </nav>
+    </>
   );
 }

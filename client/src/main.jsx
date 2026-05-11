@@ -81,11 +81,23 @@ createRoot(document.getElementById("root")).render(
                           <Route
                             path="*"
                             element={
-                              <div className="min-h-screen flex flex-col items-center justify-center bg-sky-50 text-center px-4">
-                                <h1 className="text-6xl font-bold text-blue-600">404</h1>
-                                <p className="text-xl text-gray-700 mt-4">Page not found</p>
-                                <p className="text-gray-500 mt-2">The page you are looking for does not exist.</p>
-                                <a href="/" className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                              <div
+                                className="min-h-screen flex flex-col items-center justify-center text-center px-4"
+                                style={{ backgroundColor: "#0a0a0f" }}
+                              >
+                                <div
+                                  className="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10 pointer-events-none"
+                                  style={{ background: "radial-gradient(circle, #7c3aed, transparent)" }}
+                                />
+                                <p className="text-8xl font-bold gradient-text mb-4">404</p>
+                                <h1 className="text-2xl font-bold text-white mb-2">Page not found</h1>
+                                <p className="text-gray-500 mb-8 max-w-xs">
+                                  The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                                </p>
+                                <a
+                                  href="/"
+                                  className="btn-gradient h-11 px-8 rounded-xl text-white text-sm font-semibold inline-flex items-center"
+                                >
                                   Go Home
                                 </a>
                               </div>
@@ -98,7 +110,7 @@ createRoot(document.getElementById("root")).render(
                           hideProgressBar={false}
                           closeOnClick
                           pauseOnHover
-                          theme="light"
+                          theme="dark"
                         />
                       </LoadingContextProvider>
                     </TabContextProvider>
