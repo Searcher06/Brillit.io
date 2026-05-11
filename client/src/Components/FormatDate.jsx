@@ -1,27 +1,19 @@
 export function GetNew({ date }) {
-    let today = new Date()
-    if (date.getFullYear() === today.getFullYear()) {
+  if (!date || isNaN(date.getTime())) return "Unknown date";
 
-        if (date.getMonth() !== today.getMonth()) {
-            return `${today.getMonth() - date.getMonth()} months ago`
-        }
+  const now = new Date();
+  const diffMs = now - date;
+  const diffSeconds = Math.floor(diffMs / 1000);
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+  const diffMonths = Math.floor(diffDays / 30);
+  const diffYears = Math.floor(diffDays / 365);
 
-        if (date.getMonth() === today.getMonth()) {
-            if (date.getDate() === today.getDate()) {
-                if (date.getHours() === today.getHours()) {
-                    return `${today.getMinutes() - date.getMinutes()} minutes ago`
-                }
-                else if (date.getHours() !== today.getHours()) {
-                    return `${today.getHours() - date.getHours()} hours ago`
-                }
-            }
-            else if (date.getDate() !== today.getDate()) {
-                return `${today.getDate() - date.getDate()} days ago `
-            }
-        }
-    }
-
-    else if (date.getFullYear() !== today.getFullYear()) {
-        return `${today.getFullYear() - date.getFullYear()} years ago`
-    }
+  if (diffYears > 0) return `${diffYears} year${diffYears > 1 ? "s" : ""} ago`;
+  if (diffMonths > 0) return `${diffMonths} month${diffMonths > 1 ? "s" : ""} ago`;
+  if (diffDays > 0) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
+  if (diffHours > 0) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+  if (diffMinutes > 0) return `${diffMinutes} minute${diffMinutes > 1 ? "s" : ""} ago`;
+  return "Just now";
 }

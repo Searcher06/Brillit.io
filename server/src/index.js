@@ -3,6 +3,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import videos from "../routes/videosRoutes.js";
 import connectDB from "../config/connectDB.js";
 import router from "../routes/userRoutes.js";
@@ -33,12 +34,40 @@ app.use(
 
 app.use(Logger);
 
-// Routes
-app.use("/api/v1/videos", videos);
-app.use("/api/v1/users", router);
-app.use("/api/v1/ai", aiRoutes);
+// Rate limiters
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  message: { message: "Too many attempts, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
-app.get("/api/v1/special", async (req, res) => {
+const aiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 10,
+  message: { message: "Too many AI requests, please slow down" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const searchLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30,
+  message: { message: "Too many search requests, please slow down" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Routes
+app.use("/api/v1/videos", searchLimiter, videos);
+app.use("/api/v1/users/sign-in", authLimiter);
+app.use("/api/v1/users/sign-up", authLimiter);
+app.use("/api/v1/users", router);
+app.use("/api/v1/ai", aiLimiter, aiRoutes);
+
+// Protected utility routes
+app.get("/api/v1/special", protect, async (req, res) => {
   try {
     const jsonL = await client.collections("videos").documents().export();
 
@@ -55,7 +84,7 @@ app.get("/api/v1/special", async (req, res) => {
   }
 });
 
-app.get("/api/v1/getAll", async (req, res) => {
+app.get("/api/v1/getAll", protect, async (req, res) => {
   try {
     const allVideos = await videoModel.find({});
     res.status(200).json(allVideos);
@@ -68,7 +97,7 @@ app.get("/api/v1/getAll", async (req, res) => {
 // Private routes
 app.use("/api/v1", protect, dashboardRoute);
 
-// Test deployment
+// Health check
 app.get("/api/v1/hello", async (req, res) => {
   res.status(200).json({ message: "Hello am active and running online" });
 });

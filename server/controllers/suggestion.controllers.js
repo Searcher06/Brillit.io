@@ -84,13 +84,13 @@ Final output must ONLY be a **valid JSON array** of updated educational keywords
     // Parse and send JSON array
     const keywords = JSON.parse(text);
 
-    const updatedUser = userModel.findByIdAndUpdate(
+    await userModel.findByIdAndUpdate(
       req.user._id,
       { suggestedKeywords: keywords },
       { new: true }
     );
 
-    res.status(200).json(updatedUser.suggestedKeywords);
+    res.status(200).json(keywords);
   } catch (error) {
     console.log(error);
     if (error.status == 503) {

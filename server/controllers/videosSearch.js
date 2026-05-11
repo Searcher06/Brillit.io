@@ -1,35 +1,31 @@
-import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
-const key = process.env.API_KEY;
-import { videoModel } from "../models/video.model.js";
-import client from "../config/typesenseClient.js";
 import { fetchYouTubeVideos } from "../lib/fetchYoutube.js";
-import { getVideosFromMongo } from "../lib/getVideosfromDB.js";
-import { Error } from "mongoose";
 
 export const searchVideos = async (req, res) => {
-  // Getting the search query
-  const query = req.query.q;
+  // Getting and sanitizing the search query
+  const rawQuery = req.query.q;
 
-  // Checking the search query
-  if (!query) {
-    res.status(400);
-    throw new Error("Empty search query");
+  if (!rawQuery || !rawQuery.trim()) {
+    return res.status(400).json({ message: "Empty search query" });
   }
+
+  // Sanitize: strip HTML tags and limit length
+  const query = rawQuery.trim().replace(/<[^>]*>/g, "").slice(0, 200);
 
   try {
     const freshVideos = await fetchYouTubeVideos(req, res, query);
 
-    if (freshVideos[0]) {
+    if (freshVideos && freshVideos.length > 0) {
       console.log(
-        `Founded ${freshVideos.length} videos from the youtube response`
+        `Found ${freshVideos.length} videos from the YouTube response`
       );
       return res.status(200).json(freshVideos);
     }
+
+    return res.status(200).json([]);
   } catch (error) {
     console.log("search error: ", error);
-    res.status(500);
-    throw new Error(error.message || error);
+    return res.status(500).json({ message: error.message || "Error in search" });
   }
 };

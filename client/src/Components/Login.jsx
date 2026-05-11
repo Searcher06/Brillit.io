@@ -5,23 +5,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../utils/axiosConfig";
 import { useAuth } from "../Context/AuthContext";
+
 const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const disapledStyle = !password || !email ? "bg-pink-200" : null;
+  const [loading, setLoading] = useState(false);
+  const disabledStyle = !password || !email || loading ? "bg-pink-200 cursor-not-allowed" : "";
   const navigate = useNavigate();
   const { setUser, setTab } = useAuth();
-  const [loading] = useState(false);
 
   const handleSubmit = async () => {
-    // checking all the fields
     if (!email || !password) {
       toast.error("Please add all fields");
       return;
     }
 
-    //  Simple email regex validator
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       toast.error("Please enter a valid email address");
@@ -29,31 +28,35 @@ const Login = () => {
     }
 
     try {
+      setLoading(true);
       const response = await axios.post("/api/v1/users/sign-in", {
         password,
         email,
       });
-      console.log("Sign up successfully:", response.data);
 
-      // saving the user info
       setUser(response.data);
       setTab(response.data.suggestedKeywords[0]);
-      // navigating to home
       toast.success("Logged in successfully");
       setEmail("");
       setPassword("");
       navigate("/personalization");
     } catch (error) {
       if (error.response) {
-        // server responded with a non-2xx status
-        toast.error(error.response.data.message || "Sign up failed");
+        toast.error(error.response.data.message || "Login failed");
       } else if (error.request) {
         toast.error("No response from server");
       } else {
-        // something else happended
-        toast.error("An error occured.");
+        toast.error("An error occurred.");
       }
       console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && email && password && !loading) {
+      handleSubmit();
     }
   };
 
@@ -70,7 +73,10 @@ const Login = () => {
           Welcome back to Brillit
         </p>
 
-        <button className="cursor-pointer mt-4 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center">
+        <button
+          type="button"
+          className="cursor-pointer mt-4 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center justify-center"
+        >
           <FcGoogle size={20} className="mr-3" />
           <span className="font-semibold text-[15px]">Sign In with Google</span>
         </button>
@@ -88,6 +94,7 @@ const Login = () => {
             placeholder="Email"
             type="email"
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleKeyDown}
             value={email}
             disabled={loading}
           />
@@ -96,10 +103,11 @@ const Login = () => {
         <div className="mt-3 h-11 w-full sm:w-65 border-gray-200 border-[1.9px] rounded-[8px] flex items-center">
           <Lock size={20} className="ml-4" />
           <input
-            type={`${show ? "text" : "password"}`}
+            type={show ? "text" : "password"}
             className="outline-0 pl-2 text-sm w-full"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
             value={password}
             disabled={loading}
           />
@@ -119,16 +127,16 @@ const Login = () => {
         </div>
 
         <button
-          className={`cursor-pointer h-11 w-full sm:w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disapledStyle}`}
+          className={`cursor-pointer h-11 w-full sm:w-65 bg-blue-700 rounded-[8px] mt-5 text-white text-[15px] ${disabledStyle}`}
           onClick={handleSubmit}
           disabled={!password || !email || loading}
         >
-          {loading ? "Signing in" : "Login"}
+          {loading ? "Signing in..." : "Login"}
         </button>
 
         <p className="text-[14px] mt-5">
           {"Don't have an account?"}{" "}
-          <Link to={"/signup"} className="text-blue-700">
+          <Link to={"/signUp"} className="text-blue-700">
             Sign Up
           </Link>
         </p>

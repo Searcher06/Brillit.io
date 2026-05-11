@@ -32,7 +32,6 @@ const SignUp = () => {
       toast.error("Please add all fields");
       return;
     }
-
     // checking the password length
     if (data.password.length < 6) {
       toast.error("Password must be greater than 5 characters");
@@ -93,7 +92,7 @@ const SignUp = () => {
     <>
       <div className="min-h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8 bg-sky-50">
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
           className="w-full max-w-md sm:max-w-lg lg:max-w-xl shadow-xl rounded-lg flex flex-col items-center text-center border border-gray-200 p-6 sm:p-8"
         >
           <h2 className="text-2xl sm:text-3xl text-blue-700 font-semibold mt-4">

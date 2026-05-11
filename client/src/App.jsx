@@ -135,7 +135,16 @@ export default function App() {
               <Loader />
             ) : // If there is an error the return the <NetworkError /> component
             error ? (
-              <NetworkError error={error} />
+              <NetworkError error={error} onRetry={() => {
+                setError(null);
+                if (active === "search") {
+                  setLLoading(true);
+                  searchVideos();
+                } else {
+                  setLLoading(true);
+                  searchTabVideos();
+                }
+              }} />
             ) : active == "tab" ? (
               tabVideos[tab]?.items.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
@@ -177,6 +186,12 @@ export default function App() {
                 );
               })
             ) : active == "search" ? ( // delay updating seach
+              searchedVideos[search]?.length === 0 ? (
+                <div className="flex flex-col items-center justify-center mt-20 text-gray-500">
+                  <p className="text-xl font-semibold">No results found</p>
+                  <p className="text-sm mt-2">Try a different search term</p>
+                </div>
+              ) : (
               searchedVideos[search]?.map((current, index) => {
                 const date = new Date(current.snippet.publishedAt);
                 const isoDuration = current.contentDetails.duration;
@@ -216,6 +231,7 @@ export default function App() {
                   </div>
                 );
               })
+              )
             ) : null}
           </section>
         </div>
