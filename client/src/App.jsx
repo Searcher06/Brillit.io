@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { Sidebar } from "./Components/Sidebar";
 import { Navbar } from "./Components/Navbar";
@@ -21,9 +22,16 @@ import { useSidebar } from "./Context/SidebarContext";
 import { SearchX, Link } from "lucide-react";
 
 const recommended = [
-  "All", "Calculus", "Differential equation", "Kirchoffs law",
-  "Big bang theory", "Java programming", "Indices", "Mail merge",
-  "Discrete structures", "Trigonometry",
+  "All",
+  "Calculus",
+  "Differential equation",
+  "Kirchoffs law",
+  "Big bang theory",
+  "Java programming",
+  "Indices",
+  "Mail merge",
+  "Discrete structures",
+  "Trigonometry",
 ];
 
 // ── Pure helpers (testable) ──────────────────────────────────────────────────
@@ -51,27 +59,18 @@ function VideoCard({ video, onClick }) {
   const date = new Date(video.snippet.publishedAt);
   const isoDuration = video.contentDetails.duration;
   const thumb =
-    video.snippet.thumbnails.maxres?.url ||
-    video.snippet.thumbnails.standard?.url ||
-    video.snippet.thumbnails.high?.url ||
-    null;
+    video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.standard?.url || video.snippet.thumbnails.high?.url || null;
 
   return (
     <div onClick={onClick} className="video-card fade-in">
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
         {thumb ? (
-          <img
-            src={thumb}
-            alt={video.snippet.title}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <img src={thumb} alt={video.snippet.title} className="w-full h-full object-cover" loading="lazy" />
         ) : (
-          <div
-            className="w-full h-full flex items-center justify-center"
-            style={{ backgroundColor: "var(--bg-secondary)" }}
-          >
-            <span className="text-xs" style={{ color: "var(--text-faint)" }}>No thumbnail</span>
+          <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: "var(--bg-secondary)" }}>
+            <span className="text-xs" style={{ color: "var(--text-faint)" }}>
+              No thumbnail
+            </span>
           </div>
         )}
         <span
@@ -83,10 +82,7 @@ function VideoCard({ video, onClick }) {
       </div>
 
       <div className="p-3">
-        <p
-          className="text-sm font-medium leading-snug line-clamp-2 mb-1.5"
-          style={{ color: "var(--text-primary)" }}
-        >
+        <p className="text-sm font-medium leading-snug line-clamp-2 mb-1.5" style={{ color: "var(--text-primary)" }}>
           {video.snippet.title}
         </p>
         <div className="flex items-center justify-between gap-2">
@@ -121,11 +117,7 @@ function EmptyState({ query, suggestions, onSuggestionClick }) {
       </p>
       <div className="flex flex-wrap gap-2 justify-center">
         {suggestions.map((s) => (
-          <button
-            key={s}
-            onClick={() => onSuggestionClick(s)}
-            className="chip"
-          >
+          <button key={s} onClick={() => onSuggestionClick(s)} className="chip">
             {s}
           </button>
         ))}
@@ -140,7 +132,9 @@ function LoadingState({ message }) {
   return (
     <div className="flex flex-col items-center py-20 gap-3">
       <Loader />
-      <p className="text-sm" style={{ color: "var(--text-muted)" }}>{message}</p>
+      <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        {message}
+      </p>
     </div>
   );
 }
@@ -149,14 +143,7 @@ function LoadingState({ message }) {
 
 function ErrorState({ error, onRetry, is401 }) {
   const message = getSearchErrorMessage(error);
-  return (
-    <NetworkError
-      error={error}
-      message={message}
-      onRetry={onRetry}
-      showLoginLink={is401}
-    />
-  );
+  return <NetworkError error={error} message={message} onRetry={onRetry} showLoginLink={is401} />;
 }
 
 // ── App ──────────────────────────────────────────────────────────────────────
@@ -178,7 +165,10 @@ export default function App() {
 
   const searchVideos = async () => {
     try {
-      if (searchedVideos[search]) { setLLoading(false); return; }
+      if (searchedVideos[search]) {
+        setLLoading(false);
+        return;
+      }
       const response = await axios.get(`/api/v1/videos/search?q=${encodeURIComponent(search)}`, {
         withCredentials: true,
       });
@@ -234,15 +224,9 @@ export default function App() {
     setActive("search");
   };
 
-  const currentVideos =
-    active === "search"
-      ? searchedVideos[search]
-      : tabVideos[tab]?.items;
+  const currentVideos = active === "search" ? searchedVideos[search] : tabVideos[tab]?.items;
 
-  const loadingMessage =
-    active === "search"
-      ? getSearchLoadingMessage(search)
-      : "Loading your feed...";
+  const loadingMessage = active === "search" ? getSearchLoadingMessage(search) : "Loading your feed...";
 
   const is401 = error?.response?.status === 401;
 
@@ -258,25 +242,17 @@ export default function App() {
         >
           {/* Sticky chips bar */}
           <div
-            className="sticky top-16 z-30 py-2"
+            className="sticky top-0 z-30"
             style={{
-              backgroundColor: "var(--glass-bg)",
-              backdropFilter: "blur(12px)",
+              backgroundColor: "var(--bg-primary)",
               borderBottom: "1px solid var(--border-subtle)",
             }}
           >
-            <Recommendation
-              user={user}
-              recommended={recommended}
-              tab={tab}
-              setError={setError}
-              setTab={setTab}
-              setActive={setActive}
-            />
+            <Recommendation user={user} recommended={recommended} tab={tab} setError={setError} setTab={setTab} setActive={setActive} />
           </div>
 
           {/* Content */}
-          <div className="px-3 sm:px-4 py-6">
+          <div className="px-3 sm:px-4 pt-6 pb-6">
             {LLoading ? (
               <LoadingState message={loadingMessage} />
             ) : error ? (
@@ -296,13 +272,15 @@ export default function App() {
                 onSuggestionClick={handleSuggestionClick}
               />
             ) : (
-              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+              <div
+                className={
+                  active === "search"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                    : "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4"
+                }
+              >
                 {currentVideos?.map((video, index) => (
-                  <VideoCard
-                    key={video.id || index}
-                    video={video}
-                    onClick={() => handleVideoClick(video)}
-                  />
+                  <VideoCard key={video.id || index} video={video} onClick={() => handleVideoClick(video)} />
                 ))}
               </div>
             )}

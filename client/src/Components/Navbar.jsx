@@ -9,7 +9,7 @@ import { Filter } from "./Filter";
 import axios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 import {
-  Search, Sun, Moon, Sparkles, X,
+  Search, Sun, Moon, X,
   LogOut, ChevronDown, User,
 } from "lucide-react";
 import { useLoading } from "../Context/LoadingContext";
@@ -92,7 +92,6 @@ export function Navbar() {
           onClick={() => navigate("/")}
           className="flex items-center gap-2 flex-shrink-0 min-w-0"
         >
-          <Sparkles size={18} className="text-violet-400 flex-shrink-0" />
           <span className="text-base sm:text-lg font-bold gradient-text whitespace-nowrap">
             Brillit.io
           </span>

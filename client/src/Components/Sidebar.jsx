@@ -1,11 +1,28 @@
-import { Home, Snowflake, User, ChevronRight, ChevronLeft } from "lucide-react";
+import {
+  Home,
+  Snowflake,
+  User,
+  ChevronRight,
+  ChevronLeft,
+  Flame,
+  History,
+  Clock3,
+  ThumbsUp,
+  BookOpen,
+} from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSidebar } from "../Context/SidebarContext";
+import { toast } from "react-toastify";
 
 const navItems = [
-  { icon: Home,      label: "Home",    path: "/" },
-  { icon: Snowflake, label: "SynthAI", path: "/synthai" },
-  { icon: User,      label: "You",     path: "/update-profile" },
+  { icon: Home,      label: "Home",         path: "/" },
+  { icon: Flame,     label: "Trending",     comingSoon: true },
+  { icon: History,   label: "History",      comingSoon: true },
+  { icon: Clock3,    label: "Watch Later",  comingSoon: true },
+  { icon: ThumbsUp,  label: "Liked Videos", comingSoon: true },
+  { icon: BookOpen,  label: "Playlists",    comingSoon: true },
+  { icon: Snowflake, label: "SynthAI",      comingSoon: true },
+  { icon: User,      label: "You",          path: "/update-profile" },
 ];
 
 export function Sidebar() {
@@ -14,6 +31,14 @@ export function Sidebar() {
   const { sidebarExpanded, toggleSidebar } = useSidebar();
 
   const sidebarWidth = sidebarExpanded ? 200 : 64;
+
+  const handleNavClick = (item) => {
+    if (item.comingSoon) {
+      toast.info(`${item.label} is coming soon.`);
+      return;
+    }
+    if (item.path) navigate(item.path);
+  };
 
   return (
     <>
@@ -29,20 +54,22 @@ export function Sidebar() {
       >
         {/* Nav items */}
         <nav className="flex flex-col gap-1 p-2 flex-1 mt-2">
-          {navItems.map(({ icon: Icon, label, path }) => {
-            const isActive = location.pathname === path;
+          {navItems.map((item) => {
+            const { icon: Icon, label, path, comingSoon } = item;
+            const isActive = !!path && location.pathname === path;
             return (
               <button
-                key={path}
-                onClick={() => navigate(path)}
+                key={path || label}
+                onClick={() => handleNavClick(item)}
                 title={!sidebarExpanded ? label : undefined}
                 className="relative flex items-center rounded-xl transition-all group overflow-hidden"
                 style={{
                   height: 44,
                   padding: sidebarExpanded ? "0 12px" : "0",
                   justifyContent: sidebarExpanded ? "flex-start" : "center",
-                  color: isActive ? "var(--violet-light)" : "var(--text-muted)",
+                  color: isActive ? "var(--violet-light)" : comingSoon ? "var(--text-faint)" : "var(--text-muted)",
                   backgroundColor: isActive ? "rgba(139, 92, 246, 0.12)" : "transparent",
+                  opacity: comingSoon ? 0.9 : 1,
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) e.currentTarget.style.backgroundColor = "var(--bg-tertiary)";
@@ -73,7 +100,7 @@ export function Sidebar() {
                     style={{
                       opacity: sidebarExpanded ? 1 : 0,
                       transition: "opacity 150ms ease",
-                      color: isActive ? "var(--violet-light)" : "var(--text-muted)",
+                      color: isActive ? "var(--violet-light)" : comingSoon ? "var(--text-faint)" : "var(--text-muted)",
                     }}
                   >
                     {label}
@@ -112,14 +139,18 @@ export function Sidebar() {
           borderTop: "1px solid var(--border-subtle)",
         }}
       >
-        {navItems.map(({ icon: Icon, label, path }) => {
-          const isActive = location.pathname === path;
+        {navItems.map((item) => {
+          const { icon: Icon, label, path, comingSoon } = item;
+          const isActive = !!path && location.pathname === path;
           return (
             <button
-              key={path}
-              onClick={() => navigate(path)}
+              key={path || label}
+              onClick={() => handleNavClick(item)}
               className="flex flex-col items-center gap-1 py-2 px-5 rounded-xl transition-all"
-              style={{ color: isActive ? "var(--violet-light)" : "var(--text-muted)" }}
+              style={{
+                color: isActive ? "var(--violet-light)" : comingSoon ? "var(--text-faint)" : "var(--text-muted)",
+                opacity: comingSoon ? 0.95 : 1,
+              }}
             >
               <Icon size={20} strokeWidth={isActive ? 2 : 1.5} />
               <span className="text-[10px] font-medium">{label}</span>
