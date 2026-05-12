@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSidebar } from "../Context/SidebarContext";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const navItems = [
   { icon: Home,      label: "Home",         path: "/" },

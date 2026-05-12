@@ -2,7 +2,7 @@ import { Lock, User, Camera, Mail, Calendar, PlayCircle, Shield } from "lucide-r
 import { useState } from "react";
 import { useAuth } from "../Context/AuthContext";
 import axios from "../utils/axiosConfig";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";

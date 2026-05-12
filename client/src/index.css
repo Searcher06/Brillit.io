@@ -233,3 +233,26 @@ html, body {
 ───────────────────────────────────────── */
 .glow-violet     { box-shadow: 0 0 20px rgba(139, 92, 246, 0.35); }
 .glow-violet-sm  { box-shadow: 0 0 10px rgba(139, 92, 246, 0.25); }
+
+/* ─────────────────────────────────────────
+   Auth pages
+───────────────────────────────────────── */
+.auth-brand-panel {
+  background: linear-gradient(135deg, #1e1b4b 0%, var(--bg-primary) 60%, #1a0533 100%);
+}
+
+.auth-form-card {
+  background: transparent;
+}
+
+[data-theme="light"] .auth-brand-panel {
+  background: linear-gradient(135deg, #ede9fe 0%, #e0e7ff 45%, #dbeafe 100%);
+}
+
+[data-theme="light"] .auth-form-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}

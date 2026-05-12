@@ -1,7 +1,6 @@
-import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
 import { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff, Sparkles } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../utils/axiosConfig";
 
@@ -42,7 +41,12 @@ const SignUp = () => {
 
   const field = (icon, placeholder, key, type = "text") => (
     <div className="relative">
-      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500">{icon}</span>
+      <span
+        className="absolute left-3.5 top-1/2 -translate-y-1/2"
+        style={{ color: "var(--text-faint)" }}
+      >
+        {icon}
+      </span>
       <input
         className="input-dark w-full h-11 rounded-xl pl-10 pr-4 text-sm"
         placeholder={placeholder}
@@ -57,24 +61,22 @@ const SignUp = () => {
   return (
     <div className="min-h-screen w-full overflow-x-hidden flex" style={{ backgroundColor: "var(--bg-primary)" }}>
       {/* Left branding panel */}
-      <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #1e1b4b 0%, var(--bg-primary) 60%, #1a0533 100%)" }}>
+      <div className="auth-brand-panel hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-20"
           style={{ background: "radial-gradient(circle, #7c3aed, transparent)" }} />
         <div className="absolute bottom-32 right-10 w-56 h-56 rounded-full opacity-15"
           style={{ background: "radial-gradient(circle, #4f46e5, transparent)" }} />
 
-        <div className="relative z-10 flex items-center gap-2">
-          <Sparkles size={22} className="text-violet-400" />
+        <div className="relative z-10 flex items-center">
           <span className="text-xl font-bold gradient-text">Brillit.io</span>
         </div>
 
         <div className="relative z-10">
-          <h1 className="text-4xl font-bold text-white leading-tight mb-4">
+          <h1 className="text-4xl font-bold leading-tight mb-4" style={{ color: "var(--text-primary)" }}>
             Start your<br />
             <span className="gradient-text">learning journey.</span>
           </h1>
-          <p className="text-gray-400 text-lg leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
             Join thousands of students discovering personalized educational content every day.
           </p>
           <div className="mt-8 grid grid-cols-2 gap-4">
@@ -85,40 +87,27 @@ const SignUp = () => {
               { label: "Free", desc: "Always free to use" },
             ].map((item) => (
               <div key={item.label} className="glass rounded-xl p-3">
-                <p className="text-white text-sm font-semibold">{item.label}</p>
-                <p className="text-gray-500 text-xs mt-0.5">{item.desc}</p>
+                <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>{item.label}</p>
+                <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="relative z-10 text-gray-600 text-sm">© 2025 Brillit.io</p>
+        <p className="relative z-10 text-sm" style={{ color: "var(--text-faint)" }}>© 2025 Brillit.io</p>
       </div>
 
       {/* Right form panel */}
       <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 overflow-x-hidden">
-        <div className="w-full max-w-md">
-          <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <Sparkles size={20} className="text-violet-400" />
+        <div className="w-full max-w-md auth-form-card">
+          <div className="flex items-center mb-8 lg:hidden">
             <span className="text-xl font-bold gradient-text">Brillit.io</span>
           </div>
 
-          <h2 className="text-3xl font-bold text-white mb-1">Create account</h2>
-          <p className="text-gray-500 mb-8">Join Brillit and level up your learning</p>
+          <h2 className="text-3xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>Create account</h2>
+          <p className="mb-8" style={{ color: "var(--text-muted)" }}>Join Brillit and level up your learning</p>
 
-          <button type="button"
-            className="w-full h-11 glass rounded-xl flex items-center justify-center gap-3 text-gray-300 text-sm font-medium hover:border-violet-500/40 transition-all mb-6">
-            <FcGoogle size={20} />
-            Continue with Google
-          </button>
-
-          <div className="flex items-center gap-3 mb-6">
-            <hr className="flex-1 border-gray-800" />
-            <span className="text-gray-600 text-xs">OR</span>
-            <hr className="flex-1 border-gray-800" />
-          </div>
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-6">
             <div className="grid grid-cols-2 gap-3">
               {field(<User size={16} />, "First name", "firstName")}
               {field(<User size={16} />, "Last name", "lastName")}
@@ -127,7 +116,7 @@ const SignUp = () => {
 
             {/* Password with toggle */}
             <div className="relative">
-              <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
+              <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: "var(--text-faint)" }} />
               <input
                 type={show ? "text" : "password"}
                 className="input-dark w-full h-11 rounded-xl pl-10 pr-10 text-sm"
@@ -137,7 +126,8 @@ const SignUp = () => {
                 disabled={loading}
               />
               <button type="button"
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
+                style={{ color: "var(--text-faint)" }}
                 onClick={() => setShow((p) => !p)}>
                 {show ? <Eye size={16} /> : <EyeOff size={16} />}
               </button>
@@ -157,7 +147,7 @@ const SignUp = () => {
             </button>
           </form>
 
-          <p className="text-center text-gray-500 text-sm mt-6">
+          <p className="text-center text-sm mt-6" style={{ color: "var(--text-muted)" }}>
             Already have an account?{" "}
             <Link to="/login" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
               Sign in

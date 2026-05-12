@@ -7,7 +7,7 @@ import { ActiveContext } from "../Context/ActiveContext";
 import { FilterContext } from "../Context/FilterContext";
 import { Filter } from "./Filter";
 import axios from "../utils/axiosConfig";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import {
   Search, Sun, Moon, X,
   LogOut, ChevronDown, User,

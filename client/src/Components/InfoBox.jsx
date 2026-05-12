@@ -1,6 +1,6 @@
 import axios from "../utils/axiosConfig";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { Sparkles, ArrowRight } from "lucide-react";

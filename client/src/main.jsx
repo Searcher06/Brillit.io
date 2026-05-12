@@ -10,7 +10,7 @@ import { FilterProvider } from "./Context/FilterContext.jsx";
 import { SearchVideoProvider } from "./Context/searchVideosContext.jsx";
 import SignUp from "./Components/signup.jsx";
 import Login from "./Components/Login.jsx";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 import UpdateProfile from "./Components/UpdateProfile.jsx";
 import { PrivateRoute } from "./routes/PrivateRoute.jsx";
 import PersonalizationPage from "./Components/InfoBox.jsx";
@@ -111,13 +111,10 @@ createRoot(document.getElementById("root")).render(
                                 }
                               />
                             </Routes>
-                            <ToastContainer
+                            <Toaster
                               position="top-right"
-                              autoClose={3000}
-                              hideProgressBar={false}
-                              closeOnClick
-                              pauseOnHover
-                              theme="dark"
+                              richColors
+                              duration={3000}
                             />
                           </LoadingContextProvider>
                         </TabContextProvider>
