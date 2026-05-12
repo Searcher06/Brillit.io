@@ -14,6 +14,7 @@ import client from "../config/typesenseClient.js";
 import protect from "../middlewares/authMiddlware.js";
 import dashboardRoute from "../routes/dashboard.js";
 import aiRoutes from "../routes/aiSuggestions.js";
+import learningRoutes from "../routes/learningRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -59,12 +60,21 @@ const searchLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+const learningLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 40,
+  message: { message: "Too many learning requests, please slow down" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Routes
 app.use("/api/v1/videos", searchLimiter, videos);
 app.use("/api/v1/users/sign-in", authLimiter);
 app.use("/api/v1/users/sign-up", authLimiter);
 app.use("/api/v1/users", router);
 app.use("/api/v1/ai", aiLimiter, aiRoutes);
+app.use("/api/v1/learning", learningLimiter, learningRoutes);
 
 // Protected utility routes
 app.get("/api/v1/special", protect, async (req, res) => {
