@@ -10,11 +10,12 @@ import axios from "../utils/axiosConfig";
 import { toast } from "sonner";
 import {
   Search, Sun, Moon, X,
-  LogOut, ChevronDown, User,
+  LogOut, ChevronDown, User, Menu,
 } from "lucide-react";
 import { useLoading } from "../Context/LoadingContext";
 import { useTheme } from "../Context/ThemeContext";
 import { useAuth } from "../Context/AuthContext";
+import { useSidebar } from "../Context/SidebarContext";
 
 export function Navbar() {
   const { search, SearchHandler } = useContext(SearchContext);
@@ -25,6 +26,7 @@ export function Navbar() {
   const { setLLoading } = useLoading();
   const { theme, toggleTheme } = useTheme();
   const { user } = useAuth();
+  const { toggleMobileDrawer } = useSidebar();
 
   const [searchOpen, setSearchOpen] = useState(false);   // mobile overlay
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -87,6 +89,16 @@ export function Navbar() {
           boxShadow: "0 1px 0 var(--violet-glow)",
         }}
       >
+        {/* ── Hamburger (mobile only) ── */}
+        <button
+          className="sm:hidden p-2 rounded-xl mr-1 transition-all"
+          style={{ color: "var(--text-muted)" }}
+          onClick={toggleMobileDrawer}
+          aria-label="Open menu"
+        >
+          <Menu size={22} />
+        </button>
+
         {/* ── Logo ── */}
         <button
           onClick={() => navigate("/")}

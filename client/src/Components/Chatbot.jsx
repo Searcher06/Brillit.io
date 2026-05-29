@@ -42,7 +42,7 @@ export function Chatbot() {
             <Sidebar />
 
             <main
-                className="mt-16 mb-[60px] sm:mb-0 flex h-[calc(100vh-64px)] main-content"
+                className="mt-16 mb-0 flex h-[calc(100vh-64px)] main-content"
                 style={{ marginLeft: `${sidebarWidth}px`, transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)" }}
             >
                 {/* ── Chat history sidebar (hidden on mobile unless toggled) ── */}

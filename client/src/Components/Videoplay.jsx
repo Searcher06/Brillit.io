@@ -84,7 +84,7 @@ export default function Videoplay() {
         <Sidebar />
 
         <main
-          className="mt-16 mb-[60px] sm:mb-0 min-h-screen w-full overflow-x-hidden main-content"
+          className="mt-16 mb-0 min-h-screen w-full overflow-x-hidden main-content"
           style={{
             marginLeft: `${sidebarWidth}px`,
             transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)",
