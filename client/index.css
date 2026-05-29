@@ -1,1 +1,192 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+/* ── CSS Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-primary: #0f0f13;
+  --bg-secondary: #16161d;
+  --bg-tertiary: #1e1e28;
+  --glass-bg: rgba(22, 22, 29, 0.85);
+  --glass-bg-heavy: rgba(15, 15, 19, 0.95);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --text-primary: #f0f0f5;
+  --text-muted: #9090a8;
+  --text-faint: #55556a;
+  --violet-accent: #7c3aed;
+  --violet-light: #a78bfa;
+  --violet-glow: rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f5f5fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #ebebf5;
+  --glass-bg: rgba(245, 245, 250, 0.85);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.97);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --text-primary: #111118;
+  --text-muted: #55556a;
+  --text-faint: #9090a8;
+  --violet-accent: #7c3aed;
+  --violet-light: #6d28d9;
+  --violet-glow: rgba(124, 58, 237, 0.15);
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ── Gradient text ─────────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.btn-gradient {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: opacity 150ms, transform 150ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-gradient:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.btn-gradient:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── Chips ─────────────────────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 150ms, color 150ms, border-color 150ms;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+.chip:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--violet-light);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+.chip-active {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+.chip:disabled { cursor: default; }
+
+/* ── Inputs ────────────────────────────────────────────────────────────────── */
+.input-dark {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.input-dark::placeholder { color: var(--text-faint); }
+.input-dark:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* ── Glass card ────────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Auth form card ────────────────────────────────────────────────────────── */
+.auth-form-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 32px 28px;
+}
+@media (max-width: 400px) {
+  .auth-form-card { padding: 24px 18px; border-radius: 16px; }
+}
+
+/* ── Auth brand panel ──────────────────────────────────────────────────────── */
+.auth-brand-panel {
+  background: linear-gradient(160deg, #0f0f13 0%, #1a1030 100%);
+  border-right: 1px solid var(--border-subtle);
+}
+
+/* ── Video card ────────────────────────────────────────────────────────────── */
+.video-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 150ms, box-shadow 150ms, border-color 150ms;
+}
+.video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+/* ── Skeleton ──────────────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Fade-in ───────────────────────────────────────────────────────────────── */
+.fade-in {
+  animation: fadeIn 200ms ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Sidebar rail transition ───────────────────────────────────────────────── */
+.sidebar-rail {
+  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* ── Mobile safe area (bottom nav) ────────────────────────────────────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ── Responsive main content offset ───────────────────────────────────────── */
+/* marginLeft is controlled via JS (sidebarWidth = 0 on mobile, sidebar width on desktop) */

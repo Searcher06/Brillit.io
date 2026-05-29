@@ -23,7 +23,7 @@ export default function Recommendation({ user, recommended, tab, setTab, setActi
   const chips = user?.suggestedKeywords?.length > 0 ? user.suggestedKeywords : recommended;
 
   return (
-    <section className="flex items-center gap-2 px-2 sm:pl-20 sm:pr-4 py-3 min-h-[60px]">
+    <section className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2.5 min-h-[52px]">
       {/* Left arrow — desktop only */}
       <button
         onClick={scrollLeft}
@@ -36,7 +36,7 @@ export default function Recommendation({ user, recommended, tab, setTab, setActi
       {/* Chips */}
       <div
         ref={containerRef}
-        className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth py-0.5"
+        className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth py-0.5 flex-1"
       >
         {chips.map((current, index) => (
           <button
@@ -44,7 +44,8 @@ export default function Recommendation({ user, recommended, tab, setTab, setActi
             ref={(el) => (chipRefs.current[index] = el)}
             disabled={tab === current}
             onClick={() => handleClick(current, index)}
-            className={`chip flex-shrink-0 px-3.5 py-1.5 text-sm leading-tight ${current === tab ? "chip-active" : ""}`}
+            className={`chip flex-shrink-0 ${current === tab ? "chip-active" : ""}`}
+            style={{ fontSize: "12px", padding: "5px 12px" }}
           >
             {current}
           </button>

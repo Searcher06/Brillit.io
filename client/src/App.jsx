@@ -158,10 +158,10 @@ export default function App() {
   const { user, tab, setTab } = useAuth();
   const { tabVideos, setTabVideos } = useTabVideosContext();
   const { active, setActive } = useContext(ActiveContext);
-  const { sidebarExpanded } = useSidebar();
+  const { sidebarExpanded, isMobile } = useSidebar();
   const navigate = useNavigate();
 
-  const sidebarWidth = sidebarExpanded ? 200 : 64;
+  const sidebarWidth = isMobile ? 0 : (sidebarExpanded ? 200 : 64);
 
   const searchVideos = async () => {
     try {
@@ -237,8 +237,11 @@ export default function App() {
         <Sidebar />
 
         <main
-          className="flex-1 mt-16 mb-16 sm:mb-0 min-h-screen w-full overflow-x-hidden"
-          style={{ marginLeft: `${sidebarWidth}px`, transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)" }}
+          className="flex-1 mt-16 mb-[60px] sm:mb-0 min-h-screen w-full overflow-x-hidden main-content"
+          style={{
+            marginLeft: `${sidebarWidth}px`,
+            transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)",
+          }}
         >
           {/* Sticky chips bar */}
           <div
@@ -252,7 +255,7 @@ export default function App() {
           </div>
 
           {/* Content */}
-          <div className="px-3 sm:px-4 pt-6 pb-6">
+          <div className="px-3 sm:px-4 pt-4 pb-6">
             {LLoading ? (
               <LoadingState message={loadingMessage} />
             ) : error ? (
@@ -272,13 +275,7 @@ export default function App() {
                 onSuggestionClick={handleSuggestionClick}
               />
             ) : (
-              <div
-                className={
-                  active === "search"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-                    : "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4"
-                }
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                 {currentVideos?.map((video, index) => (
                   <VideoCard key={video.id || index} video={video} onClick={() => handleVideoClick(video)} />
                 ))}

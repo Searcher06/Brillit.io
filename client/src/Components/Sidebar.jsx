@@ -130,30 +130,35 @@ export function Sidebar() {
       </aside>
 
       {/* ── Mobile bottom bar ── */}
+      {/* Show only the 5 most useful items on mobile to avoid overflow */}
       <nav
-        className="sm:hidden fixed bottom-0 left-0 w-full h-16 flex items-center justify-around z-50"
+        className="mobile-bottom-nav sm:hidden fixed bottom-0 left-0 w-full flex items-center justify-around z-50"
         style={{
+          height: "60px",
           backgroundColor: "var(--glass-bg-heavy)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
           borderTop: "1px solid var(--border-subtle)",
         }}
       >
-        {navItems.map((item) => {
+        {navItems.slice(0, 5).map((item) => {
           const { icon: Icon, label, path, comingSoon } = item;
           const isActive = !!path && location.pathname === path;
           return (
             <button
               key={path || label}
               onClick={() => handleNavClick(item)}
-              className="flex flex-col items-center gap-1 py-2 px-5 rounded-xl transition-all"
+              className="flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-all"
               style={{
                 color: isActive ? "var(--violet-light)" : comingSoon ? "var(--text-faint)" : "var(--text-muted)",
-                opacity: comingSoon ? 0.95 : 1,
+                opacity: comingSoon ? 0.9 : 1,
+                minWidth: 0,
               }}
             >
               <Icon size={20} strokeWidth={isActive ? 2 : 1.5} />
-              <span className="text-[10px] font-medium">{label}</span>
+              <span className="text-[10px] font-medium leading-tight truncate w-full text-center px-1">
+                {label}
+              </span>
             </button>
           );
         })}

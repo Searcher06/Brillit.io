@@ -44,9 +44,9 @@ export default function Videoplay() {
   const { active } = useContext(ActiveContext);
   const { tabVideos } = useTabVideosContext();
   const { tab } = useAuth();
-  const { sidebarExpanded } = useSidebar();
+  const { sidebarExpanded, isMobile } = useSidebar();
 
-  const sidebarWidth = sidebarExpanded ? 200 : 64;
+  const sidebarWidth = isMobile ? 0 : (sidebarExpanded ? 200 : 64);
 
   const title       = currentVideo?.snippet?.title;
   const channelTitle = currentVideo?.snippet?.channelTitle;
@@ -84,7 +84,7 @@ export default function Videoplay() {
         <Sidebar />
 
         <main
-          className="mt-16 mb-16 sm:mb-0 min-h-screen w-full overflow-x-hidden"
+          className="mt-16 mb-[60px] sm:mb-0 min-h-screen w-full overflow-x-hidden main-content"
           style={{
             marginLeft: `${sidebarWidth}px`,
             transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)",

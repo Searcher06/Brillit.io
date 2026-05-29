@@ -24,10 +24,10 @@ const UpdateProfile = () => {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user, setUser, setloading } = useAuth();
-  const { sidebarExpanded } = useSidebar();
+  const { sidebarExpanded, isMobile } = useSidebar();
   const navigate = useNavigate();
 
-  const sidebarWidth = sidebarExpanded ? 200 : 64;
+  const sidebarWidth = isMobile ? 0 : (sidebarExpanded ? 200 : 64);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +76,7 @@ const UpdateProfile = () => {
       <Sidebar />
 
       <main
-        className="mt-16 mb-16 sm:mb-0 min-h-[calc(100vh-64px)]"
+        className="mt-16 mb-[60px] sm:mb-0 min-h-[calc(100vh-64px)] main-content"
         style={{
           marginLeft: `${sidebarWidth}px`,
           transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)",
