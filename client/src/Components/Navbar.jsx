@@ -10,7 +10,7 @@ import axios from "../utils/axiosConfig";
 import { toast } from "sonner";
 import {
   Search, Sun, Moon, X,
-  LogOut, ChevronDown, User, Menu,
+  LogOut, ChevronDown, User,
 } from "lucide-react";
 import { useLoading } from "../Context/LoadingContext";
 import { useTheme } from "../Context/ThemeContext";
@@ -89,16 +89,6 @@ export function Navbar() {
           boxShadow: "0 1px 0 var(--violet-glow)",
         }}
       >
-        {/* ── Hamburger (mobile only) ── */}
-        <button
-          className="sm:hidden p-2 rounded-xl mr-1 transition-all"
-          style={{ color: "var(--text-muted)" }}
-          onClick={toggleMobileDrawer}
-          aria-label="Open menu"
-        >
-          <Menu size={22} />
-        </button>
-
         {/* ── Logo ── */}
         <button
           onClick={() => navigate("/")}

@@ -73,7 +73,7 @@ function NavItem({ item, expanded, onClick }) {
 
 export function Sidebar() {
   const navigate = useNavigate();
-  const { sidebarExpanded, toggleSidebar, mobileDrawerOpen, closeMobileDrawer } = useSidebar();
+  const { sidebarExpanded, toggleSidebar, mobileDrawerOpen, closeMobileDrawer, toggleMobileDrawer } = useSidebar();
 
   const handleNavClick = (item) => {
     if (item.comingSoon) {
@@ -179,6 +179,24 @@ export function Sidebar() {
           ))}
         </nav>
       </aside>
+      {/* ── Mobile floating nav button (sm-) ── */}
+      <button
+        className="sm:hidden fixed bottom-6 right-4 z-40 flex items-center justify-center rounded-2xl shadow-lg transition-all active:scale-95"
+        style={{
+          width: 48,
+          height: 48,
+          background: "linear-gradient(135deg, #7c3aed, #4f46e5)",
+          boxShadow: "0 4px 20px rgba(124, 58, 237, 0.5)",
+        }}
+        onClick={toggleMobileDrawer}
+        aria-label="Open navigation"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="15" y2="12"/>
+          <line x1="3" y1="18" x2="10" y2="18"/>
+        </svg>
+      </button>
     </>
   );
 }
