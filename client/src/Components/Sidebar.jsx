@@ -21,7 +21,7 @@ import axios from "../utils/axiosConfig";
 const navItems = [
   { icon: Home,      label: "Home",         path: "/" },
   { icon: Flame,     label: "Trending",     comingSoon: true },
-  { icon: History,   label: "History",      comingSoon: true },
+  { icon: History,   label: "History",      path: "/history" },
   { icon: Clock3,    label: "Watch Later",  comingSoon: true },
   { icon: ThumbsUp,  label: "Liked Videos", comingSoon: true },
   { icon: BookOpen,  label: "Playlists",    comingSoon: true },

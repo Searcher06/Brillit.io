@@ -46,7 +46,16 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   videosWatched: {
-    type: [String],
+    type: [
+      {
+        videoId:      { type: String, required: true },
+        title:        { type: String, required: true },
+        thumbnail:    { type: String, default: "" },
+        channelTitle: { type: String, default: "" },
+        duration:     { type: String, default: "" },
+        watchedAt:    { type: Date,   default: Date.now },
+      },
+    ],
     default: [],
   },
   createdAt: {

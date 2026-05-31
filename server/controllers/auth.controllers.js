@@ -173,6 +173,28 @@ export const getMe = async (req, res) => {
   return res.status(200).json(userInfo);
 };
 
+export const getHistory = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user._id).select("videosWatched");
+    // Filter out any legacy string entries that don't have a videoId
+    const history = user.videosWatched.filter((v) => v.videoId && v.title);
+    res.status(200).json(history);
+  } catch (error) {
+    console.error("Error fetching history:", error);
+    res.status(500).json({ message: "Internal error" });
+  }
+};
+
+export const clearHistory = async (req, res) => {
+  try {
+    await userModel.findByIdAndUpdate(req.user._id, { videosWatched: [] });
+    res.status(200).json({ message: "History cleared" });
+  } catch (error) {
+    console.error("Error clearing history:", error);
+    res.status(500).json({ message: "Internal error" });
+  }
+};
+
 export const updateProfile = async (req, res) => {
   try {
     const { newFirstName, newLastName, newPassword, oldPassword } = req.body;

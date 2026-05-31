@@ -1,28 +1,37 @@
-import dontenv from "dotenv";
+import dotenv from "dotenv";
 import { userModel } from "../models/user.model.js";
 
-dontenv.config();
+dotenv.config();
 
 export const videoId = async (req, res) => {
-  const videoTitle = req.query.title;
+  const { id: videoId } = req.params;
+  const { title, thumbnail, channelTitle, duration } = req.query;
 
   try {
-    // getting the current user
-    const user = await userModel.findById(req.user._id);
-
-    if (videoTitle) {
-      // Store structured watch entry with timestamp instead of raw title string
-      const watchEntry = {
-        title: videoTitle,
-        watchedAt: new Date().toISOString(),
+    if (videoId && title) {
+      const newEntry = {
+        videoId,
+        title:        decodeURIComponent(title),
+        thumbnail:    thumbnail    ? decodeURIComponent(thumbnail)    : "",
+        channelTitle: channelTitle ? decodeURIComponent(channelTitle) : "",
+        duration:     duration     ? decodeURIComponent(duration)     : "",
+        watchedAt:    new Date(),
       };
-      user.videosWatched = [...user.videosWatched, JSON.stringify(watchEntry)];
-      await user.save();
+
+      // Step 1: remove any existing entry for this video (dedup)
+      await userModel.findByIdAndUpdate(req.user._id, {
+        $pull: { videosWatched: { videoId } },
+      });
+
+      // Step 2: add new entry to the front
+      await userModel.findByIdAndUpdate(req.user._id, {
+        $push: { videosWatched: { $each: [newEntry], $position: 0, $slice: 200 } },
+      });
     }
 
     res.status(200).json({ success: true });
   } catch (error) {
-    console.log("Error in youtube ID controller : ", error);
+    console.error("Error in videoId controller:", error);
     res.status(500).json({ message: "Internal error" });
   }
 };

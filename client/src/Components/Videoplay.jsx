@@ -58,7 +58,20 @@ export default function Videoplay() {
       setRelatedError(false);
       try {
         if (title) {
-          await axios.get(`/api/v1/videos/${id}?title=${encodeURIComponent(title)}`);
+          const thumb =
+            currentVideo?.snippet?.thumbnails?.maxres?.url ||
+            currentVideo?.snippet?.thumbnails?.standard?.url ||
+            currentVideo?.snippet?.thumbnails?.high?.url || "";
+          const channel = currentVideo?.snippet?.channelTitle || "";
+          const dur = currentVideo?.contentDetails?.duration || "";
+
+          await axios.get(
+            `/api/v1/videos/${id}` +
+            `?title=${encodeURIComponent(title)}` +
+            `&thumbnail=${encodeURIComponent(thumb)}` +
+            `&channelTitle=${encodeURIComponent(channel)}` +
+            `&duration=${encodeURIComponent(dur)}`
+          );
         }
         // Refresh AI keywords in background — non-blocking
         axios.post("/api/v1/ai/videoSuggestion").catch(() => {});
