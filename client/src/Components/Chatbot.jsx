@@ -106,18 +106,13 @@ export function Chatbot() {
           <div className="flex flex-col h-full" style={{ width: 220, minWidth: 220 }}>
 
             {/* Header */}
-            <div className="flex items-center justify-between px-4 h-14 flex-shrink-0">
+            <div className="flex items-center px-4 h-14 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg,#7c3aed,#4f46e5)" }}>
                   <Sparkles size={12} className="text-white" />
                 </div>
                 <span className="text-sm font-bold gradient-text">SynthAI</span>
               </div>
-              <button onClick={() => setChatSidebarCollapsed(true)} className="p-1.5 rounded-lg transition-colors" style={{ color: "var(--text-faint)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-muted)"; e.currentTarget.style.backgroundColor = "var(--bg-tertiary)" }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-faint)"; e.currentTarget.style.backgroundColor = "transparent" }}>
-                <PanelLeftClose size={15} />
-              </button>
             </div>
 
             {/* New Chat */}
@@ -192,12 +187,33 @@ export function Chatbot() {
         {/* ══ MAIN AREA ══ */}
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden" style={{ height: "100%" }}>
 
-          {/* Mobile hamburger — sits above input, not overlapping content */}
-          <div className="sm:hidden flex items-center px-4 pt-3 flex-shrink-0">
-            <button className="p-1.5 rounded-lg" style={{ color: "var(--text-muted)" }} onClick={() => setChatSidebarOpen(true)}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="10" y2="18"/></svg>
+          {/* Always-visible topbar with toggle button */}
+          <div
+            className="flex items-center gap-2 px-3 h-12 flex-shrink-0"
+            style={{ borderBottom: "1px solid var(--border-subtle)" }}
+          >
+            {/* Mobile: open drawer */}
+            <button
+              className="sm:hidden p-2 rounded-lg transition-colors"
+              style={{ color: "var(--text-muted)" }}
+              onClick={() => setChatSidebarOpen(true)}
+            >
+              <PanelLeftOpen size={16} />
             </button>
-            <span className="text-sm font-bold gradient-text ml-2">SynthAI</span>
+
+            {/* Desktop: toggle collapse/expand */}
+            <button
+              className="hidden sm:flex p-2 rounded-lg transition-colors"
+              style={{ color: "var(--text-muted)" }}
+              onClick={() => setChatSidebarCollapsed(p => !p)}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--bg-tertiary)" }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent" }}
+              title={chatSidebarCollapsed ? "Show sidebar" : "Hide sidebar"}
+            >
+              {chatSidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+            </button>
+
+            <span className="text-sm font-semibold gradient-text">SynthAI</span>
           </div>
 
           {/* Messages / Welcome */}
