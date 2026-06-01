@@ -67,12 +67,41 @@ export function Chatbot() {
       <main className="flex main-content" style={{ marginLeft: `${sidebarWidth}px`, height: "calc(100vh - 64px)", marginTop: 64, transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)" }}>
 
         {/* Mobile backdrop */}
-        {chatSidebarOpen && <div className="fixed inset-0 z-30 sm:hidden bg-black/50" onClick={() => setChatSidebarOpen(false)} />}
 
         {/* ══ CHAT SIDEBAR ══ */}
+        {/* Backdrop */}
+        <div
+          className="sm:hidden fixed inset-0 z-40 transition-opacity duration-300"
+          style={{
+            backgroundColor: "rgba(0,0,0,0.6)",
+            opacity: chatSidebarOpen ? 1 : 0,
+            pointerEvents: chatSidebarOpen ? "auto" : "none",
+            top: 64,
+          }}
+          onClick={() => setChatSidebarOpen(false)}
+        />
+
+        {/* Drawer */}
         <aside
-          className={`flex-shrink-0 flex flex-col fixed sm:relative z-40 sm:z-auto transition-all duration-300 ${chatSidebarOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}`}
-          style={{ width: chatSidebarCollapsed ? 0 : 220, minWidth: chatSidebarCollapsed ? 0 : 220, overflow: "hidden", height: "100%", top: isMobile ? 64 : 0, backgroundColor: "var(--bg-secondary)", borderRight: "1px solid var(--border-subtle)" }}
+          style={{
+            position: isMobile ? "fixed" : "relative",
+            top: isMobile ? 64 : 0,
+            left: 0,
+            height: isMobile ? "calc(100vh - 64px)" : "100%",
+            width: chatSidebarCollapsed ? 0 : 220,
+            minWidth: chatSidebarCollapsed ? 0 : 220,
+            overflow: "hidden",
+            flexShrink: 0,
+            display: "flex",
+            flexDirection: "column",
+            zIndex: isMobile ? 50 : "auto",
+            backgroundColor: "var(--glass-bg-heavy)",
+            borderRight: "1px solid var(--border-subtle)",
+            transform: isMobile
+              ? chatSidebarOpen ? "translateX(0)" : "translateX(-100%)"
+              : "translateX(0)",
+            transition: "transform 280ms cubic-bezier(0.4,0,0.2,1), width 280ms cubic-bezier(0.4,0,0.2,1)",
+          }}
         >
           <div className="flex flex-col h-full" style={{ width: 220, minWidth: 220 }}>
 
@@ -161,55 +190,44 @@ export function Chatbot() {
         </aside>
 
         {/* ══ MAIN AREA ══ */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative" style={{ height: "100%" }}>
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden" style={{ height: "100%" }}>
 
-          {/* Expand sidebar button — only when collapsed, top-left corner */}
-          {(chatSidebarCollapsed || isMobile) && (
-            <button
-              className="absolute top-3 left-3 z-10 p-1.5 rounded-lg transition-colors sm:flex hidden"
-              style={{ color: "var(--text-faint)" }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-muted)"; e.currentTarget.style.backgroundColor = "var(--bg-tertiary)" }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-faint)"; e.currentTarget.style.backgroundColor = "transparent" }}
-              onClick={() => setChatSidebarCollapsed(false)}
-              title="Expand sidebar"
-            >
-              <PanelLeftOpen size={15} />
+          {/* Mobile hamburger — sits above input, not overlapping content */}
+          <div className="sm:hidden flex items-center px-4 pt-3 flex-shrink-0">
+            <button className="p-1.5 rounded-lg" style={{ color: "var(--text-muted)" }} onClick={() => setChatSidebarOpen(true)}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="10" y2="18"/></svg>
             </button>
-          )}
-
-          {/* Mobile hamburger */}
-          <button className="sm:hidden absolute top-3 left-3 z-10 p-1.5 rounded-lg" style={{ color: "var(--text-muted)" }} onClick={() => setChatSidebarOpen(true)}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="10" y2="18"/></svg>
-          </button>
+            <span className="text-sm font-bold gradient-text ml-2">SynthAI</span>
+          </div>
 
           {/* Messages / Welcome */}
           <div className="flex-1 overflow-y-auto scrollbar-hide" style={{ minHeight: 0 }}>
             {isEmpty ? (
               <div className="min-h-full flex flex-col items-center justify-center px-4 py-12 select-none">
-                <div className="relative" style={{ marginBottom: "-2rem" }}>
+                <div className="relative" style={{ marginBottom: "-1.5rem" }}>
                   <img
                     src="/synthAI.png"
                     alt="SynthAI"
-                    className="w-56 h-56 object-contain"
+                    className="w-40 h-40 sm:w-56 sm:h-56 object-contain"
                     style={{ filter: "drop-shadow(0 0 24px rgba(139,92,246,0.5))" }}
                   />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-semibold mb-2 text-center" style={{ color: "var(--text-primary)" }}>Ready to Learn Something New?</h2>
-                <p className="text-sm text-center max-w-sm mb-8" style={{ color: "var(--text-muted)" }}>Ask SynthAI anything — get explanations, video recommendations, and personalized study plans.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl px-2">
+                <h2 className="text-xl sm:text-3xl font-semibold mb-2 text-center" style={{ color: "var(--text-primary)" }}>Ready to Learn Something New?</h2>
+                <p className="text-xs sm:text-sm text-center max-w-sm mb-6" style={{ color: "var(--text-muted)" }}>Ask SynthAI anything — get explanations, video recommendations, and personalized study plans.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 w-full max-w-2xl px-2">
                   {featureCards.map(({ icon: Icon, action, title, desc }) => (
-                    <button key={title} onClick={() => handleSuggestion(action)} className="text-left p-4 rounded-2xl transition-all"
+                    <button key={title} onClick={() => handleSuggestion(action)} className="text-left p-3 sm:p-4 rounded-2xl transition-all"
                       style={{ backgroundColor: "var(--bg-secondary)", border: "1px solid var(--border-color)" }}
                       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(139,92,246,0.35)"; e.currentTarget.style.backgroundColor = "var(--bg-tertiary)" }}
                       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-color)"; e.currentTarget.style.backgroundColor = "var(--bg-secondary)" }}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "rgba(139,92,246,0.12)" }}>
-                          <Icon size={15} style={{ color: "var(--violet-light)" }} />
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundColor: "rgba(139,92,246,0.12)" }}>
+                          <Icon size={13} style={{ color: "var(--violet-light)" }} />
                         </div>
                         <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ backgroundColor: "rgba(139,92,246,0.1)", color: "var(--violet-light)", border: "1px solid rgba(139,92,246,0.2)" }}>{action}</span>
                       </div>
-                      <p className="text-xs font-semibold mb-1" style={{ color: "var(--text-primary)" }}>{title}</p>
-                      <p className="text-[11px] leading-relaxed" style={{ color: "var(--text-muted)" }}>{desc}</p>
+                      <p className="text-xs font-semibold mb-0.5" style={{ color: "var(--text-primary)" }}>{title}</p>
+                      <p className="text-[11px] leading-relaxed hidden sm:block" style={{ color: "var(--text-muted)" }}>{desc}</p>
                     </button>
                   ))}
                 </div>
@@ -275,7 +293,7 @@ export function Chatbot() {
                       <button key={label} className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-xs transition-all" style={{ color: "var(--text-faint)" }}
                         onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--bg-tertiary)"; e.currentTarget.style.color = "var(--text-muted)" }}
                         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--text-faint)" }}>
-                        <Icon size={12} /><span>{label}</span>
+                        <Icon size={12} /><span className="hidden sm:inline">{label}</span>
                       </button>
                     ))}
                   </div>
