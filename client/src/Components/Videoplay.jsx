@@ -54,6 +54,10 @@ export default function Videoplay() {
   const description  = currentVideo?.snippet?.description || "";
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
     const updateWatchHistory = async () => {
       setLoading(true);
       setRelatedError(false);
