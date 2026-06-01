@@ -11,7 +11,9 @@ import { SearchVideoProvider } from "./Context/searchVideosContext.jsx";
 import SignUp from "./Components/signup.jsx";
 import Login from "./Components/Login.jsx";
 import { Toaster } from "sonner";
+import { WatchLaterProvider } from "./Context/WatchLaterContext.jsx";
 import History from "./Components/History.jsx";
+import WatchLater from "./Components/WatchLater.jsx";
 import UpdateProfile from "./Components/UpdateProfile.jsx";
 import { PrivateRoute } from "./routes/PrivateRoute.jsx";
 import PersonalizationPage from "./Components/InfoBox.jsx";
@@ -29,6 +31,7 @@ createRoot(document.getElementById("root")).render(
   <ThemeProvider>
     <BrowserRouter>
       <AuthProvider>
+        <WatchLaterProvider>
         <SidebarProvider>
           <CurrentVideoProvider>
             <FilterProvider>
@@ -63,6 +66,14 @@ createRoot(document.getElementById("root")).render(
                                     <ProtectWatchVideoPage>
                                       <Videoplay />
                                     </ProtectWatchVideoPage>
+                                  </PrivateRoute>
+                                }
+                              />
+                              <Route
+                                path="/watch-later"
+                                element={
+                                  <PrivateRoute>
+                                    <WatchLater />
                                   </PrivateRoute>
                                 }
                               />
@@ -135,6 +146,7 @@ createRoot(document.getElementById("root")).render(
             </FilterProvider>
           </CurrentVideoProvider>
         </SidebarProvider>
+        </WatchLaterProvider>
       </AuthProvider>
     </BrowserRouter>
   </ThemeProvider>

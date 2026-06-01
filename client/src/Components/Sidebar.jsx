@@ -22,7 +22,7 @@ const navItems = [
   { icon: Home,      label: "Home",         path: "/" },
   { icon: Flame,     label: "Trending",     comingSoon: true },
   { icon: History,   label: "History",      path: "/history" },
-  { icon: Clock3,    label: "Watch Later",  comingSoon: true },
+  { icon: Clock3,    label: "Watch Later",  path: "/watch-later" },
   { icon: ThumbsUp,  label: "Liked Videos", comingSoon: true },
   { icon: BookOpen,  label: "Playlists",    comingSoon: true },
   { icon: Snowflake, label: "SynthAI",      path: "/synthai" },

@@ -19,7 +19,8 @@ import Recommendation from "./Components/Recommendation";
 import { useTabVideosContext } from "./Context/TabVideosContext";
 import { useLoading } from "./Context/LoadingContext";
 import { useSidebar } from "./Context/SidebarContext";
-import { SearchX, Link } from "lucide-react";
+import { SearchX } from "lucide-react";
+import { SaveButton } from "./Components/SaveButton";
 
 const recommended = [
   "All",
@@ -56,29 +57,41 @@ export function getEmptyStateSuggestions(recommendedList) {
 // ── VideoCard ────────────────────────────────────────────────────────────────
 
 function VideoCard({ video, onClick }) {
+  const [hovered, setHovered] = useState(false);
   const date = new Date(video.snippet.publishedAt);
   const isoDuration = video.contentDetails.duration;
   const thumb =
     video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.standard?.url || video.snippet.thumbnails.high?.url || null;
 
   return (
-    <div onClick={onClick} className="video-card fade-in">
+    <div
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="video-card fade-in"
+    >
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
         {thumb ? (
           <img src={thumb} alt={video.snippet.title} className="w-full h-full object-cover" loading="lazy" />
         ) : (
           <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: "var(--bg-secondary)" }}>
-            <span className="text-xs" style={{ color: "var(--text-faint)" }}>
-              No thumbnail
-            </span>
+            <span className="text-xs" style={{ color: "var(--text-faint)" }}>No thumbnail</span>
           </div>
         )}
+        {/* Duration badge */}
         <span
           className="absolute bottom-2 right-2 text-xs font-medium px-1.5 py-0.5 rounded text-white"
           style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
         >
           <FormatYouTubeDuration isoDuration={isoDuration} />
         </span>
+        {/* Save button — top right on hover */}
+        <div
+          className="absolute top-2 right-2 transition-all duration-150"
+          style={{ opacity: hovered ? 1 : 0, transform: hovered ? "scale(1)" : "scale(0.85)" }}
+        >
+          <SaveButton video={video} variant="icon" />
+        </div>
       </div>
 
       <div className="p-3">

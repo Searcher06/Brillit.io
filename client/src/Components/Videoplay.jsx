@@ -15,6 +15,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useTabVideosContext } from "../Context/TabVideosContext";
 import { useSidebar } from "../Context/SidebarContext";
 import { ChevronDown, ChevronUp, WifiOff } from "lucide-react";
+import { SaveButton } from "./SaveButton";
 
 // ── Skeleton card ────────────────────────────────────────────────────────────
 function RelatedVideoSkeleton() {
@@ -137,9 +138,10 @@ export default function Videoplay() {
                 >
                   {title || "Loading..."}
                 </h1>
-                <p className="text-sm mb-3" style={{ color: "var(--text-muted)" }}>
-                  {channelTitle}
-                </p>
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <p className="text-sm" style={{ color: "var(--text-muted)" }}>{channelTitle}</p>
+                  {currentVideo && <SaveButton video={currentVideo} variant="pill" />}
+                </div>
 
                 {/* Collapsible description */}
                 {description && (
