@@ -1,30 +1,41 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCog, faPlus, faSearch, faRedo } from "@fortawesome/free-solid-svg-icons"
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH"
 import { faCopy, faPaperPlane, faPlayCircle } from "@fortawesome/free-regular-svg-icons"
 import { useState, useRef, useEffect } from "react"
 import { Navbar } from "./Navbar"
 import { Sidebar } from "./Sidebar"
 import { useSidebar } from "../Context/SidebarContext"
 import { useAuth } from "../Context/AuthContext"
-import { Sparkles } from "lucide-react"
+import { Sparkles, PanelLeftClose, PanelLeftOpen } from "lucide-react"
 
-let chats = [
-    "Vite config error fixing error react",
-    "Explain the big bang theory",
-    "what is the best way to learn javascript",
-    "Regex basics in javascript 2025",
-    "How can I improve my time management",
-    "What is quantum computing",
-    "Explain neural networks simply",
-    "Best resources for learning Python",
+const chats = [
+    "How does Brillit personalize my feed?",
+    "Best videos for learning React",
+    "Explain gradient descent simply",
+    "Recommend calculus resources",
+    "What is machine learning?",
+    "How to study effectively",
+    "Top cybersecurity concepts",
+    "Algebra basics for beginners",
 ]
 
 const conversation = [
-    { type: "prompt",   content: "Hi my name is Ahmad Ibrahim" },
-    { type: "response", content: "Nice to meet you Ahmad! I'm SynthAI, your personal learning assistant on Brillit. How can I help you today?" },
-    { type: "prompt",   content: "Explain the big bang theory" },
-    { type: "response", content: "The Big Bang Theory describes the origin of the universe approximately 13.8 billion years ago. It proposes that the universe began from an extremely hot, dense singularity and has been expanding ever since.\n\nKey points:\n• All matter, energy, space, and time originated from this single event\n• The universe continues to expand and cool\n• Evidence includes cosmic microwave background radiation and the redshift of distant galaxies" },
+    {
+        type: "prompt",
+        content: "What is Brillit and how does it help me learn?"
+    },
+    {
+        type: "response",
+        content: "Brillit is an AI-powered educational video platform designed to personalize your learning journey.\n\nHere's what it does for you:\n• 🎯 Learns your interests and builds a personalized video feed\n• 🔍 Fast, typo-tolerant search across thousands of educational videos\n• 🤖 SynthAI (that's me!) answers your questions and explains concepts\n• 📚 Tracks your watch history so you never lose progress\n\nJust search for any topic — algebra, React, physics, cybersecurity — and Brillit surfaces the best videos for you."
+    },
+    {
+        type: "prompt",
+        content: "Can you recommend videos for learning JavaScript?"
+    },
+    {
+        type: "response",
+        content: "Absolutely! Here are some great search terms to try on Brillit:\n\n• **JavaScript for beginners** — covers variables, functions, and DOM\n• **JavaScript ES6** — modern syntax like arrow functions and destructuring\n• **Async JavaScript** — promises, async/await, and fetch API\n• **JavaScript projects** — hands-on practice with real mini-apps\n\nTip: Head to the home feed and type any of these into the search bar. Your feed will also adapt over time as you watch more JS content. 🚀"
+    },
 ]
 
 function TypingIndicator() {
@@ -49,6 +60,7 @@ function TypingIndicator() {
 
 export function Chatbot() {
     const [chatSidebarOpen, setChatSidebarOpen] = useState(false)
+    const [chatSidebarCollapsed, setChatSidebarCollapsed] = useState(false)
     const [input, setInput] = useState("")
     const messagesEndRef = useRef(null)
     const { sidebarExpanded, isMobile } = useSidebar()
@@ -88,19 +100,20 @@ export function Chatbot() {
                         flex-shrink-0 flex flex-col
                         fixed sm:relative z-40 sm:z-auto
                         h-full sm:h-auto
-                        transition-transform duration-300
+                        transition-all duration-300
                         ${chatSidebarOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}
                     `}
                     style={{
-                        width: 240,
+                        width: chatSidebarCollapsed ? 0 : 240,
+                        overflow: "hidden",
                         top: isMobile ? 64 : 0,
                         backgroundColor: "var(--bg-secondary)",
-                        borderRight: "1px solid var(--border-subtle)",
+                        borderRight: chatSidebarCollapsed ? "none" : "1px solid var(--border-subtle)",
                     }}
                 >
                     {/* Sidebar header */}
                     <div className="flex items-center justify-between px-4 h-14 flex-shrink-0"
-                        style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                        style={{ borderBottom: "1px solid var(--border-subtle)", minWidth: 240 }}>
                         <div className="flex items-center gap-2">
                             <div className="w-6 h-6 rounded-lg flex items-center justify-center"
                                 style={{ background: "linear-gradient(135deg, #7c3aed, #4f46e5)" }}>
@@ -108,8 +121,15 @@ export function Chatbot() {
                             </div>
                             <span className="text-sm font-bold gradient-text">SynthAI</span>
                         </div>
-                        <button style={{ color: "var(--text-faint)" }}>
-                            <FontAwesomeIcon icon={faEllipsisH} size="sm" />
+                        <button
+                            onClick={() => setChatSidebarCollapsed(true)}
+                            className="p-1.5 rounded-lg transition-all"
+                            style={{ color: "var(--text-faint)" }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--bg-tertiary)"; e.currentTarget.style.color = "var(--text-muted)" }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--text-faint)" }}
+                            title="Collapse sidebar"
+                        >
+                            <PanelLeftClose size={16} />
                         </button>
                     </div>
 
@@ -184,6 +204,20 @@ export function Chatbot() {
                                     <line x1="3" y1="18" x2="10" y2="18"/>
                                 </svg>
                             </button>
+
+                            {/* Desktop: expand collapsed sidebar */}
+                            {chatSidebarCollapsed && (
+                                <button
+                                    className="hidden sm:flex p-1.5 rounded-lg transition-all"
+                                    style={{ color: "var(--text-faint)" }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--bg-tertiary)"; e.currentTarget.style.color = "var(--text-muted)" }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--text-faint)" }}
+                                    onClick={() => setChatSidebarCollapsed(false)}
+                                    title="Expand sidebar"
+                                >
+                                    <PanelLeftOpen size={16} />
+                                </button>
+                            )}
 
                             {/* Model selector */}
                             <div className="relative">
