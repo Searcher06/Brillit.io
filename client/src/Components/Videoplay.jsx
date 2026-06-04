@@ -21,7 +21,7 @@ import { SaveButton } from "./SaveButton";
 function RelatedVideoSkeleton() {
   return (
     <div className="flex gap-3 p-2">
-      <div className="skeleton w-36 h-20 rounded-lg flex-shrink-0" />
+      <div className="skeleton w-28 h-16 lg:w-36 lg:h-20 rounded-lg shrink-0" />
       <div className="flex flex-col gap-2 flex-1 pt-1">
         <div className="skeleton h-3 w-full rounded" />
         <div className="skeleton h-3 w-4/5 rounded" />
@@ -108,7 +108,7 @@ export default function Videoplay() {
             transition: "margin-left 250ms cubic-bezier(0.4,0,0.2,1)",
           }}
         >
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-3 sm:p-4 lg:p-6 max-w-[1600px] mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 lg:gap-6 p-3 sm:p-4 lg:p-6 max-w-[1600px] mx-auto">
 
             {/* ── Left: Player + info ── */}
             <div className="flex-1 min-w-0">
@@ -180,7 +180,7 @@ export default function Videoplay() {
             </div>
 
             {/* ── Right: Related videos ── */}
-            <div className="lg:w-80 xl:w-96 flex-shrink-0">
+            <div className="md:w-72 lg:w-80 xl:w-96 shrink-0 md:self-start md:sticky md:top-18 md:max-h-[calc(100vh-5rem)] md:overflow-y-auto">
               <p
                 className="text-sm font-semibold mb-3 px-1"
                 style={{ color: "var(--text-primary)" }}
@@ -229,7 +229,7 @@ export default function Videoplay() {
                       >
                         {/* Thumbnail */}
                         <div
-                          className="relative flex-shrink-0 w-36 h-20 rounded-lg overflow-hidden"
+                          className="relative shrink-0 w-28 h-16 lg:w-36 lg:h-20 rounded-lg overflow-hidden"
                           style={{ backgroundColor: "var(--bg-tertiary)" }}
                         >
                           {thumb && (
